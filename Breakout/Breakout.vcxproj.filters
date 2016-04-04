@@ -53,6 +53,9 @@
     <ClCompile Include="Block.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Racket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="breakout.h">
@@ -70,6 +73,12 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Racket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

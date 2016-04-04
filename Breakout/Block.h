@@ -1,8 +1,7 @@
 #pragma once
 
 #include <QPainter>
-
-
+#include "defines.h"
 
 class Block
 {
