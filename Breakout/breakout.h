@@ -10,6 +10,7 @@
 #include "defines.h"
 #include "Block.h"
 #include "Racket.h"
+#include "Boll.h"
 
 
 class Breakout : public QMainWindow
@@ -33,6 +34,9 @@ private:
 	std::vector <Block*> _blocks;
 	QTimer* timer;
 	Racket* rack;
+	Boll* boll;
+	QRect* spelplan;
+	Block* B;
 
 };
 

@@ -56,6 +56,9 @@
     <ClCompile Include="Racket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Boll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="breakout.h">
@@ -81,5 +84,13 @@
     <ClInclude Include="Racket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Boll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TODO.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
