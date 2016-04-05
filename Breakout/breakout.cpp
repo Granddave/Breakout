@@ -1,5 +1,4 @@
 #include "breakout.h"
-//hej
 
 Breakout::Breakout(QWidget *parent)
 	: QMainWindow(parent)
