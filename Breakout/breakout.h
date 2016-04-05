@@ -36,7 +36,6 @@ private:
 	Racket* rack;
 	Boll* boll;
 	QRect* spelplan;
-	Block* B;
 
 };
 

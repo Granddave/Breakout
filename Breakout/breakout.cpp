@@ -8,7 +8,7 @@ Breakout::Breakout(QWidget *parent)
 	setFixedHeight(W_HEIGHT);
 
 	setMouseTracking(true);
-	qDebug() << hasMouseTracking();
+	qDebug() << "HasMouseTracking:" << hasMouseTracking();
 	rack = new Racket();
 	boll = new Boll();
 	spelplan = new QRect(0, 0, W_WIDTH, W_HEIGHT);
@@ -58,9 +58,6 @@ void Breakout::paintEvent(QPaintEvent * e)
 		_blocks[i]->paint(p);
 	rack->paint(p);
 	boll->paint(p);
-
-	//
-
 }
 
 void Breakout::mouseMoveEvent(QMouseEvent* e)
@@ -82,7 +79,6 @@ void Breakout::update() //hitcheck
 		_blocks[i]->hitCheck(*boll);
 
 	//
- 	B->hitCheck(*boll); 
 
 	repaint();
 }
