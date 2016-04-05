@@ -14,12 +14,11 @@ public:
 	void paint(QPainter & painter);
 	float xvel(){ return _vx; }
 	float yvel(){ return _vy; }
-	float getRadius(){ return _radius; }
 
-	int getRight()	{ return _x + _radius * 2; }
-	int getLeft()	{ return _x; }
-	int getTop()	{ return _y; }
-	int getBottom()	{ return _y + _radius * 2; }
+	int getRight()	{ return rect->x() + rect->width() * 2; }
+	int getLeft()	{ return rect->x(); }
+	int getTop()	{ return rect->y(); }
+	int getBottom()	{ return rect->y() + rect->width() * 2; }
 
 	void setxvel(float x){ _vx = x; }
 	void setyvel(float y){ _vy = y; }
@@ -28,10 +27,8 @@ public:
 	void nyRiktning(float vx, float vy);
 	void reset();
 
-
 private:
-	float _x, _y, _vx, _vy;
-	int _radius;
+	float _vx, _vy;
 	QRect* rect;
 
 };

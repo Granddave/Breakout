@@ -30,7 +30,7 @@ void Racket::hitCheck(Boll& boll)
 {
 	float yDist = rect->y() - boll.position().bottom();
 	//qDebug() << yDist;
-	if (yDist <= 0 && (boll.position().center().x() - boll.getRadius() < getRight() && boll.position().center().x() + boll.getRadius() > getLeft()))
+	if (yDist <= 0 && (boll.getLeft() < getRight() && boll.getRight() > getLeft()))
  		boll.setyvel(-1 * boll.yvel());
 }
 
