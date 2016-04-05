@@ -76,9 +76,9 @@ void Breakout::update() //hitcheck
 	rack->hitCheck(*boll);
 
 	for (int i = 0; i < _blocks.size(); i++)
+	{
 		_blocks[i]->hitCheck(*boll);
-
-	//
+	}
 
 	repaint();
 }

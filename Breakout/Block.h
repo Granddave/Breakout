@@ -12,6 +12,7 @@ public:
 	void paint(QPainter& painter) const;
 	void hitCheck(Boll& boll);
 	void setActive() { _isActive = 1; }
+	bool isBlockActive() { return _isActive; }
 
 	QRect getRect() const;
 	int getRight()	const { return rect->right(); }
