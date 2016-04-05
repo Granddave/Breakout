@@ -32,25 +32,25 @@ void Block::hitCheck(Boll& boll)
 		int ballWidth = boll.position().width();
 		int ballTop = boll.position().top();
 
-		QPoint pointRight(ballLeft + ballWidth + 1, ballTop);
-		QPoint pointLeft(ballLeft - 1, ballTop);
-		QPoint pointTop(ballLeft, ballTop - 1);
-		QPoint pointBottom(ballLeft, ballTop + ballHeight + 1);
+		QPoint topLeft(ballLeft, ballTop);
+		QPoint topRight(ballLeft + ballWidth, ballTop);
+		QPoint bottomLeft(ballLeft, ballTop - ballHeight);
+		QPoint bottomRight(ballLeft + ballWidth, ballTop - ballHeight);
 
 		if (_isActive) {
-			if (getRect().contains(pointRight)) {
+			if (getRect().contains(topRight)) {
 				boll.setxvel(-1);
 			}
 
-			else if (getRect().contains(pointLeft)) {
+			else if (getRect().contains(bottomLeft)) {
 				boll.setxvel(1);
 			}
 
-			if (getRect().contains(pointTop)) {
+			if (getRect().contains(topLeft)) {
 				boll.setyvel(1);
 			}
 
-			else if (getRect().contains(pointBottom)) {
+			else if (getRect().contains(bottomRight)) {
 				boll.setyvel(-1);
 			}
 		}

@@ -2,7 +2,7 @@
 
 Boll::Boll()
 {
-	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 10, 10);
+	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 30, 30);
 	_vx = 0;
 	_vy = 0;
 }
