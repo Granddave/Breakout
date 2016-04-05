@@ -7,6 +7,7 @@ Boll::Boll()
 	_vx = 0;
 	_vy = 0;
 	_radius= 5;
+	rect = new QRect(_x, _y, 0, 0);
 }
 
 void Boll::update(QRect qr)
@@ -23,6 +24,8 @@ void Boll::update(QRect qr)
 	{
 		_x = W_WIDTH / 2;
 		_y = W_HEIGHT - 50;
+		rect->setX(_x);
+		rect->setY(_y);
 		_vx = 0;
 		_vy = 0;
 	}

@@ -32,6 +32,7 @@ public:
 private:
 	float _x, _y, _vx, _vy;
 	int _radius;
+	QRect* rect;
 
 };
 

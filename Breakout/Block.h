@@ -18,7 +18,7 @@ public:
 	int getTop(){ return _y; }
 	int getBottom(){ return _y + _height; }
 
-
+	QRect getRect();
 	inline int getWidth() const;
 	inline int getHeight() const;
 
@@ -28,6 +28,7 @@ private:
 	int _y;
 	int _width;
 	int _height;
+	QRect* rect;
 	
 	bool _isActive;
 };

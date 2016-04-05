@@ -1,9 +1,15 @@
-﻿Build started 2016-04-05 10:14:04.
+﻿Build started 2016-04-05 13:32:57.
      1>Project "C:\Users\David\Documents\GitHub\Breakout\Breakout\Breakout.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_breakout.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_breakout.cpp, GeneratedFiles\Release\moc_breakout.cpp.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.5.1\5.5\msvc2013\include /I.\GeneratedFiles\Debug /IC:\Qt\Qt5.5.1\5.5\msvc2013\include\QtCore /IC:\Qt\Qt5.5.1\5.5\msvc2013\include\QtGui /IC:\Qt\Qt5.5.1\5.5\msvc2013\include\QtWidgets /Zi /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt breakout.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.5.1\5.5\msvc2013\include /I.\GeneratedFiles\Debug /IC:\Qt\Qt5.5.1\5.5\msvc2013\include\QtCore /IC:\Qt\Qt5.5.1\5.5\msvc2013\include\QtGui /IC:\Qt\Qt5.5.1\5.5\msvc2013\include\QtWidgets /Zi /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Block.cpp Boll.cpp GeneratedFiles\Debug\moc_breakout.cpp Racket.cpp breakout.cpp main.cpp
+         Block.cpp
+         Boll.cpp
+         moc_breakout.cpp
+         Racket.cpp
          breakout.cpp
+         main.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\David\Documents\GitHub\Breakout\Win32\Debug\\Breakout.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.5.1\5.5\msvc2013\lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Widgetsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\David\Documents\GitHub\Breakout\Win32\Debug\Breakout.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\David\Documents\GitHub\Breakout\Win32\Debug\Breakout.lib" /MACHINE:X86 /SAFESEH Debug\Block.obj
          Debug\Boll.obj
@@ -17,4 +23,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.38
+Time Elapsed 00:00:07.41
