@@ -1,11 +1,9 @@
 #include "Block.h"
 
-Block::Block(int x, int y) : _x(x), _y(y)
+Block::Block(int x, int y)
 {
-	_width = BLOCK_WIDTH;
-	_height = BLOCK_HEIGHT;
+	rect = new QRect(x, y, BLOCK_WIDTH, BLOCK_HEIGHT);
 	_isActive = 1;
-	rect = new QRect(x, y, _width, _height);
 }
 
 void Block::paint(QPainter& painter) const
@@ -13,7 +11,7 @@ void Block::paint(QPainter& painter) const
 	if (_isActive)
 	{
 		painter.setBrush(Qt::lightGray);
-		painter.drawRect(_x, _y, _width, _height);
+		painter.drawRect(*rect);
 	}
 }
 
@@ -58,22 +56,7 @@ void Block::hitCheck(Boll& boll)
 	}
 }
 
-void Block::setActive()
-{
-	_isActive = 1;
-}
-
-int Block::getWidth() const
-{
-	return _width;
-}
-
-int Block::getHeight() const
-{
-	return _height;
-}
-
-QRect Block::getRect()
+QRect Block::getRect() const
 {
 	return *rect;
 }

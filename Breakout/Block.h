@@ -11,25 +11,18 @@ public:
 	
 	void paint(QPainter& painter) const;
 	void hitCheck(Boll& boll);
-	void setActive();
+	void setActive() { _isActive = 1; }
 
-	int getRight(){ return _x + _width; }
-	int getLeft(){ return _x; }
-	int getTop(){ return _y; }
-	int getBottom(){ return _y + _height; }
-
-	QRect getRect();
-	inline int getWidth() const;
-	inline int getHeight() const;
-
+	QRect getRect() const;
+	int getRight()	const { return rect->right(); }
+	int getLeft()	const { return rect->left(); }
+	int getTop()	const { return rect->top(); }
+	int getBottom() const { return rect->bottom(); }
+	int getWidth()	const { return rect->width(); }
+	int getHeight() const { return rect->height(); }
 
 private: 
-	int _x;
-	int _y;
-	int _width;
-	int _height;
 	QRect* rect;
-	
 	bool _isActive;
 };
 
