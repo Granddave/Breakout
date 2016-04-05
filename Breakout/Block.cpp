@@ -30,29 +30,59 @@ void Block::hitCheck(Boll& boll)
 		int ballWidth = boll.position().width();
 		int ballTop = boll.position().top();
 
-		QPoint topLeft(ballLeft, ballTop);
-		QPoint topRight(ballLeft + ballWidth, ballTop);
-		QPoint bottomLeft(ballLeft, ballTop - ballHeight);
-		QPoint bottomRight(ballLeft + ballWidth, ballTop - ballHeight);
+		QPoint top(ballLeft + (ballWidth/2), ballTop);
+		QPoint right(ballLeft + ballWidth, ballTop + (ballHeight/2));
+		QPoint left(ballLeft, ballTop + (ballHeight/2));
+		QPoint bottom(ballLeft + (ballWidth/2), ballTop + ballHeight);
+
+		/* Har vi blocken placerade för nära varandra kan programmet uppfatta att bollen "contains" två stycken blocks.
+		Därav ändrade jag avståndet mellan blocken i vertikalled */
 
 		if (_isActive) {
-			if (getRect().contains(topRight)) {
-				boll.setxvel(-1);
+			if (getRect().contains(top)) {
+				if ((getRect().contains(right)) || (getRect().contains(left))){
+					boll.changeyvel(-1);
+					_isActive = 0;
+				}
+				else{
+					boll.changeyvel(-1);
+					_isActive = 0;
+				}
 			}
 
-			else if (getRect().contains(bottomLeft)) {
-				boll.setxvel(1);
+			else if (getRect().contains(bottom)) {
+				if ((getRect().contains(right)) || (getRect().contains(left))){
+					boll.changeyvel(-1);
+					_isActive = 0;
+				}
+				else{
+					boll.changeyvel(-1);
+					_isActive = 0;
+				}
 			}
 
-			if (getRect().contains(topLeft)) {
-				boll.setyvel(1);
+			else if (getRect().contains(right)) {
+				if ((getRect().contains(top)) || (getRect().contains(bottom))){
+					boll.changexvel(-1);
+					_isActive = 0;
+				}
+				else{
+					boll.changexvel(-1);
+					_isActive = 0;
+				}
 			}
 
-			else if (getRect().contains(bottomRight)) {
-				boll.setyvel(-1);
+			else if (getRect().contains(left)) {
+				if ((getRect().contains(top)) || (getRect().contains(bottom))){
+					boll.changexvel(-1);
+					_isActive = 0;
+				}
+				else{
+					boll.changexvel(-1);
+					_isActive = 0;
+				}
 			}
 		}
-		_isActive = 0;
 	}
 }
 

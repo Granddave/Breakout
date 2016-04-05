@@ -17,7 +17,7 @@ Breakout::Breakout(QWidget *parent)
 	int numX = 10;		//Antal i horisontalled
 	int numY = 3;		//Antal i vertikalled	
 	int heightAdj = 20; //Pixlar mellan top och högsta
-	int spaceingY = 25; //Pixlar mellan block i vertikalled
+	int spaceingY = 35; //Pixlar mellan block i vertikalled
 
 	if (_blocks.size() == 0)
 	{

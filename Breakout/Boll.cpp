@@ -49,7 +49,7 @@ void Boll::reset()
 	rect->moveTop(W_HEIGHT - 70);
 	
 	srand(time(NULL));
-	_vx = 0.5f; 
+	_vx = 2; 
 	_vy = -2;
 	//TODO fixa random start
 }

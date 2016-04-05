@@ -20,6 +20,9 @@ public:
 	int getTop()	{ return rect->y(); }
 	int getBottom()	{ return rect->y() + rect->width() * 2; }
 
+	void changexvel(float x) { _vx *= x; }
+	void changeyvel(float y) { _vy *= y; }
+
 	void setxvel(float x){ _vx = x; }
 	void setyvel(float y){ _vy = y; }
 	void setpos(float x, float y);
