@@ -76,10 +76,7 @@ void Breakout::update() //hitcheck
 	for (int i = 0; i < _blocks.size(); i++)
 	{
 		_blocks[i]->hitCheck(*boll);
-<<<<<<< HEAD
 	}
-=======
->>>>>>> 970b7b013d4a9f87d44c4e0beb8d1eaea1f87fda
 
 	repaint();
 }
