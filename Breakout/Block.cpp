@@ -53,6 +53,7 @@ void Block::hitCheck(Boll& boll)
 			}
 		}
 		_isActive = 0;
+		//HEJEJEJEJEJE
 	}
 }
 
