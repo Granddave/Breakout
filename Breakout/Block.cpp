@@ -11,10 +11,10 @@ Block::Block(int x, int y) : _x(x), _y(y)
 void Block::paint(QPainter& painter) const
 {
 	if (_isActive)
+	{
 		painter.setBrush(Qt::lightGray);
-	else
-		painter.setBrush(Qt::red);
-	painter.drawRect(_x, _y, _width, _height);
+		painter.drawRect(_x, _y, _width, _height);
+	}
 }
 
 void Block::hitCheck(Boll& boll)
@@ -54,11 +54,8 @@ void Block::hitCheck(Boll& boll)
 				boll.setyvel(-1);
 			}
 		}
-		_x = 1000;
-		_y = 1000;
 		_isActive = 0;
 	}
-
 }
 
 void Block::setActive()
