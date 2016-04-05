@@ -2,10 +2,8 @@
 
 Racket::Racket()
 {
-	_height = 15;
-	_width = 100;
-	_x = (W_WIDTH / 2) - _width /2;
-	_y = W_HEIGHT - 40;
+	int _width = 100;
+	rect = new QRect((W_WIDTH / 2) - _width / 2, W_HEIGHT - 40, 15, 100);
 }
 
 void Racket::update()
@@ -15,17 +13,17 @@ void Racket::update()
 
 int Racket::getLeft()
 { 
-	return _x;
+	return rect->left();
 }
 
 int Racket::getRight()
 {
-	return _x + _width;
+	return rect->right();
 }
 
 void Racket::hitCheck(Boll& boll)
 {
-	float yDist = _y - boll.position().bottom();
+	float yDist = rect->y() - boll.position().bottom();
 	//qDebug() << yDist;
 	if (yDist <= 0 && (boll.position().center().x() - boll.getRadius() < getRight() && boll.position().center().x() + boll.getRadius() > getLeft()))
  		boll.setyvel(-1 * boll.yvel());
@@ -33,19 +31,19 @@ void Racket::hitCheck(Boll& boll)
 
 void Racket::setPosition(int x)
 {
-	if ((x >= _width/2) && (x < W_WIDTH - _width/2)) // Om innanför fönstret
-		_x = x - _width / 2;
+	if ((x >= rect->width() / 2) && (x < W_WIDTH - rect->width() / 2)) // Om innanför fönstret
+		rect->setX( rect->x() - rect->width() / 2);
 	//qDebug() << _x;
 }
 
 void Racket::reset()
 {
-	_x = (W_WIDTH / 2) - _width / 2;
+	rect->setX((W_WIDTH / 2) - rect->width() / 2);
 }
 
 void Racket::paint(QPainter& painter) const
 {
 	painter.setBrush(Qt::blue);
-	painter.drawRect(_x, _y, _width, _height);
+	painter.drawRect(rect->x(), rect->y(), rect->width(), rect->height());
 
 }
