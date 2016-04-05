@@ -56,6 +56,8 @@ void Boll::reset()
 
 void Boll::setpos(float x, float y)
 {
+	// Använd moveLeft eller moveTop istället för setX och setY.
+	// set ändrar storleken!
 	rect->moveLeft(x);
 	rect->moveTop(y);
 }
