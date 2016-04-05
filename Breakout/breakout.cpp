@@ -1,9 +1,5 @@
 #include "breakout.h"
-<<<<<<< HEAD
 //hej
-=======
-//då
->>>>>>> 7e6a98d9357a823cd33acabed98bde7ffad362ee
 
 Breakout::Breakout(QWidget *parent)
 	: QMainWindow(parent)
