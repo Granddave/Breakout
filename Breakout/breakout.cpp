@@ -11,6 +11,7 @@ Breakout::Breakout(QWidget *parent)
 	qDebug() << "HasMouseTracking:" << hasMouseTracking();
 	rack = new Racket();
 	boll = new Boll();
+
 	spelplan = new QRect(0, 0, W_WIDTH, W_HEIGHT);
 
 
@@ -32,8 +33,6 @@ Breakout::Breakout(QWidget *parent)
 			}
 		}
 	}
-
-
 
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -63,7 +62,6 @@ void Breakout::paintEvent(QPaintEvent * e)
 void Breakout::mouseMoveEvent(QMouseEvent* e)
 {
 	rack->setPosition(e->x());
-	//qDebug() << e->x();
 }
 
 void Breakout::mousePressEvent(QMouseEvent* e)
@@ -78,7 +76,10 @@ void Breakout::update() //hitcheck
 	for (int i = 0; i < _blocks.size(); i++)
 	{
 		_blocks[i]->hitCheck(*boll);
+<<<<<<< HEAD
 	}
+=======
+>>>>>>> 970b7b013d4a9f87d44c4e0beb8d1eaea1f87fda
 
 	repaint();
 }

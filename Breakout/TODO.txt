@@ -2,5 +2,4 @@ TODO:
 
 Random start
 Flytta startknapp och sätta kortkommando?
-Boll ta sönder block
-Studsmekanism när man tar sönder ett block
+Fixa hitdetection på Racket
