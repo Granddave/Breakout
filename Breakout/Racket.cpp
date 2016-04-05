@@ -3,7 +3,12 @@
 Racket::Racket()
 {
 	int _width = 100;
-	rect = new QRect((W_WIDTH / 2) - _width / 2, W_HEIGHT - 40, 15, 100);
+	rect = new QRect((W_WIDTH / 2) - _width / 2, W_HEIGHT - 40, 100, 15);
+}
+
+Racket::~Racket()
+{
+	delete rect;
 }
 
 void Racket::update()
@@ -11,12 +16,12 @@ void Racket::update()
 	//Hitcheck
 }
 
-int Racket::getLeft()
+int Racket::getLeft() const
 { 
 	return rect->left();
 }
 
-int Racket::getRight()
+int Racket::getRight() const
 {
 	return rect->right();
 }
@@ -32,13 +37,12 @@ void Racket::hitCheck(Boll& boll)
 void Racket::setPosition(int x)
 {
 	if ((x >= rect->width() / 2) && (x < W_WIDTH - rect->width() / 2)) // Om innanför fönstret
-		rect->setX( rect->x() - rect->width() / 2);
-	//qDebug() << _x;
+		rect->moveLeft(x - (rect->width() / 2));
 }
 
 void Racket::reset()
 {
-	rect->setX((W_WIDTH / 2) - rect->width() / 2);
+	rect->moveLeft((W_WIDTH / 2) - rect->width() / 2);
 }
 
 void Racket::paint(QPainter& painter) const
