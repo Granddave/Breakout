@@ -19,6 +19,7 @@ public:
 	int getLeft()	{ return rect->x(); }
 	int getTop()	{ return rect->y(); }
 	int getBottom()	{ return rect->y() + rect->width() * 2; }
+	bool intersects(QRect* obj) { return rect->intersects(*obj); }
 
 	void changexvel(float x) { _vx *= x; }
 	void changeyvel(float y) { _vy *= y; }
