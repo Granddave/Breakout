@@ -15,10 +15,10 @@ public:
 	bool isBlockActive() { return _isActive; }
 
 	QRect getRect() const{ return *rect; };
-	QRect getHBleft() const { return *HBleft; };
-	QRect getHBright() const { return *HBright; };
-	QRect getHBtop() const { return *HBtop; };
-	QRect getHBbottom() const { return *HBbottom; };
+	QPolygon getHBleft() const { return *HBleft; };
+	QPolygon getHBright() const { return *HBright; };
+	QPolygon getHBtop() const { return *HBtop; };
+	QPolygon getHBbottom() const { return *HBbottom; };
 	int getRight()	const { return rect->right(); }
 	int getLeft()	const { return rect->left(); }
 	int getTop()	const { return rect->top(); }
@@ -28,10 +28,10 @@ public:
 
 private: 
 	QRect* rect;
-	QRect* HBleft;
-	QRect* HBright;
-	QRect* HBtop;
-	QRect* HBbottom;
+	QPolygon* HBleft;
+	QPolygon* HBright;
+	QPolygon* HBtop;
+	QPolygon* HBbottom;
 
 	bool _isActive;
 };
