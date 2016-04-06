@@ -13,7 +13,7 @@ Block::Block(int x, int y)
 	HBtop = new QPolygon();
 	HBbottom = new QPolygon();
 
-	int left[] = { x, y, x, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };                     // "static const int" gjorde att endast ett block printades
+	int left[] = { x, y, x, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) }; 
 	HBleft->setPoints(3, left);
 
 	int right[] = { x + BLOCK_WIDTH, y, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
