@@ -24,6 +24,11 @@ public:
 
 private: 
 	QRect* rect;
+	QRect* HBleft;
+	QRect* HBright;
+	QRect* HBtop;
+	QRect* HBbottom;
+
 	bool _isActive;
 };
 

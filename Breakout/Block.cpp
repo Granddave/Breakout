@@ -3,6 +3,11 @@
 Block::Block(int x, int y)
 {
 	rect = new QRect(x, y, BLOCK_WIDTH, BLOCK_HEIGHT);
+	HBleft = new QRect(x, y + 4, 4, 12);
+	HBright = new QRect(x + BLOCK_WIDTH - 4, y + 4, 4, 12);
+	HBtop = new QRect(x, y, BLOCK_WIDTH, 4);
+	HBbottom = new QRect(x, y + BLOCK_HEIGHT - 4, BLOCK_WIDTH, 4);
+
 	_isActive = 1;
 }
 
@@ -12,6 +17,15 @@ void Block::paint(QPainter& painter) const
 	{
 		painter.setBrush(Qt::lightGray);
 		painter.drawRect(*rect);
+		
+#if 0
+		//Ritar ut hitboxar
+		painter.setBrush(Qt::red);
+		painter.drawRect(*HBbottom);
+		painter.drawRect(*HBleft);
+		painter.drawRect(*HBright);
+		painter.drawRect(*HBtop);
+#endif
 	}
 }
 
@@ -71,8 +85,8 @@ void Block::hitCheck(Boll& boll)
 					_isActive = 0;
 				}
 			}
-
 			else if (getRect().contains(left)) {
+
 				if ((getRect().contains(top)) || (getRect().contains(bottom))){
 					boll.changexvel(-1);
 					_isActive = 0;
