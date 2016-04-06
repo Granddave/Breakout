@@ -36,6 +36,7 @@ public:
 private:
 	float _vx, _vy;
 	QRect* rect;
+	QPixmap* boll;
 	bool hasChangedDir;
 };
 

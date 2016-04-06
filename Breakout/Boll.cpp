@@ -2,6 +2,8 @@
 
 Boll::Boll()
 {
+	boll = new QPixmap("ball.png");
+
 	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
 	_vx = 0;
 	_vy = 0;
@@ -28,8 +30,9 @@ void Boll::update(QRect qr)
 
 void Boll::paint(QPainter & painter)
 {
-	painter.setBrush(Qt::green);
-	painter.drawEllipse(rect->x(), rect->y(), rect->width(), rect->width());
+	//painter.setBrush(Qt::green);
+	//painter.drawEllipse(rect->x(), rect->y(), rect->width(), rect->width());
+	painter.drawPixmap(rect->left(), rect->top(), *boll);
 }
 
 QRect Boll::position() const
