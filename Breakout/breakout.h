@@ -36,6 +36,7 @@ private:
 	Racket* rack;
 	Boll* boll;
 	QRect* spelplan;
+	QPixmap* background;
 
 };
 

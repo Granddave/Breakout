@@ -4,6 +4,7 @@ int times = 0;
 
 Block::Block(int x, int y)
 {
+	block = new QPixmap("block.png");
 	_x = x;
 	_y = y;
 
@@ -30,15 +31,9 @@ Block::Block(int x, int y)
 
 void Block::paint(QPainter& painter) const
 {
-	QPixmap pix("background.png");
-	QPixmap block("block.png");
-	if (times == 0)
-		painter.drawPixmap(0, 0, pix);
-
-	times++;
 	if (_isActive)
 	{
-		painter.drawPixmap(_x, _y, block);
+		painter.drawPixmap(_x, _y, *block);
 		//Ritar ut hitboxar
 		//painter.setBrush(Qt::red);
 		//painter.drawPolygon(*HBbottom);

@@ -11,8 +11,8 @@ Breakout::Breakout(QWidget *parent)
 	qDebug() << "HasMouseTracking:" << hasMouseTracking();
 	rack = new Racket();
 	boll = new Boll();
-
 	spelplan = new QRect(0, 0, W_WIDTH, W_HEIGHT);
+	background = new QPixmap("background.png");
 
 	int numX = 10;		//Antal i horisontalled
 	int numY = 7;		//Antal i vertikalled	
@@ -52,6 +52,9 @@ Breakout::~Breakout()
 void Breakout::paintEvent(QPaintEvent * e)
 {
 	QPainter p(this);
+
+	p.drawPixmap(0, 0, *background); //bakgrund
+
 	for (int i = 0; i < _blocks.size(); i++)
 		_blocks[i]->paint(p);
 	rack->paint(p);

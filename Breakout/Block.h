@@ -33,6 +33,7 @@ private:
 	QPolygon* HBright;
 	QPolygon* HBtop;
 	QPolygon* HBbottom;
+	QPixmap* block;
 
 	bool _isActive;
 };
