@@ -2,42 +2,40 @@
 
 Block::Block(int x, int y)
 {
-	rect = new QRect(x, y, BLOCK_WIDTH, BLOCK_HEIGHT);
+	//rect = new QRect(x, y, BLOCK_WIDTH, BLOCK_HEIGHT);
 	HBleft = new QPolygon();
 	HBright = new QPolygon();
 	HBtop = new QPolygon();
 	HBbottom = new QPolygon();
 
-	static const int left[] = { x, y, x, y + BLOCK_HEIGHT, x + BLOCK_WIDTH/2, y + BLOCK_HEIGHT/2 };
+	static const int left[] = { x, y, x, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
 	HBleft->setPoints(3, left);
 
-	static const int right[] = { x + BLOCK_WIDTH, y, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + BLOCK_WIDTH / 2, y + BLOCK_HEIGHT / 2 };
+	static const int right[] = { x + BLOCK_WIDTH, y, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
 	HBright->setPoints(3, right);
 
-	static const int top[] = { x, y, x + BLOCK_WIDTH, y, x + BLOCK_WIDTH / 2, y + BLOCK_HEIGHT / 2 };
+	static const int top[] = { x, y, x + BLOCK_WIDTH, y, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
 	HBtop->setPoints(3, top);
 
-	static const int bottom[] = { x, y + BLOCK_HEIGHT, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + BLOCK_WIDTH / 2, y + BLOCK_HEIGHT / 2 };
+	static const int bottom[] = { x, y + BLOCK_HEIGHT, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
 	HBbottom->setPoints(3, bottom);
 
-	_isActive = 1;
+	//_isActive = 1;
 }
 
 void Block::paint(QPainter& painter) const
 {
 	if (_isActive)
 	{
-		painter.setBrush(Qt::lightGray);
-		painter.drawRect(*rect);
+		//painter.setBrush(Qt::lightGray);
+		//painter.drawRect(*rect);
 		
-#if 1
 		//Ritar ut hitboxar
 		painter.setBrush(Qt::red);
 		painter.drawPolygon(*HBbottom);
 		painter.drawPolygon(*HBleft);
 		painter.drawPolygon(*HBright);
 		painter.drawPolygon(*HBtop);
-#endif
 	}
 }
 
@@ -50,7 +48,7 @@ void Block::hitCheck(Boll& boll)
 	//}
 	if (boll.getHasChangedDir())
 		return;
-	if ((boll.position()).intersects(getRect())) {
+	//if ((boll.position()).intersects(getRect())) {
 
 		int ballLeft = boll.position().left();
 		int ballHeight = boll.position().height();
@@ -84,10 +82,10 @@ void Block::hitCheck(Boll& boll)
 
 		}
 
-
+		/*
 #if 0
 		/* Har vi blocken placerade för nära varandra kan programmet uppfatta att bollen "contains" två stycken blocks.
-		Därav ändrade jag avståndet mellan blocken i vertikalled */
+		Därav ändrade jag avståndet mellan blocken i vertikalled 
 		
 		if (_isActive) {
 			if (getHBbottom().contains(point)) 
@@ -172,6 +170,6 @@ void Block::hitCheck(Boll& boll)
 				}
 			}
 		}
-#endif
-	}
+#endif */
+	//}
 }

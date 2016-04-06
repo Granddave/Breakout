@@ -14,9 +14,11 @@ Breakout::Breakout(QWidget *parent)
 
 	spelplan = new QRect(0, 0, W_WIDTH, W_HEIGHT);
 
+	// TODO !!! Blocken printas ut på samma ställe
+	// Varför gör det de?
 
-	int numX = 10;		//Antal i horisontalled
-	int numY = 3;		//Antal i vertikalled	
+	int numX = 2;		//Antal i horisontalled
+	int numY = 1;		//Antal i vertikalled	
 	int heightAdj = 20; //Pixlar mellan top och högsta
 	int spaceingY = 35; //Pixlar mellan block i vertikalled
 
