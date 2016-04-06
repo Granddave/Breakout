@@ -53,45 +53,96 @@ void Block::hitCheck(Boll& boll)
 		Därav ändrade jag avståndet mellan blocken i vertikalled */
 
 		if (_isActive) {
-			if (getRect().contains(top)) {
-				if ((getRect().contains(right)) || (getRect().contains(left))){
+			if (getRect().contains(top)) 
+			{
+				if ((boll.xvel() > 0) && (boll.yvel() < 0))
+				{
 					boll.changeyvel(-1);
 					_isActive = 0;
 				}
-				else{
+				else if ((boll.xvel() < 0) && (boll.yvel() > 0))
+				{
+					boll.changexvel(-1);
+					_isActive = 0;
+				}
+				else if ((getRect().contains(right)) || (getRect().contains(left)))
+				{
+					boll.changeyvel(-1);
+					_isActive = 0;
+				}
+				else
+				{
 					boll.changeyvel(-1);
 					_isActive = 0;
 				}
 			}
 
-			else if (getRect().contains(bottom)) {
-				if ((getRect().contains(right)) || (getRect().contains(left))){
+			else if (getRect().contains(bottom)) 
+			{
+				if ((boll.xvel() > 0) && (boll.yvel() < 0))
+				{
+					boll.changexvel(-1);
+					_isActive = 0;
+				}
+				else if ((boll.xvel() < 0) && (boll.yvel() < 0))
+				{
+					boll.changexvel(-1);
+					_isActive = 0;
+				}
+				else if ((getRect().contains(right)) || (getRect().contains(left)))
+				{
 					boll.changeyvel(-1);
 					_isActive = 0;
 				}
-				else{
+				else
+				{
 					boll.changeyvel(-1);
 					_isActive = 0;
 				}
 			}
 
-			else if (getRect().contains(right)) {
-				if ((getRect().contains(top)) || (getRect().contains(bottom))){
+			else if (getRect().contains(right)) 
+			{
+				if ((boll.xvel() > 0) && (boll.yvel() < 0))
+				{
 					boll.changexvel(-1);
 					_isActive = 0;
 				}
-				else{
+				else if ((boll.xvel() < 0) && (boll.yvel() > 0))
+				{
+					boll.changeyvel(-1);
+					_isActive = 0;
+				}
+				else if ((getRect().contains(top)) || (getRect().contains(bottom)))
+				{
+					boll.changexvel(-1);
+					_isActive = 0;
+				}
+				else
+				{
 					boll.changexvel(-1);
 					_isActive = 0;
 				}
 			}
-			else if (getRect().contains(left)) {
-
-				if ((getRect().contains(top)) || (getRect().contains(bottom))){
+			else if (getRect().contains(left)) 
+			{
+				if ((boll.xvel() > 0) && (boll.yvel() < 0))
+				{
+					boll.changeyvel(-1);
+					_isActive = 0;
+				}
+				else if ((boll.xvel() < 0) && (boll.yvel() > 0))
+				{
 					boll.changexvel(-1);
 					_isActive = 0;
 				}
-				else{
+				else if ((getRect().contains(top)) || (getRect().contains(bottom)))
+				{
+					boll.changexvel(-1);
+					_isActive = 0;
+				}
+				else
+				{
 					boll.changexvel(-1);
 					_isActive = 0;
 				}
