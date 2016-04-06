@@ -152,8 +152,3 @@ void Block::hitCheck(Boll& boll)
 		}
 	}
 }
-
-QRect Block::getRect() const
-{
-	return *rect;
-}

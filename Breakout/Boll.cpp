@@ -52,7 +52,7 @@ void Boll::reset()
 {
 	rect->moveLeft(W_WIDTH / 2);
 	rect->moveTop(W_HEIGHT - 70);
-	
+
 	srand(time(NULL));
 	_vx = 4; 
 	_vy = -3;

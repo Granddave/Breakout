@@ -14,7 +14,11 @@ public:
 	void setActive() { _isActive = 1; }
 	bool isBlockActive() { return _isActive; }
 
-	QRect getRect() const;
+	QRect getRect() const{ return *rect; };
+	QRect getHBleft() const { return *HBleft; };
+	QRect getHBright() const { return *HBright; };
+	QRect getHBtop() const { return *HBtop; };
+	QRect getHBbottom() const { return *HBbottom; };
 	int getRight()	const { return rect->right(); }
 	int getLeft()	const { return rect->left(); }
 	int getTop()	const { return rect->top(); }
