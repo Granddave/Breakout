@@ -43,15 +43,32 @@ void Boll::nyRiktning(float vx, float vy)
 	_vy = vy;
 }
 
+void Boll::setHasChangedDir(bool b)
+{
+	hasChangedDir = b;
+}
+
 void Boll::reset()
 {
 	rect->moveLeft(W_WIDTH / 2);
 	rect->moveTop(W_HEIGHT - 70);
 	
 	srand(time(NULL));
-	_vx = 5; 
-	_vy = -2;
+	_vx = 4; 
+	_vy = -3;
 	//TODO fixa random start
+}
+
+void Boll::changexvel(float x)
+{
+	_vx *= x;
+	setHasChangedDir(1);
+}
+
+void Boll::changeyvel(float y)
+{
+	_vy *= y;
+	setHasChangedDir(1);
 }
 
 void Boll::setpos(float x, float y)

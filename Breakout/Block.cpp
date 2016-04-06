@@ -36,6 +36,8 @@ void Block::hitCheck(Boll& boll)
 	//{
 	//	_isActive = 0;
 	//}
+	if (boll.getHasChangedDir())
+		return;
 
 	if ((boll.position()).intersects(getRect())) {
 

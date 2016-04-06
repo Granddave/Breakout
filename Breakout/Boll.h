@@ -21,19 +21,21 @@ public:
 	int getBottom()	{ return rect->y() + rect->width() * 2; }
 	bool intersects(QRect* obj) { return rect->intersects(*obj); }
 
-	void changexvel(float x) { _vx *= x; }
-	void changeyvel(float y) { _vy *= y; }
+	void changexvel(float x);
+	void changeyvel(float y);
 
 	void setxvel(float x){ _vx = x; }
 	void setyvel(float y){ _vy = y; }
 	void setpos(float x, float y);
 	QRect position() const;
 	void nyRiktning(float vx, float vy);
+	void setHasChangedDir(bool b);
+	bool getHasChangedDir(){ return hasChangedDir; }
 	void reset();
 
 private:
 	float _vx, _vy;
 	QRect* rect;
-
+	bool hasChangedDir;
 };
 

@@ -70,6 +70,7 @@ void Breakout::mousePressEvent(QMouseEvent* e)
 
 void Breakout::update() //hitcheck
 {
+	boll->setHasChangedDir(0);
 	boll->update(*spelplan);
 	rack->hitCheck(*boll);
 
