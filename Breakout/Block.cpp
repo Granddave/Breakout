@@ -30,22 +30,22 @@ Block::Block(int x, int y)
 
 void Block::paint(QPainter& painter) const
 {
-	QPixmap pix("Resources/background.png");
+	QPixmap pix("background.png");
 	QPixmap block("block.png");
 	if (times == 0)
 		painter.drawPixmap(0, 0, pix);
 
-	painter.drawPixmap(_x, _y, block);
 	times++;
-	//if (_isActive)
-	//{
-	//	//Ritar ut hitboxar
-	//	painter.setBrush(Qt::red);
-	//	painter.drawPolygon(*HBbottom);
-	//	painter.drawPolygon(*HBleft);
-	//	painter.drawPolygon(*HBright);
-	//	painter.drawPolygon(*HBtop);
-	//}
+	if (_isActive)
+	{
+		painter.drawPixmap(_x, _y, block);
+		//Ritar ut hitboxar
+		//painter.setBrush(Qt::red);
+		//painter.drawPolygon(*HBbottom);
+		//painter.drawPolygon(*HBleft);
+		//painter.drawPolygon(*HBright);
+		//painter.drawPolygon(*HBtop);
+	}
 }
 
 void Block::hitCheck(Boll& boll)
