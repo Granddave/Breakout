@@ -3,6 +3,7 @@
 #include <QPainter>
 #include "defines.h"
 #include "Boll.h"
+#include <QPixmap>
 
 class Block
 {

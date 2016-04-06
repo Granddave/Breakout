@@ -2,7 +2,7 @@
 
 Boll::Boll()
 {
-	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 10, 10);
+	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
 	_vx = 0;
 	_vy = 0;
 }
@@ -54,7 +54,7 @@ void Boll::reset()
 	rect->moveTop(W_HEIGHT - 70);
 
 	srand(time(NULL));
-	_vx = 8; 
+	_vx = 2; 
 	_vy = -3;
 	//TODO fixa random start
 }

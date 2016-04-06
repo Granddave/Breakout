@@ -1,5 +1,7 @@
 #include "Block.h"
 
+int times = 0;
+
 Block::Block(int x, int y)
 {
 	_x = x;
@@ -28,6 +30,10 @@ Block::Block(int x, int y)
 
 void Block::paint(QPainter& painter) const
 {
+	QPixmap pix("Resources/background.png");
+	if (times == 0)
+		painter.drawPixmap(0, 0, pix);
+	times++;
 	if (_isActive)
 	{
 		//Ritar ut hitboxar
