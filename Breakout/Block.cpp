@@ -56,6 +56,8 @@ void Block::hitCheck(Boll& boll)
 
 		
 		if (_isActive){
+
+			// Följande 12 if-statements kollar om bollen är exakt i någon av kanterna i blocket och kollar även vilken riktning bollen har
 			if (((point.x() == _x) && (point.y() == _y)) && ((boll.xvel() > 0) && (boll.yvel() > 0))) // 1
 			{
 				boll.changeyvel(-1);

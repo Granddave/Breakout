@@ -54,7 +54,7 @@ void Boll::reset()
 	rect->moveTop(W_HEIGHT - 70);
 
 	srand(time(NULL));
-	_vx = 4; 
+	_vx = 8; 
 	_vy = -3;
 	//TODO fixa random start
 }
@@ -63,11 +63,11 @@ void Boll::changexvel(float x)
 {
 	_vx *= x;
 	setHasChangedDir(1);
-}
 
 void Boll::changeyvel(float y)
 {
 	_vy *= y;
+}
 	setHasChangedDir(1);
 }
 
