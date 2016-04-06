@@ -15,10 +15,8 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,8 +26,6 @@ class Ui_BreakoutClass
 public:
     QWidget *centralWidget;
     QPushButton *startButton;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *BreakoutClass)
@@ -43,13 +39,6 @@ public:
         startButton->setObjectName(QStringLiteral("startButton"));
         startButton->setGeometry(QRect(490, 30, 75, 23));
         BreakoutClass->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(BreakoutClass);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 600, 21));
-        BreakoutClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(BreakoutClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        BreakoutClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(BreakoutClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         BreakoutClass->setStatusBar(statusBar);
