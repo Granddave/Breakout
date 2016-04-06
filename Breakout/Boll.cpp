@@ -63,11 +63,11 @@ void Boll::changexvel(float x)
 {
 	_vx *= x;
 	setHasChangedDir(1);
+}
 
 void Boll::changeyvel(float y)
 {
 	_vy *= y;
-}
 	setHasChangedDir(1);
 }
 
