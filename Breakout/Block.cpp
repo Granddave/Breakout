@@ -46,37 +46,20 @@ void Block::hitCheck(Boll& boll)
 		int ballWidth = boll.position().width();
 		int ballTop = boll.position().top();
 
-		QPoint top(ballLeft + (ballWidth/2), ballTop);
-		QPoint right(ballLeft + ballWidth, ballTop + (ballHeight/2));
-		QPoint left(ballLeft, ballTop + (ballHeight/2));
-		QPoint bottom(ballLeft + (ballWidth/2), ballTop + ballHeight);
+		QPoint point(ballLeft + (ballWidth/2), ballTop + (ballHeight/2)); //center point i bollen
 
 		/* Har vi blocken placerade för nära varandra kan programmet uppfatta att bollen "contains" två stycken blocks.
 		Därav ändrade jag avståndet mellan blocken i vertikalled */
 
 		if (_isActive) {
-			if (getRect().contains(top)) 
+			if (getHBbottom().contains(point)) 
 			{
-				if ((boll.xvel() > 0) && (boll.yvel() < 0))
-				{
-					boll.changeyvel(-1);
-					_isActive = 0;
-				}
-				else if ((boll.xvel() < 0) && (boll.yvel() > 0))
-				{
-					boll.changexvel(-1);
-					_isActive = 0;
-				}
-				else if ((getRect().contains(right)) || (getRect().contains(left)))
-				{
-					boll.changeyvel(-1);
-					_isActive = 0;
-				}
-				else
-				{
-					boll.changeyvel(-1);
-					_isActive = 0;
-				}
+				if (((boll.xvel() > 0) && (boll.yvel() > 0)) && (point.x() > getHBbottom().left()))       // syd-öst
+				else if (((boll.xvel() < 0) && (boll.yvel() > 0)) && (point.x() < getHBbottom().right())) // syd-väst
+				else if (((boll.xvel() > 0) && (boll.yvel() < 0)) && (point.x() < getHBbottom().right())) // nord-öst
+				else if (((boll.xvel() < 0) && (boll.yvel() < 0)) && (point.x() < getHBbottom().right())) // nord-väst
+                else if ((boll.xvel() > 0) && (boll.yvel() < 0)) // nord-öst
+				else if ((boll.xvel() < 0) && (boll.yvel() < 0)) // nord-väst
 			}
 
 			else if (getRect().contains(bottom)) 
