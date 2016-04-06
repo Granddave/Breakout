@@ -16,7 +16,7 @@ Breakout::Breakout(QWidget *parent)
 
 
 	int numX = 10;		//Antal i horisontalled
-	int numY = 3;		//Antal i vertikalled	
+	int numY = 7;		//Antal i vertikalled	
 	int heightAdj = 20; //Pixlar mellan top och högsta
 	int spaceingY = 35; //Pixlar mellan block i vertikalled
 
@@ -36,7 +36,7 @@ Breakout::Breakout(QWidget *parent)
 
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-	timer->start(5);
+	timer->start(16);
 
 	connect(ui.startButton, SIGNAL(pressed()), this, SLOT(startGame()));
 }
@@ -77,6 +77,8 @@ void Breakout::update() //hitcheck
 	{
 		_blocks[i]->hitCheck(*boll);
 	}
+
+	rack->setPosition(boll->getLeft());
 
 	repaint();
 }
