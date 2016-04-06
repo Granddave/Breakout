@@ -26,8 +26,8 @@ public:
 	//int getWidth()	const { return rect->width(); }
 	//int getHeight() const { return rect->height(); }
 
-private: 
-	//QRect* rect;
+private:
+	int _x, _y;
 	QPolygon* HBleft;
 	QPolygon* HBright;
 	QPolygon* HBtop;

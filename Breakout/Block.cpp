@@ -2,34 +2,34 @@
 
 Block::Block(int x, int y)
 {
+	_x = x;
+	_y = y;
+
 	//rect = new QRect(x, y, BLOCK_WIDTH, BLOCK_HEIGHT);
 	HBleft = new QPolygon();
 	HBright = new QPolygon();
 	HBtop = new QPolygon();
 	HBbottom = new QPolygon();
 
-	static const int left[] = { x, y, x, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
+	int left[] = { x, y, x, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };                     // "static const int" gjorde att endast ett block printades
 	HBleft->setPoints(3, left);
 
-	static const int right[] = { x + BLOCK_WIDTH, y, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
+	int right[] = { x + BLOCK_WIDTH, y, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
 	HBright->setPoints(3, right);
 
-	static const int top[] = { x, y, x + BLOCK_WIDTH, y, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
+	int top[] = { x, y, x + BLOCK_WIDTH, y, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
 	HBtop->setPoints(3, top);
 
-	static const int bottom[] = { x, y + BLOCK_HEIGHT, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
+	int bottom[] = { x, y + BLOCK_HEIGHT, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
 	HBbottom->setPoints(3, bottom);
 
-	//_isActive = 1;
+	_isActive = 1;
 }
 
 void Block::paint(QPainter& painter) const
 {
 	if (_isActive)
 	{
-		//painter.setBrush(Qt::lightGray);
-		//painter.drawRect(*rect);
-		
 		//Ritar ut hitboxar
 		painter.setBrush(Qt::red);
 		painter.drawPolygon(*HBbottom);
@@ -46,9 +46,6 @@ void Block::hitCheck(Boll& boll)
 	//{
 	//	_isActive = 0;
 	//}
-	if (boll.getHasChangedDir())
-		return;
-	//if ((boll.position()).intersects(getRect())) {
 
 		int ballLeft = boll.position().left();
 		int ballHeight = boll.position().height();
@@ -59,117 +56,130 @@ void Block::hitCheck(Boll& boll)
 
 		
 		if (_isActive){
+			if (((point.x() == _x) && (point.y() == _y)) && ((boll.xvel() > 0) && (boll.yvel() > 0))) // 1
+			{
+				boll.changeyvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == _x) && (point.y() == _y)) && ((boll.xvel() < 0) && (boll.yvel() > 0))) // 2
+			{
+				boll.changeyvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == _y)) && ((boll.xvel() > 0) && (boll.yvel() > 0))) // 3
+			{
+				boll.changeyvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == _y)) && ((boll.xvel() < 0) && (boll.yvel() > 0))) // 4
+			{
+				boll.changeyvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == _y)) && ((boll.xvel() < 0) && (boll.yvel() < 0))) // 5
+			{
+				boll.changexvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() < 0) && (boll.yvel() > 0))) // 6
+			{
+				boll.changexvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() < 0) && (boll.yvel() < 0))) // 7
+			{
+				boll.changeyvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() > 0) && (boll.yvel() < 0))) // 8
+			{
+				boll.changeyvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == _x) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() < 0) && (boll.yvel() < 0))) // 9
+			{
+				boll.changeyvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == _x) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() > 0) && (boll.yvel() < 0))) // 10
+			{
+				boll.changeyvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == _x) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() > 0) && (boll.yvel() > 0))) // 11
+			{
+				boll.changexvel(-1);
+				_isActive = 0; return;
+			}
+			if (((point.x() == _x) && (point.y() == _y)) && ((boll.xvel() > 0) && (boll.yvel() < 0))) // 12
+			{
+				boll.changexvel(-1);
+				_isActive = 0; return;
+			}
+			///////////////////////////////////////////////////
  			if (getHBbottom().containsPoint(point, Qt::OddEvenFill)) // osäker vad man ska skriva i andra fältet där OddEvenFill står...
 			{
+				if ((boll.xvel() > 0) && (boll.yvel() > 0)) // 11
+				{
+					boll.changexvel(-1);
+					_isActive = 0; return;
+				}
+				if ((boll.xvel() < 0) && (boll.yvel() > 0)) // 6
+				{
+					boll.changexvel(-1);
+					_isActive = 0; return;
+				}
 				boll.changeyvel(-1);
-				_isActive = 0;
+				_isActive = 0; return;
 			}
+
 			else if (getHBtop().containsPoint(point, Qt::OddEvenFill)) 
 			{
+				if ((boll.xvel() > 0) && (boll.yvel() < 0)) // 12
+				{
+					boll.changexvel(-1);
+					_isActive = 0; return;
+				}
+				if ((boll.xvel() < 0) && (boll.yvel() < 0)) // 5
+				{
+					boll.changexvel(-1);
+					_isActive = 0; return;
+				}
 				boll.changeyvel(-1);
-				_isActive = 0;
+				_isActive = 0; return;
 			}
+
 			else if (getHBleft().containsPoint(point, Qt::OddEvenFill))
 			{
+				if ((boll.xvel() < 0) && (boll.yvel() < 0)) // 9
+				{
+					boll.changeyvel(-1);
+					_isActive = 0; return;
+				}
+				if ((boll.xvel() < 0) && (boll.yvel() > 0)) // 2
+				{
+					boll.changeyvel(-1);
+					_isActive = 0; return;
+				}
 				boll.changexvel(-1);
-				_isActive = 0;
+				_isActive = 0; return;
 			}
+
 			else if (getHBright().containsPoint(point, Qt::OddEvenFill))
 			{
+				if ((boll.xvel() > 0) && (boll.yvel() < 0)) // 8
+				{
+					boll.changeyvel(-1);
+					_isActive = 0; return;
+				}
+				if ((boll.xvel() > 0) && (boll.yvel() > 0)) // 3
+				{
+					boll.changeyvel(-1);
+					_isActive = 0; return;
+				}
 				boll.changexvel(-1);
-				_isActive = 0;
+				_isActive = 0; return;
 			}
 
 		}
-
-		/*
-#if 0
-		/* Har vi blocken placerade för nära varandra kan programmet uppfatta att bollen "contains" två stycken blocks.
-		Därav ändrade jag avståndet mellan blocken i vertikalled 
-		
-		if (_isActive) {
-			if (getHBbottom().contains(point)) 
-			{
-
-				if (((boll.xvel() > 0) && (boll.yvel() > 0)) && (point.x() > getHBbottom().left()))       // syd-öst
-				else if (((boll.xvel() < 0) && (boll.yvel() > 0)) && (point.x() < getHBbottom().right())) // syd-väst
-				else if (((boll.xvel() > 0) && (boll.yvel() < 0)) && (point.x() < getHBbottom().right())) // nord-öst
-				else if (((boll.xvel() < 0) && (boll.yvel() < 0)) && (point.x() < getHBbottom().right())) // nord-väst
-                else if ((boll.xvel() > 0) && (boll.yvel() < 0)) // nord-öst
-				else if ((boll.xvel() < 0) && (boll.yvel() < 0)) // nord-väst
-			}
-
-			else if (getRect().contains(bottom)) 
-			{
-				if ((boll.xvel() > 0) && (boll.yvel() < 0))
-				{
-					boll.changexvel(-1);
-					_isActive = 0;
-				}
-				else if ((boll.xvel() < 0) && (boll.yvel() < 0))
-				{
-					boll.changexvel(-1);
-					_isActive = 0;
-				}
-				else if ((getRect().contains(right)) || (getRect().contains(left)))
-				{
-					boll.changeyvel(-1);
-					_isActive = 0;
-				}
-				else
-				{
-					boll.changeyvel(-1);
-					_isActive = 0;
-				}
-			}
-
-			else if (getRect().contains(right)) 
-			{
-				if ((boll.xvel() > 0) && (boll.yvel() < 0))
-				{
-					boll.changexvel(-1);
-					_isActive = 0;
-				}
-				else if ((boll.xvel() < 0) && (boll.yvel() > 0))
-				{
-					boll.changeyvel(-1);
-					_isActive = 0;
-				}
-				else if ((getRect().contains(top)) || (getRect().contains(bottom)))
-				{
-					boll.changexvel(-1);
-					_isActive = 0;
-				}
-				else
-				{
-					boll.changexvel(-1);
-					_isActive = 0;
-				}
-			}
-			else if (getRect().contains(left)) 
-			{
-				if ((boll.xvel() > 0) && (boll.yvel() < 0))
-				{
-					boll.changeyvel(-1);
-					_isActive = 0;
-				}
-				else if ((boll.xvel() < 0) && (boll.yvel() > 0))
-				{
-					boll.changexvel(-1);
-					_isActive = 0;
-				}
-				else if ((getRect().contains(top)) || (getRect().contains(bottom)))
-				{
-					boll.changexvel(-1);
-					_isActive = 0;
-				}
-				else
-				{
-					boll.changexvel(-1);
-					_isActive = 0;
-				}
-			}
-		}
-#endif */
-	//}
 }
