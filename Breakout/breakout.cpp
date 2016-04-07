@@ -11,11 +11,11 @@ Breakout::Breakout(QWidget *parent)
 	qDebug() << "HasMouseTracking:" << hasMouseTracking();
 	rack = new Racket();
 	boll = new Boll();
-	spelplan = new QRect(0, 0, W_WIDTH, W_HEIGHT);
+	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT);
 	background = new QPixmap("background.png");
 
-	int numX = 10;		//Antal i horisontalled
-	int numY = 7;		//Antal i vertikalled	
+	int numX = 1;		//Antal i horisontalled
+	int numY = 1;		//Antal i vertikalled	
 	int heightAdj = 20; //Pixlar mellan top och högsta
 	int spaceingY = 35; //Pixlar mellan block i vertikalled
 
@@ -26,7 +26,9 @@ Breakout::Breakout(QWidget *parent)
 		{
 			for (int y = 0; y < numY; y++)
 			{
-				Block* n = new Block((x * W_WIDTH / numX) + ((W_WIDTH / numX) - BLOCK_WIDTH) / 2, (y * spaceingY) + heightAdj);
+				Block* n = new Block(x, y+ 21);
+				//Block* n = new Block(x * 50, y * 20);
+				//Block* n = new Block((x * W_WIDTH / numX) + ((W_WIDTH / numX) - BLOCK_WIDTH) / 2, (y * spaceingY) + heightAdj);
 				_blocks.push_back(n);
 				qDebug() << x << y;
 			}
@@ -37,7 +39,8 @@ Breakout::Breakout(QWidget *parent)
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 	timer->start(16);
 
-	connect(ui.startButton, SIGNAL(pressed()), this, SLOT(startGame()));
+	connect(ui.actionExit, SIGNAL(triggered()), this, SLOT(close()));
+	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(startGame()));
 }
 
 Breakout::~Breakout()
