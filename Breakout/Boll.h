@@ -5,7 +5,8 @@
 #include <ctime>
 #include <QPainter>
 
-class Boll
+class 
+Boll
 {
 public: 
 	Boll();
@@ -31,11 +32,13 @@ public:
 	void nyRiktning(float vx, float vy);
 	void setHasChangedDir(bool b);
 	bool getHasChangedDir(){ return hasChangedDir; }
+	bool getIsOnPlayArea();
+	void startMoving();
 	void reset();
 
 private:
-	float _vx, _vy;
-	QRect* rect;
+	float _vx, _vy, _vxInit, _vyInit;
+	QRect* rect;  
 	QPixmap* boll;
 	bool hasChangedDir;
 };

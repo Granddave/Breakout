@@ -4,6 +4,7 @@
 #include <QtWidgets/QMainWindow>
 #include <qtimer.h>
 #include <QMouseEvent>
+#include <QKeyEvent>
 #include <vector>
 #include "ui_breakout.h"
 
@@ -24,9 +25,11 @@ public:
 	void paintEvent(QPaintEvent * e);
 	void mouseMoveEvent(QMouseEvent* e);
 	void mousePressEvent(QMouseEvent* e);
+	void keyPressEvent(QKeyEvent* e);
 
 private slots:
 	void update();
+	void resetGame();
 	void startGame();
 
 private:
@@ -37,6 +40,8 @@ private:
 	Boll* boll;
 	QRect* spelplan;
 	QPixmap* background;
+	bool isPlaying;
+	bool isReset;
 
 };
 

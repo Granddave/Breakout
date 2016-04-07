@@ -17,6 +17,7 @@ public:
 
 	int getLeft() const;
 	int getRight() const;
+	int getCenter() const { return rect->center().x(); }
 	void hitCheck(Boll& boll);
 	void setPosition(int x);
 	void reset();

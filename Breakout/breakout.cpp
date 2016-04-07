@@ -13,10 +13,11 @@ Breakout::Breakout(QWidget *parent)
 	boll = new Boll();
 	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
 	background = new QPixmap("background.png");
+	resetGame();
+	isPlaying = 0;
 
 	int numX = 10;		//Antal i horisontalled
-	int numY = 4
-		;		//Antal i vertikalled	
+	int numY = 4;		//Antal i vertikalled	
 	int heightAdj = 21; //Pixlar mellan top och högsta
 	int spaceingY = 35; //Pixlar mellan block i vertikalled
 
@@ -40,7 +41,8 @@ Breakout::Breakout(QWidget *parent)
 	timer->start(16);
 
 	connect(ui.actionExit, SIGNAL(triggered()), this, SLOT(close()));
-	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(startGame()));
+	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(resetGame()));
+
 }
 
 Breakout::~Breakout()
@@ -73,28 +75,53 @@ void Breakout::mousePressEvent(QMouseEvent* e)
 {
 }
 
+void Breakout::keyPressEvent(QKeyEvent* e)
+{
+	if (!isPlaying && !isReset && e->key() == Qt::Key_Space)    
+		resetGame();
+	else if (!isPlaying && isReset && e->key() == Qt::Key_Space)
+		startGame();
+}
+
 void Breakout::update() //hitcheck
 {
+	if (boll->getIsOnPlayArea() && (boll->xvel() != 0 && boll->yvel() != 0))
+		isPlaying = 1;
+	else
+		isPlaying = 0;
+
+	if (!isPlaying && isReset)
+		boll->setpos(rack->getCenter(), boll->getTop()); // Gör att bollen följer racket 
+
+	boll->update(*spelplan);  // Kollar kollision med vägg
 	boll->setHasChangedDir(0);
-	boll->update(*spelplan);
-	rack->hitCheck(*boll);
+	rack->hitCheck(*boll);	  // Kollar kollision med racket
 
 	for (int i = 0; i < _blocks.size(); i++)
 	{
 		_blocks[i]->hitCheck(*boll);
 	}
 
-	rack->setPosition(boll->getLeft());
+	//rack->setPosition(boll->getLeft()); //gör att racket följer bollen
 
 	repaint();
 }
 
-void Breakout::startGame() //Placerar ut block
+void Breakout::resetGame() //Placerar ut block
 {
 	for (int i = 0; i < _blocks.size(); i++)
 		_blocks[i]->setActive();
 
-	boll->reset();
 	rack->reset();
+	boll->reset();
+	isReset = 1;
+ 	repaint();
+}
+
+void Breakout::startGame()
+{
+	isReset = 0;
+	isPlaying = 1;
+	boll->startMoving();
 	repaint();
 }
