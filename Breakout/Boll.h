@@ -5,8 +5,7 @@
 #include <ctime>
 #include <QPainter>
 
-class 
-Boll
+class Boll
 {
 public: 
 	Boll();

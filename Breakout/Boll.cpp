@@ -3,7 +3,6 @@
 Boll::Boll()
 {
 	boll = new QPixmap("ball.png");
-
 	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
 	_vx = 0;
 	_vy = 0;
@@ -21,8 +20,6 @@ void Boll::update(QRect qr)
 		_vy = -_vy;
 	if (rect->y() > W_HEIGHT)
 	{
-		//rect->moveLeft(W_WIDTH / 2);
-		//rect->moveTop(W_HEIGHT - 50);
 		_vx = 0;
 		_vy = 0;
 	}
@@ -53,10 +50,7 @@ void Boll::setHasChangedDir(bool b)
 
 bool Boll::getIsOnPlayArea()
 {
-	int a = rect->top();
-	int b = W_HEIGHT;
-	if (rect->top() > W_HEIGHT)
-		return 1;
+	return (rect->top() < W_HEIGHT);
 }
 
 void Boll::startMoving()
@@ -71,9 +65,7 @@ void Boll::reset()
 	rect->moveTop(W_HEIGHT - 50);
 
 	srand(time(NULL)); 
-	_vx = 0;
-	_vy = 0;
-	_vxInit = 2; //starthastighet
+	_vxInit =  2; //starthastighet
 	_vyInit = -4;
 	//TODO fixa random start
 }
@@ -93,7 +85,7 @@ void Boll::changeyvel(float y)
 void Boll::setpos(float x, float y)
 {
 	// Använd moveLeft eller moveTop istället för setX och setY.
-	// set ändrar storleken!
+	// setX/Y ändrar storleken!
 	rect->moveLeft(x);
 	rect->moveTop(y);
 }

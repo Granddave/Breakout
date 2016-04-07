@@ -93,8 +93,6 @@ void Racket::hitCheck(Boll& boll)
 			}
 		}
 	}
-
-
 }
 
 void Racket::setPosition(int x)
@@ -112,5 +110,4 @@ void Racket::paint(QPainter& painter) const
 {
 	painter.setBrush(Qt::blue);
 	painter.drawRect(rect->x(), rect->y(), rect->width(), rect->height());
-
 }

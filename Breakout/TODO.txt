@@ -8,4 +8,11 @@ Fixa hitdetection på Racket (5 olika sektioner)
 	höger -> _vx = 2; _vy = 4;
 	längst höger -> _vx = 4; _vy = 2;
     }
-Vid start följer bollen racket innan man klickar för att skjuta iväg bollen i riktning rakt upp.
+klicka för att skjuta iväg bollen i riktning rakt upp.
+Bild till racket
+
+Powerups (bara förslag)
+	hastighet på boll
+	storlek på rack
+
+Olika sorters block?
