@@ -11,11 +11,12 @@ Breakout::Breakout(QWidget *parent)
 	qDebug() << "HasMouseTracking:" << hasMouseTracking();
 	rack = new Racket();
 	boll = new Boll();
-	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT);
+	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
 	background = new QPixmap("background.png");
 
 	int numX = 10;		//Antal i horisontalled
-	int numY = 4;		//Antal i vertikalled	
+	int numY = 4
+		;		//Antal i vertikalled	
 	int heightAdj = 21; //Pixlar mellan top och högsta
 	int spaceingY = 35; //Pixlar mellan block i vertikalled
 
