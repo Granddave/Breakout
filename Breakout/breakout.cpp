@@ -14,9 +14,9 @@ Breakout::Breakout(QWidget *parent)
 	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT);
 	background = new QPixmap("background.png");
 
-	int numX = 1;		//Antal i horisontalled
-	int numY = 1;		//Antal i vertikalled	
-	int heightAdj = 20; //Pixlar mellan top och högsta
+	int numX = 10;		//Antal i horisontalled
+	int numY = 4;		//Antal i vertikalled	
+	int heightAdj = 21; //Pixlar mellan top och högsta
 	int spaceingY = 35; //Pixlar mellan block i vertikalled
 
 	if (_blocks.size() == 0)
@@ -26,9 +26,8 @@ Breakout::Breakout(QWidget *parent)
 		{
 			for (int y = 0; y < numY; y++)
 			{
-				Block* n = new Block(x, y+ 21);
 				//Block* n = new Block(x * 50, y * 20);
-				//Block* n = new Block((x * W_WIDTH / numX) + ((W_WIDTH / numX) - BLOCK_WIDTH) / 2, (y * spaceingY) + heightAdj);
+				Block* n = new Block((x * W_WIDTH / numX) + ((W_WIDTH / numX) - BLOCK_WIDTH) / 2, (y * spaceingY) + heightAdj);
 				_blocks.push_back(n);
 				qDebug() << x << y;
 			}
