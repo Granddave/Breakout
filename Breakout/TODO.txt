@@ -12,7 +12,7 @@ klicka för att skjuta iväg bollen i riktning rakt upp.
 Bild till racket
 
 Powerups (bara förslag)
-	hastighet på boll
+	hastighet på boll (multiplicera både vx och vy med något heltal för en viss tid)
 	storlek på rack
 
 Olika sorters block?
