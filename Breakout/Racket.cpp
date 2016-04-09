@@ -28,70 +28,38 @@ int Racket::getRight() const
 
 void Racket::hitCheck(Boll& boll)
 {
-	/*
-	int yDist = rect->top() - boll.position().bottom();
-	//qDebug() << yDist;
-	if (yDist <= 0 && yDist < rect->top() - rect->height() && (boll.getLeft() < getRight() && boll.getRight() > getLeft()))
- 		boll.setyvel(-1 * boll.yvel());
-	else if (yDist <= 0 && yDist < rect->height() * -1) //om i samma höjdled som racket
+	int ballLeft = boll.position().left();
+	int ballHeight = boll.position().height();
+	int ballWidth = boll.position().width();
+	int ballTop = boll.position().top();
+
+	QPoint point(ballLeft + (ballWidth / 2), ballTop + (ballHeight / 2)); //center point i bollen
+
+	if ((rect->contains(point)) && ((point.x() > rect->left()) && (point.x() < (rect->left() + 20))))
 	{
-		if (boll.getLeft() < getRight() && boll.getRight() > getLeft()) //om den nuddar racket
-		{
-			boll.setxvel(-1 * boll.xvel());
-		}
+		boll.setxvel(-4);
+		boll.setyvel(-2);
 	}
-	*/
-	
-	if ((boll.position()).intersects(*rect)) {
-
-		int ballLeft = boll.position().left();
-		int ballHeight = boll.position().height();
-		int ballWidth = boll.position().width();
-		int ballTop = boll.position().top();
-
-		QPoint top(ballLeft + (ballWidth / 2), ballTop);
-		QPoint right(ballLeft + ballWidth, ballTop + (ballHeight / 2));
-		QPoint left(ballLeft, ballTop + (ballHeight / 2));
-		QPoint bottom(ballLeft + (ballWidth / 2), ballTop + ballHeight);
-
-		/* Har vi blocken placerade för nära varandra kan programmet uppfatta att bollen "contains" två stycken blocks.
-		Därav ändrade jag avståndet mellan blocken i vertikalled */
-
-		if (rect->contains(top)) {
-			if ((rect->contains(right)) || (rect->contains(left))){
-				boll.changeyvel(-1);
-			}
-			else{
-				boll.changeyvel(-1);
-			}
-		}
-
-		else if (rect->contains(bottom)) {
-			if ((rect->contains(right)) || (rect->contains(left))){
-				boll.changeyvel(-1);
-			}
-			else{
-				boll.changeyvel(-1);
-			}
-		}
-
-		else if (rect->contains(right)) {
-			if ((rect->contains(top)) || (rect->contains(bottom))){
-				boll.changexvel(-1);
-			}
-			else{
-				boll.changexvel(-1);
-			}
-		}
-
-		else if (rect->contains(left)) {
-			if ((rect->contains(top)) || (rect->contains(bottom))){
-				boll.changexvel(-1);
-			}
-			else{
-				boll.changexvel(-1);
-			}
-		}
+	else if ((rect->contains(point)) && ((point.x() >= (rect->left()) +20) && (point.x() < (rect->left() + 40))))
+	{
+		boll.setxvel(-2);
+		boll.setyvel(-4);
+	}
+	else if ((rect->contains(point)) && ((point.x() >= (rect->left()) + 40) && (point.x() < (rect->left() + 60))))
+	{
+		boll.changeyvel(-1);
+		//boll.setxvel(0);
+		//boll.setyvel(-4);
+	}
+	else if ((rect->contains(point)) && ((point.x() >= (rect->left()) + 60) && (point.x() < (rect->left() + 80))))
+	{
+		boll.setxvel(2);
+		boll.setyvel(-4);
+	}
+	else if ((rect->contains(point)) && ((point.x() >= (rect->left()) + 80) && (point.x() < (rect->left() + 100))))
+	{
+		boll.setxvel(4);
+		boll.setyvel(-2);
 	}
 }
 

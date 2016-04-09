@@ -65,7 +65,7 @@ void Boll::reset()
 	rect->moveTop(W_HEIGHT - 50);
 
 	srand(time(NULL)); 
-	_vxInit =  2; //starthastighet
+	_vxInit =  0; //starthastighet
 	_vyInit = -4;
 	//TODO fixa random start
 }
