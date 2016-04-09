@@ -302,3 +302,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+Breakout/Breakout.vcxproj.filters
