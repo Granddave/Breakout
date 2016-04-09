@@ -93,6 +93,7 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Racket.cpp" />
+    <ClCompile Include="Score.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="breakout.h">
@@ -124,6 +125,7 @@
     <ClInclude Include="defines.h" />
     <ClInclude Include="GeneratedFiles\ui_breakout.h" />
     <ClInclude Include="Racket.h" />
+    <ClInclude Include="Score.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="breakout.qrc">

@@ -13,6 +13,7 @@ Breakout::Breakout(QWidget *parent)
 	boll = new Boll();
 	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
 	background = new QPixmap("background.png");
+	score = new Score();
 	resetGame();
 	isPlaying = 0;
 
@@ -64,6 +65,7 @@ void Breakout::paintEvent(QPaintEvent * e)
 		_blocks[i]->paint(p);
 	rack->paint(p);
 	boll->paint(p);
+	score->paint(p, *score);
 }
 
 void Breakout::mouseMoveEvent(QMouseEvent* e)
@@ -99,7 +101,7 @@ void Breakout::update() //hitcheck
 
 	for (int i = 0; i < _blocks.size(); i++)
 	{
-		_blocks[i]->hitCheck(*boll);
+		_blocks[i]->hitCheck(*boll, *score);
 	}
 
 	//rack->setPosition(boll->getLeft()); //gör att racket följer bollen
@@ -112,6 +114,7 @@ void Breakout::resetGame() //Placerar ut block
 	for (int i = 0; i < _blocks.size(); i++)
 		_blocks[i]->setActive();
 
+	score->scoreReset();
 	rack->reset();
 	boll->reset();
 	isReset = 1;

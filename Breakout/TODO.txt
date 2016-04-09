@@ -1,14 +1,5 @@
 TODO:
 
-Fixa hitdetection på Racket (5 olika sektioner)
-    {
-	längst vänster -> _vx = -4; _vy = -2;
-	vänster -> _vx = -2; _vy = -4;
-	mitten -> _vx = 0; _vy = -4;
-	höger -> _vx = 2; _vy = -4;
-	längst höger -> _vx = 4; _vy = -2;
-    }
-klicka för att skjuta iväg bollen i riktning rakt upp.
 Bild till racket
 
 Powerups (bara förslag)

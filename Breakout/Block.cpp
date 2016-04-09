@@ -43,7 +43,7 @@ void Block::paint(QPainter& painter) const
 	}
 }
 
-void Block::hitCheck(Boll& boll)
+void Block::hitCheck(Boll& boll, Score& score)
 {
 	//if (((boll.getRight() > getLeft()) && (boll.getTop() < getBottom())) && // Left bottom  
 	//	((boll.getLeft() < getRight()) && (boll.getBottom() > getTop())))   // Right top  
@@ -65,62 +65,62 @@ void Block::hitCheck(Boll& boll)
 			if (((point.x() == _x) && (point.y() == _y)) && ((boll.xvel() > 0) && (boll.yvel() > 0))) // 1
 			{
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == _x) && (point.y() == _y)) && ((boll.xvel() < 0) && (boll.yvel() > 0))) // 2
 			{
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == _y)) && ((boll.xvel() > 0) && (boll.yvel() > 0))) // 3
 			{
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == _y)) && ((boll.xvel() < 0) && (boll.yvel() > 0))) // 4
 			{
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == _y)) && ((boll.xvel() < 0) && (boll.yvel() < 0))) // 5
 			{
 				boll.changexvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() < 0) && (boll.yvel() > 0))) // 6
 			{
 				boll.changexvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() < 0) && (boll.yvel() < 0))) // 7
 			{
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == (_x + BLOCK_WIDTH)) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() > 0) && (boll.yvel() < 0))) // 8
 			{
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == _x) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() < 0) && (boll.yvel() < 0))) // 9
 			{
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == _x) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() > 0) && (boll.yvel() < 0))) // 10
 			{
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == _x) && (point.y() == (_y + BLOCK_HEIGHT))) && ((boll.xvel() > 0) && (boll.yvel() > 0))) // 11
 			{
 				boll.changexvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			if (((point.x() == _x) && (point.y() == _y)) && ((boll.xvel() > 0) && (boll.yvel() < 0))) // 12
 			{
 				boll.changexvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 			///////////////////////////////////////////////////
  			if (getHBbottom().containsPoint(point, Qt::OddEvenFill)) // osäker vad man ska skriva i andra fältet där OddEvenFill står...
@@ -128,15 +128,15 @@ void Block::hitCheck(Boll& boll)
 				if ((boll.xvel() > 0) && (boll.yvel() > 0)) // 11
 				{
 					boll.changexvel(-1);
-					_isActive = 0; return;
+					_isActive = 0; score.addScore(); return;
 				}
 				if ((boll.xvel() < 0) && (boll.yvel() > 0)) // 6
 				{
 					boll.changexvel(-1);
-					_isActive = 0; return;
+					_isActive = 0; score.addScore(); return;
 				}
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 
 			else if (getHBtop().containsPoint(point, Qt::OddEvenFill)) 
@@ -144,15 +144,15 @@ void Block::hitCheck(Boll& boll)
 				if ((boll.xvel() > 0) && (boll.yvel() < 0)) // 12
 				{
 					boll.changexvel(-1);
-					_isActive = 0; return;
+					_isActive = 0; score.addScore(); return;
 				}
 				if ((boll.xvel() < 0) && (boll.yvel() < 0)) // 5
 				{
 					boll.changexvel(-1);
-					_isActive = 0; return;
+					_isActive = 0; score.addScore(); return;
 				}
 				boll.changeyvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 
 			else if (getHBleft().containsPoint(point, Qt::OddEvenFill))
@@ -160,15 +160,15 @@ void Block::hitCheck(Boll& boll)
 				if ((boll.xvel() < 0) && (boll.yvel() < 0)) // 9
 				{
 					boll.changeyvel(-1);
-					_isActive = 0; return;
+					_isActive = 0; score.addScore(); return;
 				}
 				if ((boll.xvel() < 0) && (boll.yvel() > 0)) // 2
 				{
 					boll.changeyvel(-1);
-					_isActive = 0; return;
+					_isActive = 0; score.addScore(); return;
 				}
 				boll.changexvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 
 			else if (getHBright().containsPoint(point, Qt::OddEvenFill))
@@ -176,15 +176,15 @@ void Block::hitCheck(Boll& boll)
 				if ((boll.xvel() > 0) && (boll.yvel() < 0)) // 8
 				{
 					boll.changeyvel(-1);
-					_isActive = 0; return;
+					_isActive = 0; score.addScore(); return;
 				}
 				if ((boll.xvel() > 0) && (boll.yvel() > 0)) // 3
 				{
 					boll.changeyvel(-1);
-					_isActive = 0; return;
+					_isActive = 0; score.addScore(); return;
 				}
 				boll.changexvel(-1);
-				_isActive = 0; return;
+				_isActive = 0; score.addScore(); return;
 			}
 
 		}

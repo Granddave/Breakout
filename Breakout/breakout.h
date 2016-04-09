@@ -12,6 +12,7 @@
 #include "Block.h"
 #include "Racket.h"
 #include "Boll.h"
+#include "Score.h"
 
 
 class Breakout : public QMainWindow
@@ -42,6 +43,7 @@ private:
 	QPixmap* background;
 	bool isPlaying;
 	bool isReset;
+	Score* score;
 
 };
 

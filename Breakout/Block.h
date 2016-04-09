@@ -3,6 +3,7 @@
 #include <QPainter>
 #include "defines.h"
 #include "Boll.h"
+#include "Score.h"
 #include <QPixmap>
 
 class Block
@@ -11,7 +12,7 @@ public:
 	Block(int x, int y);
 	
 	void paint(QPainter& painter) const;
-	void hitCheck(Boll& boll);
+	void hitCheck(Boll& boll, Score& score);
 	void setActive() { _isActive = 1; }
 	bool isBlockActive() { return _isActive; }
 
