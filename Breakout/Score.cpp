@@ -24,7 +24,8 @@ void Score::paint(QPainter& painter, Score& score) const
 	QFont font;
 	font.setPixelSize(30);
 	painter.setFont(font);
-	painter.drawText(30, 380, QString::number(score.getScore()));
+	painter.drawText(10, 390, QString("Score: "));
+	painter.drawText(110, 390, QString::number(score.getScore()));
 }
 
 void Score::scoreReset()
