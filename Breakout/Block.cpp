@@ -144,6 +144,16 @@ void Block::hitCheck(Boll& boll, Score& score)
 
 			else if (getHBleft().containsPoint(point, Qt::OddEvenFill))
 			{
+				if ((boll.xvel() == 0) && (boll.yvel() < 0))
+				{
+					boll.changeyvel(-1);
+					_isActive = 0; score.addScore(); return;
+				}
+				else if ((boll.xvel() == 0) && (boll.yvel() > 0))
+				{
+					boll.changeyvel(-1);
+					_isActive = 0; score.addScore(); return;
+				}
 				if ((boll.xvel() < 0) && (boll.yvel() < 0)) // 9
 				{
 					boll.changeyvel(-1);
@@ -160,6 +170,16 @@ void Block::hitCheck(Boll& boll, Score& score)
 
 			else if (getHBright().containsPoint(point, Qt::OddEvenFill))
 			{
+				if ((boll.xvel() == 0) && (boll.yvel() < 0))
+				{
+					boll.changeyvel(-1);
+					_isActive = 0; score.addScore(); return;
+				}
+				else if ((boll.xvel() == 0) && (boll.yvel() > 0))
+				{
+					boll.changeyvel(-1);
+					_isActive = 0; score.addScore(); return;
+				}
 				if ((boll.xvel() > 0) && (boll.yvel() < 0)) // 8
 				{
 					boll.changeyvel(-1);

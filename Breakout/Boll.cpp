@@ -13,19 +13,16 @@ void Boll::update(QRect qr, QTimer& multiscore)
 {
 	rect->moveLeft(rect->x() + _vx);
 	rect->moveTop(rect->y() + _vy);
-	if (rect->right() >= qr.x() + qr.width())
+	if ((rect->right() >= qr.x() + qr.width()) && (_vx > 0))
 	{
-		//rect->setRight(qr.width()-1);
 		_vx = -_vx;
 	}
-	if (rect->x() <= qr.x())
+	if ((rect->x() <= qr.x()) && (_vx < 0))
 	{
-		//rect->setLeft(1);
 		_vx = -_vx;
 	}
-	if (rect->y() <= qr.y())
+	if ((rect->y() <= qr.y()) && (_vy < 0))
 	{
-		//rect->setTop(22);
 		_vy = -_vy;
 	}
 	if (rect->y() > W_HEIGHT)
