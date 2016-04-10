@@ -40,7 +40,7 @@ void Score::paint(QPainter& painter, Score& score, Boll& boll) const
 	painter.drawText(540, 390, QString::number(score.getMulti()));
 	painter.drawText(110, 390, QString::number(score.getScore()));
 
-	if (boll.getBottom() > W_HEIGHT)
+	if (boll.getBottom() > W_HEIGHT || score.getScore() == 4000)
 	{
 		font.setPixelSize(60);
 		painter.drawText(200, 190, QString("Final Score: "));

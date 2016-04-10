@@ -99,6 +99,12 @@ void Breakout::update() //hitcheck
 
 	if (!isPlaying && isReset)
 		boll->setpos(rack->getCenter(), boll->getTop()); // Gör att bollen följer racket 
+	if (score->getScore() == 4000)
+	{
+		multiscore->stop();
+		boll->setxvel(0);
+		boll->setyvel(0);
+	}
 
 	boll->update(*spelplan, *multiscore);  // Kollar kollision med vägg
 	boll->setHasChangedDir(0);
