@@ -15,7 +15,6 @@ Breakout::Breakout(QWidget *parent)
 	background = new QPixmap("background.png");
 	score = new Score();
 	resetGame();
-	isPlaying = 0;
 
 	int heightAdj = 21;  //Pixlar mellan top och högsta
 	int spaceingY = 35;  //Pixlar mellan block i vertikalled
@@ -90,9 +89,9 @@ void Breakout::keyPressEvent(QKeyEvent* e)
 
 void Breakout::update() //hitcheck
 {
-	if (boll->getIsOnPlayArea() && (boll->xvel() != 0 && boll->yvel() != 0))
-		isPlaying = 1;
-	else
+	if (!isReset && boll->getIsOnPlayArea())// && (boll->xvel() != 0 && boll->yvel() != 0))
+ 		isPlaying = 1;
+	else if (!isReset && !boll->getIsOnPlayArea())
 		isPlaying = 0;
 
 	if (!isPlaying && isReset)
@@ -128,6 +127,7 @@ void Breakout::resetGame() //Placerar ut block
 	rack->reset();
 	boll->reset();
 	isReset = 1;
+	isPlaying = 0;
  	repaint();
 }
 

@@ -64,6 +64,9 @@ void Boll::reset()
 {
 	rect->moveLeft(W_WIDTH / 2);
 	rect->moveTop(W_HEIGHT - 50);
+	
+	_vx = 0;
+	_vy = 0;
 
 	srand(time(NULL)); 
 	_vxInit =  0; //starthastighet
