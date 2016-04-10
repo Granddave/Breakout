@@ -44,6 +44,11 @@ void Score::paint(QPainter& painter, Score& score, Boll& boll) const
 	{
 		font.setPixelSize(60);
 		painter.drawText(200, 190, QString("Final Score: "));
+		if (!(score.getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS))
+		{
+			painter.drawText(370, 190, QString::number(score.getScore()));
+			return;
+		}
 		painter.drawText(370, 190, QString::number(score.finalScore()));
 	}
 }
