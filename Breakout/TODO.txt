@@ -3,6 +3,7 @@ TODO:
 Bild till racket
 
 Powerups (bara förslag) (fallande)
+    en extra boll
 	hastighet på boll (multiplicera både vx och vy med något heltal för en viss tid)
 	storlek på rack
 
