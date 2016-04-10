@@ -6,7 +6,7 @@ Boll::Boll()
 	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
 	_vx = 0;
 	_vy = 0;
-	_BaseVel = 6;
+	_baseVel = 6;
 }
 
 void Boll::update(QRect qr, QTimer& multiscore)
@@ -69,7 +69,7 @@ void Boll::reset()
 
 	srand(time(NULL)); 
 	_vxInit =  0; //starthastighet
-	_vyInit = _BaseVel;
+	_vyInit = _baseVel;
 	//TODO fixa random start
 }
 
