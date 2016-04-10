@@ -85,6 +85,8 @@ void Breakout::keyPressEvent(QKeyEvent* e)
 	}
 	else if (!isPlaying && isReset && e->key() == Qt::Key_Space)
 		startGame();
+	else if (e->key() == Qt::Key_R)
+		resetGame();
 }
 
 void Breakout::update() //hitcheck
