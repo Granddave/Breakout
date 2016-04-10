@@ -33,6 +33,8 @@ void Racket::hitCheck(Boll& boll)
 	int ballWidth = boll.position().width();
 	int ballTop = boll.position().top();
 
+	//test
+
 	QPoint point(ballLeft + (ballWidth / 2), ballTop + (ballHeight / 2)); //center point i bollen
 
 	if ((rect->contains(point)) && ((point.x() > rect->left()) && (point.x() < (rect->left() + 20))))
