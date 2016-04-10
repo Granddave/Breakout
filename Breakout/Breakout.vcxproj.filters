@@ -62,6 +62,12 @@
     <ClCompile Include="Score.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="powerup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="powerupSpeed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="breakout.h">
@@ -91,6 +97,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="powerup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="powerupSpeed.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,6 +21,7 @@ public:
 	void hitCheck(Boll& boll);
 	void setPosition(int x);
 	void reset();
+	QRect* getRect() const { return rect; }
 
 private:
 	QRect* rect;

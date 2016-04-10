@@ -92,6 +92,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="powerup.cpp" />
+    <ClCompile Include="powerupSpeed.cpp" />
     <ClCompile Include="Racket.cpp" />
     <ClCompile Include="Score.cpp" />
   </ItemGroup>
@@ -124,6 +126,8 @@
     <ClInclude Include="Boll.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="GeneratedFiles\ui_breakout.h" />
+    <ClInclude Include="powerup.h" />
+    <ClInclude Include="powerupSpeed.h" />
     <ClInclude Include="Racket.h" />
     <ClInclude Include="Score.h" />
   </ItemGroup>

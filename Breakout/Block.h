@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QPainter>
+#include <stdlib.h>
+#include <ctime>
 #include "defines.h"
 #include "Boll.h"
 #include "Score.h"
@@ -15,11 +17,15 @@ public:
 	void hitCheck(Boll& boll, Score& score);
 	void setActive() { _isActive = 1; }
 	bool isBlockActive() { return _isActive; }
+	bool hasPowerup() { return _hasPowerup; }
 
 	QPolygon getHBleft() const { return *HBleft; };
 	QPolygon getHBright() const { return *HBright; };
 	QPolygon getHBtop() const { return *HBtop; };
 	QPolygon getHBbottom() const { return *HBbottom; };
+
+	int getX() const { return _x; }
+	int getY() const { return _y; }
 
 private:
 	int _x, _y;
@@ -30,5 +36,6 @@ private:
 	QPixmap* block;
 
 	bool _isActive;
+	bool _hasPowerup;
 };
 

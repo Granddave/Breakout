@@ -8,6 +8,13 @@ Block::Block(int x, int y)
 	_x = x;
 	_y = y;
 
+	srand(time(NULL));	
+	int r = 1; //rand() % 10;
+	if (r == 1)
+		_hasPowerup = 1;
+	else
+		_hasPowerup = 0;
+
 	HBleft = new QPolygon();
 	HBright = new QPolygon();
 	HBtop = new QPolygon();
@@ -47,7 +54,7 @@ void Block::hitCheck(Boll& boll, Score& score)
 
 		
 		if (_isActive){
-
+			
 			// Följande 12 if-statements kollar om bollen är exakt i någon av kanterna i blocket och kollar även vilken riktning bollen har
 			if (((point.x() == _x) && (point.y() == _y)) && ((boll.xvel() > 0) && (boll.yvel() > 0))) // 1
 			{
@@ -109,6 +116,7 @@ void Block::hitCheck(Boll& boll, Score& score)
 				boll.changexvel(-1);
 				_isActive = 0; score.addScore(); return;
 			}
+			
 			///////////////////////////////////////////////////
  			if (getHBbottom().containsPoint(point, Qt::OddEvenFill)) // osäker vad man ska skriva i andra fältet där OddEvenFill står...
 			{

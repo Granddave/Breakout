@@ -13,6 +13,8 @@
 #include "Racket.h"
 #include "Boll.h"
 #include "Score.h"
+#include "powerup.h"
+#include "powerupSpeed.h"
 
 
 class Breakout : public QMainWindow
@@ -46,7 +48,7 @@ private:
 	bool isPlaying;
 	bool isReset;
 	Score* score;
-
+	std::vector <Powerup*> _powerups;
 };
 
 #endif // BREAKOUT_H

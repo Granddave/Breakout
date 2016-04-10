@@ -63,6 +63,13 @@ void Breakout::paintEvent(QPaintEvent * e)
 
 	for (int i = 0; i < _blocks.size(); i++)
 		_blocks[i]->paint(p);
+
+	if (_powerups.size() != 0)
+	{
+		for (int i = 0; i < _powerups.size(); i++)
+			_powerups[i]->paint(p);
+	}
+
 	rack->paint(p);
 	boll->paint(p);
 	score->paint(p, *score, *boll);
@@ -112,6 +119,27 @@ void Breakout::update() //hitcheck
 	for (int i = 0; i < _blocks.size(); i++)
 	{
 		_blocks[i]->hitCheck(*boll, *score);
+		if (_blocks[i]->hasPowerup() && !_blocks[i]->isBlockActive()) // TODO Skapar powerup även om det redan skapats en när blocket förstörts. FIXA :D
+		{
+			srand(time(NULL));
+			int r = rand() % 1; //% n, där n är antalet olika powerups minus en som är implementerade
+
+			if (r == 0)
+			{
+				Powerup* p = new PowerupSpeed(_blocks[i]->getX(), _blocks[i]->getY());
+				_powerups.push_back(p);
+			}
+			else if (r == 1)
+			{
+				Powerup* p = new PowerupSpeed(_blocks[i]->getX(), _blocks[i]->getY());
+				_powerups.push_back(p);
+			}
+		}
+	}
+	if (_powerups.size() != 0)
+	{
+		for (int i = 0; i < _powerups.size(); i++)
+			_powerups[i]->update(rack->getRect());
 	}
 
 	//rack->setPosition(boll->getLeft()); //gör att racket följer bollen
