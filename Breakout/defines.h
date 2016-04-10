@@ -1,5 +1,7 @@
 #include <QtDebug>
+#include <math.h>
 
+#define PI					(3.14159265359)
 #define W_WIDTH				600
 #define W_HEIGHT			400
 #define BLOCK_WIDTH			50
