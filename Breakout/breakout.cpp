@@ -17,20 +17,18 @@ Breakout::Breakout(QWidget *parent)
 	resetGame();
 	isPlaying = 0;
 
-	int numX = 10;		//Antal i horisontalled
-	int numY = 4;		//Antal i vertikalled	
-	int heightAdj = 21; //Pixlar mellan top och högsta
-	int spaceingY = 35; //Pixlar mellan block i vertikalled
+	int heightAdj = 21;  //Pixlar mellan top och högsta
+	int spaceingY = 35;  //Pixlar mellan block i vertikalled
 
 	if (_blocks.size() == 0)
 	{
 		//Skapar och placerar ut blocken
-		for (int x = 0; x < numX; x++)
+		for (int x = 0; x < BLOCKS_NUM_X; x++)
 		{
-			for (int y = 0; y < numY; y++)
+			for (int y = 0; y < BLOCKS_NUM_Y; y++)
 			{
 				//Block* n = new Block(x * 50, y * 20);
-				Block* n = new Block((x * W_WIDTH / numX) + ((W_WIDTH / numX) - BLOCK_WIDTH) / 2, (y * spaceingY) + heightAdj);
+				Block* n = new Block((x * W_WIDTH / BLOCKS_NUM_X) + ((W_WIDTH / BLOCKS_NUM_X) - BLOCK_WIDTH) / 2, (y * spaceingY) + heightAdj);
 				_blocks.push_back(n);
 				qDebug() << x << y;
 			}
@@ -99,7 +97,7 @@ void Breakout::update() //hitcheck
 
 	if (!isPlaying && isReset)
 		boll->setpos(rack->getCenter(), boll->getTop()); // Gör att bollen följer racket 
-	if (score->getScore() == 4000)
+	if (score->getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS)
 	{
 		multiscore->stop();
 		boll->setxvel(0);

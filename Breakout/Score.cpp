@@ -12,7 +12,7 @@ Score::~Score()
 }
 void Score::addScore()
 {
-	_score += 100;
+	_score += POINTS_PER_BLOCKS;
 }
 
 int Score::getScore() const
@@ -40,7 +40,7 @@ void Score::paint(QPainter& painter, Score& score, Boll& boll) const
 	painter.drawText(540, 390, QString::number(score.getMulti()));
 	painter.drawText(110, 390, QString::number(score.getScore()));
 
-	if (boll.getBottom() > W_HEIGHT || score.getScore() == 4000)
+	if (boll.getBottom() > W_HEIGHT || score.getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS)
 	{
 		font.setPixelSize(60);
 		painter.drawText(200, 190, QString("Final Score: "));
