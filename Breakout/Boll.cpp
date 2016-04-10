@@ -28,8 +28,6 @@ void Boll::update(QRect qr, QTimer& multiscore)
 
 void Boll::paint(QPainter & painter)
 {
-	//painter.setBrush(Qt::green);
-	//painter.drawEllipse(rect->x(), rect->y(), rect->width(), rect->width());
 	painter.drawPixmap(rect->left(), rect->top(), *boll);
 }
 
