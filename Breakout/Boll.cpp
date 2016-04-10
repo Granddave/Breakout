@@ -55,8 +55,8 @@ bool Boll::getIsOnPlayArea()
 
 void Boll::startMoving()
 {
-	_vx = _vxInit;
-	_vy = _vyInit;
+	_vx = 0;
+	_vy = -_baseVel;
 }
 
 void Boll::reset()
@@ -66,11 +66,6 @@ void Boll::reset()
 	
 	_vx = 0;
 	_vy = 0;
-
-	srand(time(NULL)); 
-	_vxInit =  0; //starthastighet
-	_vyInit = _baseVel;
-	//TODO fixa random start
 }
 
 void Boll::changexvel(float x)
