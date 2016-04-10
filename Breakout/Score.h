@@ -9,6 +9,7 @@ class Score
 public:
 	Score();
 	~Score();
+
 	void addScore();
 	int getScore() const;
 	int getMulti() const;

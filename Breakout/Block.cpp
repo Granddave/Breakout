@@ -8,7 +8,6 @@ Block::Block(int x, int y)
 	_x = x;
 	_y = y;
 
-	//rect = new QRect(x, y, BLOCK_WIDTH, BLOCK_HEIGHT);
 	HBleft = new QPolygon();
 	HBright = new QPolygon();
 	HBtop = new QPolygon();
@@ -34,23 +33,11 @@ void Block::paint(QPainter& painter) const
 	if (_isActive)
 	{
 		painter.drawPixmap(_x, _y, *block);
-		//Ritar ut hitboxar
-		//painter.setBrush(Qt::red);
-		//painter.drawPolygon(*HBbottom);
-		//painter.drawPolygon(*HBleft);
-		//painter.drawPolygon(*HBright);
-		//painter.drawPolygon(*HBtop);
 	}
 }
 
 void Block::hitCheck(Boll& boll, Score& score)
 {
-	//if (((boll.getRight() > getLeft()) && (boll.getTop() < getBottom())) && // Left bottom  
-	//	((boll.getLeft() < getRight()) && (boll.getBottom() > getTop())))   // Right top  
-	//{
-	//	_isActive = 0;
-	//}
-
 		int ballLeft = boll.position().left();
 		int ballHeight = boll.position().height();
 		int ballWidth = boll.position().width();
