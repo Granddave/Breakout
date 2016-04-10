@@ -41,6 +41,9 @@ Breakout::Breakout(QWidget *parent)
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 	timer->start(16);
 
+	multiscore = new QTimer(this);
+	connect(multiscore, SIGNAL(timeout()), this, SLOT(lowMulti()));
+
 	connect(ui.actionExit, SIGNAL(triggered()), this, SLOT(close()));
 	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(resetGame()));
 
@@ -65,7 +68,7 @@ void Breakout::paintEvent(QPaintEvent * e)
 		_blocks[i]->paint(p);
 	rack->paint(p);
 	boll->paint(p);
-	score->paint(p, *score);
+	score->paint(p, *score, *boll);
 }
 
 void Breakout::mouseMoveEvent(QMouseEvent* e)
@@ -79,8 +82,10 @@ void Breakout::mousePressEvent(QMouseEvent* e)
 
 void Breakout::keyPressEvent(QKeyEvent* e)
 {
-	if (!isPlaying && !isReset && e->key() == Qt::Key_Space)    
+	if (!isPlaying && !isReset && e->key() == Qt::Key_Space)
+	{
 		resetGame();
+	}
 	else if (!isPlaying && isReset && e->key() == Qt::Key_Space)
 		startGame();
 }
@@ -95,7 +100,7 @@ void Breakout::update() //hitcheck
 	if (!isPlaying && isReset)
 		boll->setpos(rack->getCenter(), boll->getTop()); // Gör att bollen följer racket 
 
-	boll->update(*spelplan);  // Kollar kollision med vägg
+	boll->update(*spelplan, *multiscore);  // Kollar kollision med vägg
 	boll->setHasChangedDir(0);
 	rack->hitCheck(*boll);	  // Kollar kollision med racket
 
@@ -115,6 +120,7 @@ void Breakout::resetGame() //Placerar ut block
 		_blocks[i]->setActive();
 
 	score->scoreReset();
+	score->resetMulti();
 	rack->reset();
 	boll->reset();
 	isReset = 1;
@@ -123,8 +129,14 @@ void Breakout::resetGame() //Placerar ut block
 
 void Breakout::startGame()
 {
+	multiscore->start(10000);
 	isReset = 0;
 	isPlaying = 1;
 	boll->startMoving();
 	repaint();
+}
+
+void Breakout::lowMulti()
+{
+	score->lowerMulti();
 }

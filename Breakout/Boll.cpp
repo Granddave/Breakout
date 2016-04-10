@@ -8,7 +8,7 @@ Boll::Boll()
 	_vy = 0;
 }
 
-void Boll::update(QRect qr)
+void Boll::update(QRect qr, QTimer& multiscore)
 {
 	rect->moveLeft(rect->x() + _vx);
 	rect->moveTop(rect->y() + _vy);
@@ -20,6 +20,7 @@ void Boll::update(QRect qr)
 		_vy = -_vy;
 	if (rect->y() > W_HEIGHT)
 	{
+		multiscore.stop();
 		_vx = 0;
 		_vy = 0;
 	}

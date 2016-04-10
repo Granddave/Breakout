@@ -32,11 +32,13 @@ private slots:
 	void update();
 	void resetGame();
 	void startGame();
+	void lowMulti();
 
 private:
 	Ui::BreakoutClass ui;
 	std::vector <Block*> _blocks;
 	QTimer* timer;
+	QTimer* multiscore;
 	Racket* rack;
 	Boll* boll;
 	QRect* spelplan;

@@ -4,13 +4,14 @@
 #include <stdlib.h>
 #include <ctime>
 #include <QPainter>
+#include <qtimer.h>
 
 class Boll
 {
 public: 
 	Boll();
 
-	void update(QRect qr);
+	void update(QRect qr, QTimer& multiscore);
 	void paint(QPainter & painter);
 	float xvel(){ return _vx; }
 	float yvel(){ return _vy; }
