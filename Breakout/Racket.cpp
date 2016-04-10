@@ -36,10 +36,10 @@ void Racket::hitCheck(Boll& boll)
 
 	QPoint point(ballLeft + (ballWidth / 2), ballTop + (ballHeight / 2)); //center point i bollen
 
-	if (rect->contains(point))
+	if (rect->contains(point)) //Beräknar ny hastighet beroende på var den träffar på racket.
 	{
 		float MAX_BOUNCE_ANGLE = 4 * (PI / 12);
-		float BASESPEED = 8;
+		float BASESPEED = boll.baseVel();
 		float relativeIntersectX = rect->center().x() - boll.position().center().x();
 		float normalizedRelativeIntersectionY = (relativeIntersectX / (rect->width() / 2)) + 1.5;
 		float bounceAngle = normalizedRelativeIntersectionY * MAX_BOUNCE_ANGLE;
@@ -47,35 +47,6 @@ void Racket::hitCheck(Boll& boll)
 		boll.setyvel(boll.baseVel() * -sin(bounceAngle));
 		int x = 0;
 	}
-#if 0
-
-	if ((rect->contains(point)) && ((point.x() > rect->left()) && (point.x() < (rect->left() + 20))))
-	{
-		boll.setxvel(-4);
-		boll.setyvel(-2);
-	}
-	else if ((rect->contains(point)) && ((point.x() >= (rect->left()) +20) && (point.x() < (rect->left() + 40))))
-	{
-		boll.setxvel(-2);
-		boll.setyvel(-4);
-	}
-	else if ((rect->contains(point)) && ((point.x() >= (rect->left()) + 40) && (point.x() < (rect->left() + 60))))
-	{
-		boll.changeyvel(-1);
-		//boll.setxvel(0);
-		//boll.setyvel(-4);
-	}
-	else if ((rect->contains(point)) && ((point.x() >= (rect->left()) + 60) && (point.x() < (rect->left() + 80))))
-	{
-		boll.setxvel(2);
-		boll.setyvel(-4);
-	}
-	else if ((rect->contains(point)) && ((point.x() >= (rect->left()) + 80) && (point.x() < (rect->left() + 100))))
-	{
-		boll.setxvel(4);
-		boll.setyvel(-2);
-	}
-#endif
 }
 
 void Racket::setPosition(int x)
