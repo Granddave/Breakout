@@ -6,7 +6,7 @@ Boll::Boll()
 	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
 	_vx = 0;
 	_vy = 0;
-	_BaseVel = 6;
+	_baseVel = 6;
 }
 
 void Boll::update(QRect qr, QTimer& multiscore)
@@ -64,8 +64,8 @@ bool Boll::getIsOnPlayArea()
 
 void Boll::startMoving()
 {
-	_vx = _vxInit;
-	_vy = _vyInit;
+	_vx = 0;
+	_vy = -_baseVel;
 }
 
 void Boll::reset()
@@ -75,11 +75,6 @@ void Boll::reset()
 	
 	_vx = 0;
 	_vy = 0;
-
-	srand(time(NULL)); 
-	_vxInit =  0; //starthastighet
-	_vyInit = _BaseVel;
-	//TODO fixa random start
 }
 
 void Boll::changexvel(float x)
