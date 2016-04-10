@@ -135,7 +135,7 @@ void Breakout::resetGame() //Placerar ut block
 
 void Breakout::startGame()
 {
-	multiscore->start(10000);
+	multiscore->start(2000);
 	isReset = 0;
 	isPlaying = 1;
 	boll->startMoving();

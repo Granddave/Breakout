@@ -3,7 +3,7 @@
 Score::Score()
 {
 	_score = 0;
-	_multiplier = 20;
+	_multiplier = 100;
 }
 
 Score::~Score()
@@ -27,7 +27,7 @@ int Score::getMulti() const
 
 void Score::resetMulti()
 {
-	_multiplier = 20;
+	_multiplier = 100;
 }
 
 void Score::paint(QPainter& painter, Score& score, Boll& boll) const
