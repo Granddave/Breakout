@@ -8,13 +8,6 @@ Block::Block(int x, int y)
 	_x = x;
 	_y = y;
 
-	srand(time(NULL));	
-	int r = 1; //rand() % 10;
-	if (r == 1)
-		_hasPowerup = 1;
-	else
-		_hasPowerup = 0;
-
 	HBleft = new QPolygon();
 	HBright = new QPolygon();
 	HBtop = new QPolygon();
@@ -32,7 +25,8 @@ Block::Block(int x, int y)
 	int bottom[] = { x, y + BLOCK_HEIGHT, x + BLOCK_WIDTH, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) };
 	HBbottom->setPoints(3, bottom);
 
-	_isActive = 1;
+	_hasPowerup = 0;
+ 	_isActive = 1;
 }
 
 void Block::paint(QPainter& painter) const
@@ -203,4 +197,16 @@ void Block::hitCheck(Boll& boll, Score& score)
 			}
 
 		}
+}
+
+void Block::reset()
+{
+	int r = rand() % 6;
+ 	if (r == 0)
+		_hasPowerup = 1;
+	else
+		_hasPowerup = 0;
+
+	_isActive = 1;
+	_powerupTaken = 0;
 }

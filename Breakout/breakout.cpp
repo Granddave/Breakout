@@ -14,7 +14,6 @@ Breakout::Breakout(QWidget *parent)
 	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
 	background = new QPixmap("background.png");
 	score = new Score();
-	resetGame();
 
 	int heightAdj = 21;  //Pixlar mellan top och högsta
 	int spaceingY = 35;  //Pixlar mellan block i vertikalled
@@ -33,6 +32,7 @@ Breakout::Breakout(QWidget *parent)
 			}
 		}
 	}
+	resetGame();
 
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -64,7 +64,7 @@ void Breakout::paintEvent(QPaintEvent * e)
 	for (int i = 0; i < _blocks.size(); i++)
 		_blocks[i]->paint(p);
 
-	if (_powerups.size() != 0)
+	if (_powerups.size() > 0)
 	{
 		for (int i = 0; i < _powerups.size(); i++)
 			_powerups[i]->paint(p);
@@ -98,6 +98,7 @@ void Breakout::keyPressEvent(QKeyEvent* e)
 
 void Breakout::update() //hitcheck
 {
+	srand(time(NULL));
 	if (!isReset && boll->getIsOnPlayArea())// && (boll->xvel() != 0 && boll->yvel() != 0))
  		isPlaying = 1;
 	else if (!isReset && !boll->getIsOnPlayArea())
@@ -119,8 +120,10 @@ void Breakout::update() //hitcheck
 	for (int i = 0; i < _blocks.size(); i++)
 	{
 		_blocks[i]->hitCheck(*boll, *score);
-		if (_blocks[i]->hasPowerup() && !_blocks[i]->isBlockActive()) // TODO Skapar powerup även om det redan skapats en när blocket förstörts. FIXA :D
+
+		if (_blocks[i]->hasPowerup() && !_blocks[i]->isBlockActive() && !_blocks[i]->isPowerupTaken()) 
 		{
+			_blocks[i]->setPowerupTaken(1);
 			srand(time(NULL));
 			int r = rand() % 1; //% n, där n är antalet olika powerups minus en som är implementerade
 
@@ -136,11 +139,25 @@ void Breakout::update() //hitcheck
 			}
 		}
 	}
-	if (_powerups.size() != 0)
+	
+	if (_powerups.size() != 0) 
 	{
 		for (int i = 0; i < _powerups.size(); i++)
-			_powerups[i]->update(rack->getRect());
+		{
+			_powerups[i]->update(); // Flyttar powerup
+
+			if (_powerups[i]->checkCollision(rack->getRect())) // Kollar ev. kollision
+			{
+
+				//Ger sin effekt här
+
+				//Tar bort powerup
+				delete _powerups[i]; 
+				_powerups.erase(_powerups.begin() + i);
+			}
+		}
 	}
+	
 
 	//rack->setPosition(boll->getLeft()); //gör att racket följer bollen
 
@@ -150,7 +167,7 @@ void Breakout::update() //hitcheck
 void Breakout::resetGame() //Placerar ut block
 {
 	for (int i = 0; i < _blocks.size(); i++)
-		_blocks[i]->setActive();
+		_blocks[i]->reset();
 
 	score->scoreReset();
 	score->resetMulti();

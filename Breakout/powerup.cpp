@@ -2,18 +2,14 @@
 
 Powerup::Powerup()
 {
+	_vel = 3;
 }
 
 Powerup::~Powerup()
 {
 }
 
-bool Powerup::update(QRect* qr) const
+void Powerup::giveEffect()
 {
-	return _rect.intersects(*qr);
-}
 
-QRect Powerup::position() const
-{
-	return _rect;
 }
