@@ -33,7 +33,21 @@ void Racket::hitCheck(Boll& boll)
 	int ballWidth = boll.position().width();
 	int ballTop = boll.position().top();
 
+
 	QPoint point(ballLeft + (ballWidth / 2), ballTop + (ballHeight / 2)); //center point i bollen
+
+	if (rect->contains(point))
+	{
+		float MAX_BOUNCE_ANGLE = 4 * (PI / 12);
+		float BASESPEED = 8;
+		float relativeIntersectX = rect->center().x() - boll.position().center().x();
+		float normalizedRelativeIntersectionY = (relativeIntersectX / (rect->width() / 2)) + 1.5;
+		float bounceAngle = normalizedRelativeIntersectionY * MAX_BOUNCE_ANGLE;
+		boll.setxvel(boll.baseVel() * cos(bounceAngle));
+		boll.setyvel(boll.baseVel() * -sin(bounceAngle));
+		int x = 0;
+	}
+#if 0
 
 	if ((rect->contains(point)) && ((point.x() > rect->left()) && (point.x() < (rect->left() + 20))))
 	{
@@ -61,6 +75,7 @@ void Racket::hitCheck(Boll& boll)
 		boll.setxvel(4);
 		boll.setyvel(-2);
 	}
+#endif
 }
 
 void Racket::setPosition(int x)

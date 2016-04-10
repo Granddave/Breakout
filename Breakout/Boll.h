@@ -13,8 +13,9 @@ public:
 
 	void update(QRect qr, QTimer& multiscore);
 	void paint(QPainter & painter);
-	float xvel(){ return _vx; }
-	float yvel(){ return _vy; }
+	float xvel()    { return _vx; }
+	float yvel()    { return _vy; }
+	float baseVel() { return _BaseVel; }
 
 	int getRight()	{ return rect->x() + rect->width() * 2; }
 	int getLeft()	{ return rect->x(); }
@@ -27,6 +28,7 @@ public:
 
 	void setxvel(float x){ _vx = x; }
 	void setyvel(float y){ _vy = y; }
+	void setBaseVel(float vel) { _BaseVel = vel; }
 	void setpos(float x, float y);
 	QRect position() const;
 	void nyRiktning(float vx, float vy);
@@ -37,7 +39,7 @@ public:
 	void reset();
 
 private:
-	float _vx, _vy, _vxInit, _vyInit;
+	float _vx, _vy, _vxInit, _vyInit, _BaseVel;
 	QRect* rect;  
 	QPixmap* boll;
 	bool hasChangedDir;
