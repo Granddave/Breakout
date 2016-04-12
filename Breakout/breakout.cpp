@@ -15,28 +15,7 @@ Breakout::Breakout(QWidget *parent)
 	background = new QPixmap("background.png");
 	score = new Score();
 
-<<<<<<< HEAD
-
-	int heightAdj = 21;  //Pixlar mellan top och högsta
-	int spaceingY = 35;  //Pixlar mellan block i vertikalled
-
-	if (_blocks.size() == 0)
-	{
-		//Skapar och placerar ut blocken
-		for (int x = 0; x < BLOCKS_NUM_X; x++)
-		{
-			for (int y = 0; y < BLOCKS_NUM_Y; y++)
-			{
-				//Block* n = new Block(x * 50, y * 20);
-				Block* n = new Block((x * W_WIDTH / BLOCKS_NUM_X) + ((W_WIDTH / BLOCKS_NUM_X) - BLOCK_WIDTH) / 2, (y * spaceingY) + heightAdj);
-				_blocks.push_back(n);
-				qDebug() << x << y;
-			}
-		}
-	}
-=======
 	initBlocks();
->>>>>>> e821792e75e2afed81bfb445c6c77d8a46ee0765
 	resetGame();
 
 	//Uppdateringstimer

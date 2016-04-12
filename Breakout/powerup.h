@@ -29,14 +29,11 @@ public:
 protected:
 	QRect _rect;
 	float _vel;
-<<<<<<< HEAD
 	QPixmap _pixmap;
-=======
 	Boll* _boll;
 	QTimer* timer;
 	bool givingEffect;
 	bool visible;
 	bool active;
->>>>>>> e821792e75e2afed81bfb445c6c77d8a46ee0765
 };
 
