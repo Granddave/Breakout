@@ -15,4 +15,4 @@
 #define POWERUP_TIME_MS		10000
 
 #define powerupDB	1
-#define AUTOPLAY	0
+#define AUTOPLAY	0 //Racket följer boll

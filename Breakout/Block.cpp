@@ -206,7 +206,7 @@ void Block::hitCheck(Boll& boll, Score& score)
 //Aktiverar blocken och randomiserar powerups
 void Block::reset()
 {
-	int r = rand() % 6;
+	int r = rand() % 8;
  	if (r == 0)
 		_hasPowerup = 1;
 	else

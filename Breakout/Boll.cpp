@@ -47,11 +47,6 @@ void Boll::paint(QPainter & painter) const
 #endif
 }
 
-bool Boll::getIsOnPlayArea() const
-{
-	return (rect->top() < W_HEIGHT);
-}
-
 void Boll::startMoving()
 {
 	_vx = 0;
@@ -63,8 +58,19 @@ void Boll::reset()
 	rect->moveLeft(W_WIDTH / 2);
 	rect->moveTop(W_HEIGHT - 50);
 	_baseVel = BOLL_BASESPEED;
+	setInvisible(0);
 	_vx = 0;
 	_vy = 0;
+}
+
+bool Boll::isInvisible() const
+{
+	return _invisible;
+}
+
+void Boll::setInvisible(bool b)
+{
+	_invisible = b;
 }
 
 void Boll::setpos(float x, float y)
@@ -87,12 +93,3 @@ void Boll::slowDown()
 		_baseVel -= 1;
 }
 
-bool Boll::isInvisible()
-{
-	return _invisible;
-}
-
-void Boll::setInvisible(int z)
-{
-	_invisible = z;
-}

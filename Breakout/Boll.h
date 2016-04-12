@@ -18,7 +18,7 @@ public:
 	float yvel()				{ return _vy; }
 	float baseVel()				{ return _baseVel; }
 	QRect position() const		{ return *rect; }
-	bool getIsOnPlayArea() const;
+	bool getIsOnPlayArea() const{ return (rect->top() < W_HEIGHT); }
 
 	void changexvel(float x)	{ _vx *= x; }
 	void changeyvel(float y)	{ _vy *= y; }
@@ -31,8 +31,8 @@ public:
 	void slowDown();
 	void startMoving();
 	void reset();
-	bool isInvisible();
-	void setInvisible(int z);
+	bool isInvisible() const;
+	void setInvisible(bool b);
 
 private:
 	float _vx, _vy;			//Riktningen på bollen
