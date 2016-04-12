@@ -2,13 +2,6 @@ TODO:
 
 Bild till racket
 
-Powerups (bara förslag) (fallande)
-    //en extra boll
-	hastighet på boll (multiplicera både vx och vy med något heltal för en viss tid) KLAR
-	storlek på rack
-Fixa timer till Powerup
-
-//Olika sorters block?
-
-bug invisible, timer fortsätter efter reset?
-             , ibland tar bollen emot på blocket även fast bollen ska vara invisible (möjligen hörnkanter(?))
+Powerups:
+	Storlek på rack
+    Olika sorters block?
