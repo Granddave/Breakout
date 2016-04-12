@@ -27,6 +27,10 @@ Breakout::Breakout(QWidget *parent)
 	multiscore = new QTimer(this);
 	connect(multiscore, SIGNAL(timeout()), this, SLOT(lowMulti()));
 
+	if (_powerups.size() != 0)
+		for (int i = 0; i < _powerups.size(); i++)
+			connect(_powerups[i]->getTimer(), SIGNAL(timeout()), this, SLOT(stopPowerup(i)));
+
 	//Menyknapper
 	connect(ui.actionExit, SIGNAL(triggered()), this, SLOT(close()));
 	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(resetGame()));
@@ -149,17 +153,18 @@ void Breakout::update()
 
 			if (r == 0)
 			{
-				Powerup* p = new PowerupSpeed(_blocks[i]->getX(), _blocks[i]->getY());
+				Powerup* p = new PowerupSpeed(_blocks[i]->getX(), _blocks[i]->getY(), boll);
 				_powerups.push_back(p);
 			}
 			else if (r == 1)
 			{
-				Powerup* p = new PowerupSpeed(_blocks[i]->getX(), _blocks[i]->getY());
+				Powerup* p = new PowerupSpeed(_blocks[i]->getX(), _blocks[i]->getY(), boll);
 				_powerups.push_back(p);
 			}
 		}
 	}
 	
+
 	//Uppdaterar powerups och ger effekt
 	if (_powerups.size() != 0) 
 	{
@@ -167,15 +172,19 @@ void Breakout::update()
 		{
 			//Flyttar powerup
 			_powerups[i]->update(); 
+			
 
 			//Kollar ev. kollision med racket eller spelplanens nedre kant
-			if (_powerups[i]->checkCollision(rack->getRect())) 
+			if (_powerups[i]->checkCollision(rack->getRect()) && _powerups[i]->isVisible())
 			{
+				_powerups[i]->setVisible(0);
+				_powerups[i]->giveEffect();
 
-				//Ger sin effekt här
-
+			}
+			else if (_powerups[i]->checkIfOutside() && _powerups[i]->isVisible())
+			{
 				//Tar bort powerup
-				delete _powerups[i]; 
+				delete _powerups[i];
 				_powerups.erase(_powerups.begin() + i);
 			}
 		}
@@ -218,4 +227,11 @@ void Breakout::startGame()
 void Breakout::lowMulti()
 {
 	score->lowerMulti();
+}
+
+void Breakout::stopPowerup(int i)
+{
+	_powerups[i]->powerupEnded();
+	delete _powerups[i];
+	_powerups.erase(_powerups.begin() + i);
 }

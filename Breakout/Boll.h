@@ -27,6 +27,8 @@ public:
 	void setyvel(float y)		{ _vy = y; }
 	void setBaseVel(float vel)	{ _baseVel = vel; }
 	void setpos(float x, float y);
+	void speedUp();
+	void slowDown();
 	void startMoving();
 	void reset();
 

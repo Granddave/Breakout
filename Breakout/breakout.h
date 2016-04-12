@@ -36,6 +36,7 @@ private slots:
 	void resetGame();
 	void startGame();
 	void lowMulti();
+	void stopPowerup(int i);
 
 private:
 	Ui::BreakoutClass ui;
