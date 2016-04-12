@@ -33,7 +33,7 @@ void Boll::update(QRect qr, QTimer& multiscore)
 	}
 }
 
-void Boll::paint(QPainter & painter)
+void Boll::paint(QPainter & painter) const
 {
 	painter.drawPixmap(rect->left(), rect->top(), *boll);
 
@@ -46,7 +46,7 @@ void Boll::paint(QPainter & painter)
 #endif
 }
 
-bool Boll::getIsOnPlayArea()
+bool Boll::getIsOnPlayArea() const
 {
 	return (rect->top() < W_HEIGHT);
 }

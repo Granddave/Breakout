@@ -12,13 +12,13 @@ public:
 	Boll();
 
 	void update(QRect qr, QTimer& multiscore);
-	void paint(QPainter & painter);
+	void paint(QPainter & painter) const;
 
 	float xvel()				{ return _vx; }
 	float yvel()				{ return _vy; }
 	float baseVel()				{ return _baseVel; }
 	QRect position() const		{ return *rect; }
-	bool getIsOnPlayArea();
+	bool getIsOnPlayArea() const;
 
 	void changexvel(float x)	{ _vx *= x; }
 	void changeyvel(float y)	{ _vy *= y; }

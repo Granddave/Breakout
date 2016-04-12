@@ -41,7 +41,7 @@ private:
 	Ui::BreakoutClass ui;
 	QRect* spelplan;
 	QPixmap* background;
-	QTimer* _gameTimer;
+	QTimer* gameTimer;
 	QTimer* multiscore;
 	Score* score;
 
