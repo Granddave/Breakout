@@ -7,6 +7,7 @@ Boll::Boll()
 	_vx = 0;
 	_vy = 0;
 	_baseVel = BOLL_BASESPEED;
+	_invisible = 0;
 }
 
 void Boll::update(QRect qr, QTimer& multiscore)
@@ -84,4 +85,14 @@ void Boll::slowDown()
 {
 	if (_baseVel > 6)
 		_baseVel -= 1;
+}
+
+bool Boll::isInvisible()
+{
+	return _invisible;
+}
+
+void Boll::setInvisible(int z)
+{
+	_invisible = z;
 }

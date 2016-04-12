@@ -93,6 +93,7 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="powerup.cpp" />
+    <ClCompile Include="powerupInvisible.cpp" />
     <ClCompile Include="powerupSpeed.cpp" />
     <ClCompile Include="Racket.cpp" />
     <ClCompile Include="Score.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="defines.h" />
     <ClInclude Include="GeneratedFiles\ui_breakout.h" />
     <ClInclude Include="powerup.h" />
+    <ClInclude Include="powerupInvisible.h" />
     <ClInclude Include="powerupSpeed.h" />
     <ClInclude Include="Racket.h" />
     <ClInclude Include="Score.h" />

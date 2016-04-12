@@ -15,6 +15,7 @@
 #include "Score.h"
 #include "powerup.h"
 #include "powerupSpeed.h"
+#include "powerupInvisible.h"
 
 
 class Breakout : public QMainWindow

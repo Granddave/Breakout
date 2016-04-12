@@ -14,5 +14,5 @@
 #define BOLL_BASESPEED		6
 #define POWERUP_TIME_MS		10000
 
-#define powerupDB	0
+#define powerupDB	1
 #define AUTOPLAY	0

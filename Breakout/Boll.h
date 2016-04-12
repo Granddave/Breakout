@@ -31,6 +31,8 @@ public:
 	void slowDown();
 	void startMoving();
 	void reset();
+	bool isInvisible();
+	void setInvisible(int z);
 
 private:
 	float _vx, _vy;			//Riktningen på bollen
@@ -38,5 +40,6 @@ private:
 	float _baseVel;			//Bashastigheten
 	QRect* rect;  
 	QPixmap* boll;
+	bool _invisible;
 };
 

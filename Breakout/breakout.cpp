@@ -149,7 +149,7 @@ void Breakout::update()
 			srand(time(NULL));
 
 			//Skapar powerup
-			int r = rand() % 1; //% n, där n är antalet olika powerups minus en som är implementerade
+			int r = rand() % 2; //% n, där n är antalet olika powerups minus en som är implementerade
 
 			if (r == 0)
 			{
@@ -158,7 +158,7 @@ void Breakout::update()
 			}
 			else if (r == 1)
 			{
-				Powerup* p = new PowerupSpeed(_blocks[i]->getX(), _blocks[i]->getY(), boll);
+				Powerup* p = new PowerupInvisible(_blocks[i]->getX(), _blocks[i]->getY(), boll);
 				_powerups.push_back(p);
 			}
 		}
