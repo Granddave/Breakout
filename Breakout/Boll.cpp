@@ -82,6 +82,6 @@ void Boll::speedUp()
 
 void Boll::slowDown()
 {
-	if (_baseVel >= 6)
+	if (_baseVel > 6)
 		_baseVel -= 1;
 }

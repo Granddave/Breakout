@@ -19,17 +19,13 @@ Breakout::Breakout(QWidget *parent)
 	resetGame();
 
 	//Uppdateringstimer
-	timer = new QTimer(this);
-	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-	timer->start(16);
+	gameTimer = new QTimer(this);
+	connect(gameTimer, SIGNAL(timeout()), this, SLOT(update()));
+	gameTimer->start(16);
 
 	//Timer för multiscore
 	multiscore = new QTimer(this);
 	connect(multiscore, SIGNAL(timeout()), this, SLOT(lowMulti()));
-
-	if (_powerups.size() != 0)
-		for (int i = 0; i < _powerups.size(); i++)
-			connect(_powerups[i]->getTimer(), SIGNAL(timeout()), this, SLOT(stopPowerup(i)));
 
 	//Menyknapper
 	connect(ui.actionExit, SIGNAL(triggered()), this, SLOT(close()));
@@ -40,7 +36,7 @@ Breakout::~Breakout() //städar upp
 {
 	delete spelplan;
 	delete background;
-	delete timer;
+	delete gameTimer;
 	delete multiscore;
 	delete score;
 	delete rack;
@@ -140,15 +136,19 @@ void Breakout::update()
 	boll->update(*spelplan, *multiscore);	//Vägg 
 	rack->hitCheck(*boll);					//Racket
 	
-	//Block samt skapar ev powerups
+	//Blockhitcheck samt skapar ev powerups
 	for (int i = 0; i < _blocks.size(); i++)
 	{
+		//Kollar block- och bollkollision samt adderar till score om träff
 		_blocks[i]->hitCheck(*boll, *score);
 
+		//Om blocket har powerup, inte är aktivt och har kvar sin powerup
 		if (_blocks[i]->hasPowerup() && !_blocks[i]->isBlockActive() && !_blocks[i]->isPowerupTaken()) 
 		{
 			_blocks[i]->setPowerupTaken(1);
 			srand(time(NULL));
+
+			//Skapar powerup
 			int r = rand() % 1; //% n, där n är antalet olika powerups minus en som är implementerade
 
 			if (r == 0)
@@ -163,27 +163,34 @@ void Breakout::update()
 			}
 		}
 	}
-	
 
 	//Uppdaterar powerups och ger effekt
 	if (_powerups.size() != 0) 
 	{
 		for (int i = 0; i < _powerups.size(); i++)
 		{
-			//Flyttar powerup
+			//Flyttar powerup nedåt
 			_powerups[i]->update(); 
 			
 
-			//Kollar ev. kollision med racket eller spelplanens nedre kant
+			//Kollar ev. kollision med racket 
 			if (_powerups[i]->checkCollision(rack->getRect()) && _powerups[i]->isVisible())
 			{
 				_powerups[i]->setVisible(0);
 				_powerups[i]->giveEffect();
-
 			}
+			//Kollar ev. kollision med spelplanens nedre kant
 			else if (_powerups[i]->checkIfOutside() && _powerups[i]->isVisible())
 			{
-				//Tar bort powerup
+				//Tar bort poweupen från minnet samt vektor (den har inte gett någon effekt)
+				delete _powerups[i];
+				_powerups.erase(_powerups.begin() + i);
+			}
+			//Om timern har tickat klart
+			else if (_powerups[i]->getTimer()->remainingTime() == -1 && !_powerups[i]->isVisible())
+			{
+				//Återställ den effekt den tidigare orsakat och radera från minne samt vektor
+				_powerups[i]->powerupEnded();
 				delete _powerups[i];
 				_powerups.erase(_powerups.begin() + i);
 			}
@@ -192,16 +199,26 @@ void Breakout::update()
 	
 
 	//gör att racket följer bollen för debug
-	//rack->setPosition(boll->getLeft()); 
-
+#if AUTOPLAY //Ändra i defines.h för att aktivera
+	rack->setPosition(boll->getLeft()); 
+#endif
 	repaint();
 }
 
 //Återställer hela spelplanen
 void Breakout::resetGame() 
 {
-	for (int i = 0; i < _blocks.size(); i++) //Återställer alla block
+	//Återställer alla block
+	for (int i = 0; i < _blocks.size(); i++) 
 		_blocks[i]->reset();
+
+	//Återställer ev. powerups
+	if (_powerups.size() > 0)
+		for (int i = 0; i < _powerups.size(); i++)
+		{
+			delete _powerups[i];
+			_powerups.erase(_powerups.begin() + i);
+		}
 
 	score->scoreReset();
 	score->resetMulti();
@@ -223,15 +240,3 @@ void Breakout::startGame()
 	repaint();
 }
 
-//Sänker Multiscore med en konstant
-void Breakout::lowMulti()
-{
-	score->lowerMulti();
-}
-
-void Breakout::stopPowerup(int i)
-{
-	_powerups[i]->powerupEnded();
-	delete _powerups[i];
-	_powerups.erase(_powerups.begin() + i);
-}

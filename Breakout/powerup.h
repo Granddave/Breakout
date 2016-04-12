@@ -13,8 +13,6 @@ public:
 
 	bool checkCollision(QRect* qr)	const { return _rect.intersects(*qr);  } //Hitcheck med racket 
 	bool checkIfOutside()			const { return _rect.top() > W_HEIGHT; } //Hitcheck om utanför spelplan
-	bool getActive()				const { return active; }
-	bool getGivingEffect()			const { return givingEffect; }
 	bool isVisible()				const { return visible; }
 	void setVisible(bool b)				  { visible = b; }
 
@@ -28,12 +26,11 @@ public:
 
 protected:
 	QRect _rect;
-	float _vel;
+	float _vel; //Hastighet nedåt
 	QPixmap _pixmap;
 	Boll* _boll;
 	QTimer* timer;
 	bool givingEffect;
 	bool visible;
-	bool active;
 };
 

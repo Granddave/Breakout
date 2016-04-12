@@ -35,14 +35,13 @@ private slots:
 	void update();
 	void resetGame();
 	void startGame();
-	void lowMulti();
-	void stopPowerup(int i);
+	void lowMulti() const { score->lowerMulti(); }
 
 private:
 	Ui::BreakoutClass ui;
 	QRect* spelplan;
 	QPixmap* background;
-	QTimer* timer;
+	QTimer* _gameTimer;
 	QTimer* multiscore;
 	Score* score;
 
