@@ -13,15 +13,20 @@ public:
 	~Racket();
 
 	void paint(QPainter& painter) const;
-	void update();
 
-	int getLeft() const;
-	int getRight() const;
-	int getCenter() const { return rect->center().x(); }
-	void hitCheck(Boll& boll);
-	void setPosition(int x);
-	void reset();
+	int getLeft()    const { return rect->left();  }
+	int getRight()   const { return rect->right(); }
+	int getCenter()  const { return rect->center().x(); }
 	QRect* getRect() const { return rect; }
+	
+	//Kollar om bollen träffar racket och sedan räknar ut nya riktningsvektorn.
+	void hitCheck(Boll& boll) const;
+	
+	//Sätter rackets position om racket är innanför spelplanens kanter
+	void setPosition(int x); 
+
+	//Sätter racket till sin startposition
+	void reset() const;
 
 private:
 	QRect* rect;
