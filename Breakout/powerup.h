@@ -19,5 +19,6 @@ public:
 protected:
 	QRect _rect;
 	float _vel;
+	QPixmap _pixmap;
 };
 

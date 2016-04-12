@@ -15,6 +15,7 @@ Breakout::Breakout(QWidget *parent)
 	background = new QPixmap("background.png");
 	score = new Score();
 
+
 	int heightAdj = 21;  //Pixlar mellan top och högsta
 	int spaceingY = 35;  //Pixlar mellan block i vertikalled
 

@@ -12,5 +12,4 @@ public:
 	void paint(QPainter & painter) override;
 
 private:
-	QPixmap _pixmap;
 };
