@@ -6,29 +6,6 @@ Score::Score()
 	_multiplier = 100;
 }
 
-Score::~Score()
-{
-
-}
-void Score::addScore()
-{
-	_score += POINTS_PER_BLOCKS;
-}
-
-int Score::getScore() const
-{
-	return _score;
-}
-
-int Score::getMulti() const
-{
-	return _multiplier;
-}
-
-void Score::resetMulti()
-{
-	_multiplier = 100;
-}
 
 void Score::paint(QPainter& painter, Score& score, Boll& boll) const
 {
@@ -40,7 +17,7 @@ void Score::paint(QPainter& painter, Score& score, Boll& boll) const
 	painter.drawText(540, 390, QString::number(score.getMulti()));
 	painter.drawText(110, 390, QString::number(score.getScore()));
 
-	if (boll.getBottom() > W_HEIGHT || score.getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS)
+	if (boll.position().top() > W_HEIGHT || score.getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS)
 	{
 		font.setPixelSize(60);
 		painter.drawText(200, 190, QString("Final Score: "));
@@ -53,18 +30,8 @@ void Score::paint(QPainter& painter, Score& score, Boll& boll) const
 	}
 }
 
-void Score::scoreReset()
-{
-	_score = 0;
-}
-
 void Score::lowerMulti()
 {
 	if (_multiplier > 1)
 		_multiplier--;
-}
-
-int Score::finalScore()
-{
-	return (_multiplier * _score);
 }

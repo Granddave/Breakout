@@ -16,19 +16,18 @@ public:
 	void paint(QPainter& painter) const;
 	void hitCheck(Boll& boll, Score& score);
 	void reset();
-	void setActive() { _isActive = 1; }
-	void setPowerupTaken(bool b) { _powerupTaken = b; }
-	bool isBlockActive() { return _isActive; }
-	bool hasPowerup() { return _hasPowerup; }
-	bool isPowerupTaken() { return _powerupTaken; }
+	void setActive()				{ _isActive = 1; }
+	void setPowerupTaken(bool b)	{ _powerupTaken = b; }
 
-	QPolygon getHBleft() const { return *HBleft; };
-	QPolygon getHBright() const { return *HBright; };
-	QPolygon getHBtop() const { return *HBtop; };
-	QPolygon getHBbottom() const { return *HBbottom; };
-
-	int getX() const { return _x; }
-	int getY() const { return _y; }
+	bool isBlockActive() const		{ return _isActive; }
+	bool isPowerupTaken() const		{ return _powerupTaken; }
+	bool hasPowerup() const			{ return _hasPowerup; }
+	int getX() const				{ return _x; }
+	int getY() const				{ return _y; }
+	QPolygon getHBleft() const		{ return *HBleft; };
+	QPolygon getHBright() const		{ return *HBright; };
+	QPolygon getHBtop() const		{ return *HBtop; };
+	QPolygon getHBbottom() const	{ return *HBbottom; };
 
 private:
 	int _x, _y;

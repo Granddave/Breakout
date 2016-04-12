@@ -27,8 +27,9 @@ public:
 
 	void paintEvent(QPaintEvent * e);
 	void mouseMoveEvent(QMouseEvent* e);
-	void mousePressEvent(QMouseEvent* e);
 	void keyPressEvent(QKeyEvent* e);
+
+	void initBlocks();
 
 private slots:
 	void update();
@@ -38,17 +39,19 @@ private slots:
 
 private:
 	Ui::BreakoutClass ui;
-	std::vector <Block*> _blocks;
-	QTimer* timer;
-	QTimer* multiscore;
-	Racket* rack;
-	Boll* boll;
 	QRect* spelplan;
 	QPixmap* background;
+	QTimer* timer;
+	QTimer* multiscore;
+	Score* score;
+
+	Racket* rack;
+	Boll* boll;
+	std::vector <Block*> _blocks;
+	std::vector <Powerup*> _powerups;
+
 	bool isPlaying;
 	bool isReset;
-	Score* score;
-	std::vector <Powerup*> _powerups;
 };
 
 #endif // BREAKOUT_H

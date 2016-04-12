@@ -38,22 +38,6 @@ void Boll::paint(QPainter & painter)
 	painter.drawPixmap(rect->left(), rect->top(), *boll);
 }
 
-QRect Boll::position() const
-{
-	return *rect;
-}
-
-void Boll::nyRiktning(float vx, float vy)
-{
-	_vx = vx;
-	_vy = vy;
-}
-
-void Boll::setHasChangedDir(bool b)
-{
-	hasChangedDir = b;
-}
-
 bool Boll::getIsOnPlayArea()
 {
 	return (rect->top() < W_HEIGHT);
@@ -72,18 +56,6 @@ void Boll::reset()
 	
 	_vx = 0;
 	_vy = 0;
-}
-
-void Boll::changexvel(float x)
-{
-	_vx *= x;
-	setHasChangedDir(1);
-}
-
-void Boll::changeyvel(float y)
-{
-	_vy *= y;
-	setHasChangedDir(1);
 }
 
 void Boll::setpos(float x, float y)

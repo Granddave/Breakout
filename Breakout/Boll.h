@@ -8,40 +8,33 @@
 
 class Boll
 {
-public: 
+public:
 	Boll();
 
 	void update(QRect qr, QTimer& multiscore);
 	void paint(QPainter & painter);
-	float xvel()    { return _vx; }
-	float yvel()    { return _vy; }
-	float baseVel() { return _baseVel; }
 
-	int getRight()	{ return rect->x() + rect->width() * 2; }
-	int getLeft()	{ return rect->x(); }
-	int getTop()	{ return rect->y(); }
-	int getBottom()	{ return rect->y() + rect->width() * 2; }
-	bool intersects(QRect* obj) { return rect->intersects(*obj); }
-
-	void changexvel(float x);
-	void changeyvel(float y);
-
-	void setxvel(float x){ _vx = x; }
-	void setyvel(float y){ _vy = y; }
-	void setBaseVel(float vel) { _baseVel = vel; }
-	void setpos(float x, float y);
-	QRect position() const;
-	void nyRiktning(float vx, float vy);
-	void setHasChangedDir(bool b);
-	bool getHasChangedDir(){ return hasChangedDir; }
+	float xvel()				{ return _vx; }
+	float yvel()				{ return _vy; }
+	float baseVel()				{ return _baseVel; }
+	QRect position() const		{ return *rect; }
 	bool getIsOnPlayArea();
+
+	void changexvel(float x)	{ _vx *= x; }
+	void changeyvel(float y)	{ _vy *= y; }
+
+	void setxvel(float x)		{ _vx = x; }
+	void setyvel(float y)		{ _vy = y; }
+	void setBaseVel(float vel)	{ _baseVel = vel; }
+	void setpos(float x, float y);
 	void startMoving();
 	void reset();
 
 private:
-	float _vx, _vy, _vxInit, _vyInit, _baseVel;
+	float _vx, _vy;			//Riktningen på bollen
+	float _vxInit, _vyInit; //Starthastigheten
+	float _baseVel;			//Bashastigheten
 	QRect* rect;  
 	QPixmap* boll;
-	bool hasChangedDir;
 };
 

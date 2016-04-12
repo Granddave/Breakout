@@ -8,16 +8,18 @@ class Score
 {
 public:
 	Score();
-	~Score();
-
-	void addScore();
-	int getScore() const;
-	int getMulti() const;
-	void resetMulti();
+	~Score(){}
+	
 	void paint(QPainter& painter, Score& score, Boll& boll) const;
-	void scoreReset();
+
+	void addScore()			{ _score += POINTS_PER_BLOCKS; }
+	void resetMulti()		{ _multiplier = 100; }
+	void scoreReset()		{ _score = 0; }
 	void lowerMulti();
-	int finalScore();
+	int getScore()   const	{ return _score; }
+	int getMulti()   const	{ return _multiplier; }
+	int finalScore() const	{ return _multiplier * _score; }
+
 private:
 	int _score;
 	int _multiplier;

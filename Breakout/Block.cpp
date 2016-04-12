@@ -1,16 +1,15 @@
 #include "Block.h"
 
-int times = 0;
-
 Block::Block(int x, int y)
 {
 	block = new QPixmap("block.png");
 	_x = x;
 	_y = y;
 
-	HBleft = new QPolygon();
-	HBright = new QPolygon();
-	HBtop = new QPolygon();
+	//Skapar de fyra hitboxpolygonerna
+	HBleft	 = new QPolygon();
+	HBright	 = new QPolygon();
+	HBtop	 = new QPolygon();
 	HBbottom = new QPolygon();
 
 	int left[] = { x, y, x, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) }; 
@@ -29,7 +28,8 @@ Block::Block(int x, int y)
  	_isActive = 1;
 }
 
-void Block::paint(QPainter& painter) const
+//Målar de block som är aktiva
+void Block::paint(QPainter& painter) const 
 {
 	if (_isActive)
 	{
@@ -37,16 +37,11 @@ void Block::paint(QPainter& painter) const
 	}
 }
 
+//Kollar om boll träffar block
 void Block::hitCheck(Boll& boll, Score& score)
 {
-		int ballLeft = boll.position().left();
-		int ballHeight = boll.position().height();
-		int ballWidth = boll.position().width();
-		int ballTop = boll.position().top();
+	QPoint point = boll.position().center();
 
-		QPoint point(ballLeft + (ballWidth/2), ballTop + (ballHeight/2)); //center point i bollen
-
-		
 		if (_isActive){
 			
 			// Följande 12 if-statements kollar om bollen är exakt i någon av kanterna i blocket och kollar även vilken riktning bollen har
@@ -199,6 +194,7 @@ void Block::hitCheck(Boll& boll, Score& score)
 		}
 }
 
+//Aktiverar blocken och randomiserar powerups
 void Block::reset()
 {
 	int r = rand() % 6;
