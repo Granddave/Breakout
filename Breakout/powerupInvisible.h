@@ -7,7 +7,7 @@
 class PowerupInvisible : public Powerup
 {
 public:
-	PowerupInvisible(int x, int y, Boll* boll);
+	PowerupInvisible(int x, int y, Boll* boll, Racket* racket);
 	~PowerupInvisible(){}
 
 	void paint(QPainter & painter) override;

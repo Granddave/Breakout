@@ -1,7 +1,7 @@
 #include "powerupInvisible.h"
 
 
-PowerupInvisible::PowerupInvisible(int x, int y, Boll* boll)
+PowerupInvisible::PowerupInvisible(int x, int y, Boll* boll, Racket* racket)
 {
 	_pixmap = QPixmap("invisible.png");
 	_rect = QRect(x, y, 10, 10);

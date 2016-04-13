@@ -1,19 +1,20 @@
-#include "powerupSpeed.h"
+#include "powerupRacket.h"
 
 
-PowerupSpeed::PowerupSpeed(int x, int y, Boll* boll, Racket* racket)
+PowerupRacket::PowerupRacket(int x, int y, Boll* boll, Racket* racket)
 {
-	_pixmap = QPixmap("PowerupSpeed.png");
+	_pixmap = QPixmap("Plus.png");
 	_rect = QRect(x, y, 10, 10);
 	_boll = boll;
+	_racket = racket;
 	givingEffect = 0;
 }
 
-void PowerupSpeed::paint(QPainter& painter)
+void PowerupRacket::paint(QPainter& painter)
 {
 	if (visible)
-		painter.drawPixmap(_rect.left()+10, _rect.top()+10, _pixmap);
-	
+		painter.drawPixmap(_rect.left() + 10, _rect.top() + 10, _pixmap);
+
 #if powerupDB
 	QFont font;
 	font.setPixelSize(30);
@@ -24,15 +25,15 @@ void PowerupSpeed::paint(QPainter& painter)
 #endif
 }
 
-void PowerupSpeed::giveEffect()
+void PowerupRacket::giveEffect()
 {
 	timer->start(POWERUP_TIME_MS);
 	givingEffect = 1;
-	_boll->speedUp();
+	_racket->sizeUp();
 }
 
-void PowerupSpeed::powerupEnded()
+void PowerupRacket::powerupEnded()
 {
-	_boll->slowDown();
+	_racket->sizeDown();
 	givingEffect = 0;
 }

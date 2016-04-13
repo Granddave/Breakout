@@ -71,6 +71,9 @@
     <ClCompile Include="powerupInvisible.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="powerupRacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="breakout.h">
@@ -109,6 +112,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="powerupInvisible.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="powerupRacket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

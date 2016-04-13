@@ -4,6 +4,7 @@
 #include <string>
 #include "defines.h"
 #include "Boll.h"
+#include "Racket.h"
 
 class Powerup
 {

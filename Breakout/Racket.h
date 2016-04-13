@@ -18,6 +18,9 @@ public:
 	int getRight()   const { return rect->right(); }
 	int getCenter()  const { return rect->center().x(); }
 	QRect* getRect() const { return rect; }
+
+	void sizeUp();
+	void sizeDown();
 	
 	//Kollar om bollen träffar racket och sedan räknar ut nya riktningsvektorn.
 	void hitCheck(Boll& boll) const;

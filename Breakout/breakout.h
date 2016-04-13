@@ -16,6 +16,7 @@
 #include "powerup.h"
 #include "powerupSpeed.h"
 #include "powerupInvisible.h"
+#include "powerupRacket.h"
 
 
 class Breakout : public QMainWindow

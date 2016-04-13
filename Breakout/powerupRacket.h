@@ -3,12 +3,13 @@
 #include "defines.h"
 #include "powerup.h"
 #include "Boll.h"
+#include "Racket.h"
 
-class PowerupSpeed: public Powerup
+class PowerupRacket : public Powerup
 {
 public:
-	PowerupSpeed(int x, int y, Boll* boll, Racket* racket);
-	~PowerupSpeed(){}
+	PowerupRacket(int x, int y, Boll* boll, Racket* racket);
+	~PowerupRacket(){}
 
 	void paint(QPainter & painter) override;
 	void giveEffect() override; //tar massa parametrar pga arv och polymorfism
@@ -16,4 +17,5 @@ public:
 
 
 private:
+	Racket* _racket;
 };

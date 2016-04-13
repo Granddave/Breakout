@@ -43,3 +43,13 @@ void Racket::paint(QPainter& painter) const
 	painter.setBrush(Qt::blue);
 	painter.drawRect(rect->x(), rect->y(), rect->width(), rect->height());
 }
+
+void Racket::sizeUp()
+{
+	rect->setWidth(200);
+}
+
+void Racket::sizeDown()
+{
+	rect->setWidth(100);
+}
