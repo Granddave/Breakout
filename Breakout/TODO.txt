@@ -3,5 +3,4 @@ TODO:
 Bild till racket
 
 Powerups:
-	Storlek på rack
     Olika sorters block?
