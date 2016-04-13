@@ -11,7 +11,7 @@
 #define NUM_OF_BLOCKS		(BLOCKS_NUM_X * BLOCKS_NUM_Y)
 #define POINTS_PER_BLOCKS	100
 
-#define BOLL_BASESPEED		6
+#define BOLL_BASESPEED		4
 #define POWERUP_TIME_MS		10000
 
 #define powerupDB	0
