@@ -79,7 +79,10 @@ void Breakout::keyPressEvent(QKeyEvent* e)
 	if (!isPlaying && !isReset && e->key() == Qt::Key_Space)
 		resetGame();
 	else if (e->key() == Qt::Key_R)
+	{
 		resetGame();
+		multiscore->stop();
+	}
 	else if (!isPlaying && isReset && e->key() == Qt::Key_Space)
 		startGame();
 }

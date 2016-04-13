@@ -35,7 +35,11 @@ void Racket::setPosition(int x)
 
 void Racket::reset() const
 {
-	rect->moveLeft((W_WIDTH / 2) - rect->width() / 2);
+	if (rect->width() == 200)
+		rect->moveLeft((W_WIDTH / 2) - rect->width() / 4);
+	else
+		rect->moveLeft((W_WIDTH / 2) - rect->width() / 2);
+	rect->setWidth(100);
 }
 
 void Racket::paint(QPainter& painter) const
