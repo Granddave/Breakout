@@ -18,6 +18,7 @@ public:
 	void reset();
 	void setActive()				{ _isActive = 1; }
 	void setPowerupTaken(bool b)	{ _powerupTaken = b; }
+	void breakBlock(Score& score);
 
 	bool isBlockActive() const		{ return _isActive; }
 	bool isPowerupTaken() const		{ return _powerupTaken; }
