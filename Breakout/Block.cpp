@@ -6,6 +6,9 @@ Block::Block(int x, int y)
 	_x = x;
 	_y = y;
 
+	sound = new QMediaPlayer();
+	sound->setMedia(QUrl("Bricksound.wav"));
+
 	//Skapar de fyra hitboxpolygonerna
 	HBleft	 = new QPolygon();
 	HBright	 = new QPolygon();
@@ -220,5 +223,5 @@ void Block::breakBlock(Score& score)
 {
 	_isActive = 0; 
 	score.addScore();
-	//play sound
+	sound->play();
 }

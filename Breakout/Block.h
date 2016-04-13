@@ -7,6 +7,7 @@
 #include "Boll.h"
 #include "Score.h"
 #include <QPixmap>
+#include <QMediaPlayer>
 
 class Block
 {
@@ -37,6 +38,7 @@ private:
 	QPolygon* HBtop;
 	QPolygon* HBbottom;
 	QPixmap* block;
+	QMediaPlayer* sound;
 
 	bool _isActive;
 	bool _hasPowerup;
