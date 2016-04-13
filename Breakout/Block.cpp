@@ -43,6 +43,15 @@ void Block::hitCheck(Boll& boll, Score& score)
 	QPoint point = boll.position().center();
 
 		if (_isActive){
+
+			if (boll.isInvisible() 
+				&& (getHBleft().containsPoint(point, Qt::OddEvenFill) 
+				|| getHBbottom().containsPoint(point, Qt::OddEvenFill) 
+				|| getHBtop().containsPoint(point, Qt::OddEvenFill) 
+				|| getHBright().containsPoint(point, Qt::OddEvenFill)))
+			{
+				_isActive = 0; score.addScore(); return;
+			}
 			
 			// Följande 12 if-statements kollar om bollen är exakt i någon av kanterna i blocket och kollar även vilken riktning bollen har
 			if (((point.x() == _x) && (point.y() == _y)) && ((boll.xvel() > 0) && (boll.yvel() > 0))) // 1
@@ -197,7 +206,7 @@ void Block::hitCheck(Boll& boll, Score& score)
 //Aktiverar blocken och randomiserar powerups
 void Block::reset()
 {
-	int r = rand() % 6;
+	int r = rand() % 8;
  	if (r == 0)
 		_hasPowerup = 1;
 	else

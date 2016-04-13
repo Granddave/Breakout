@@ -3,7 +3,8 @@
 Powerup::Powerup()
 {
 	timer = new QTimer();
-	_vel = 3;
+	timer->setSingleShot(1);
+	_vel = 3; //Hastighet nedåt
 	visible = 1;
 }
 
@@ -11,5 +12,4 @@ Powerup::Powerup()
 void Powerup::update()
 {
 	_rect.moveTop(_rect.top() + _vel);
-	active = timer->isActive();
 }

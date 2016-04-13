@@ -7,6 +7,7 @@ Boll::Boll()
 	_vx = 0;
 	_vy = 0;
 	_baseVel = BOLL_BASESPEED;
+	_invisible = 0;
 }
 
 void Boll::update(QRect qr, QTimer& multiscore)
@@ -33,7 +34,7 @@ void Boll::update(QRect qr, QTimer& multiscore)
 	}
 }
 
-void Boll::paint(QPainter & painter)
+void Boll::paint(QPainter & painter) const
 {
 	painter.drawPixmap(rect->left(), rect->top(), *boll);
 
@@ -44,11 +45,6 @@ void Boll::paint(QPainter & painter)
 	painter.drawText(10, 300, QString("Speed: "));
 	painter.drawText(110, 300, QString::number(_baseVel));
 #endif
-}
-
-bool Boll::getIsOnPlayArea()
-{
-	return (rect->top() < W_HEIGHT);
 }
 
 void Boll::startMoving()
@@ -62,8 +58,19 @@ void Boll::reset()
 	rect->moveLeft(W_WIDTH / 2);
 	rect->moveTop(W_HEIGHT - 50);
 	_baseVel = BOLL_BASESPEED;
+	setInvisible(0);
 	_vx = 0;
 	_vy = 0;
+}
+
+bool Boll::isInvisible() const
+{
+	return _invisible;
+}
+
+void Boll::setInvisible(bool b)
+{
+	_invisible = b;
 }
 
 void Boll::setpos(float x, float y)
@@ -82,6 +89,7 @@ void Boll::speedUp()
 
 void Boll::slowDown()
 {
-	if (_baseVel >= 6)
+	if (_baseVel > 6)
 		_baseVel -= 1;
 }
+

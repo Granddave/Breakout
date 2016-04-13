@@ -13,6 +13,15 @@ void PowerupSpeed::paint(QPainter& painter)
 {
 	if (visible)
 		painter.drawPixmap(_rect.left()+10, _rect.top()+10, _pixmap);
+	
+#if powerupDB
+	QFont font;
+	font.setPixelSize(30);
+	painter.setFont(font);
+	painter.drawText(10, 330, QString("timer: "));
+	if (!visible)
+		painter.drawText(110, 330, QString::number(timer->remainingTime()));
+#endif
 }
 
 void PowerupSpeed::giveEffect()

@@ -2,10 +2,6 @@ TODO:
 
 Bild till racket
 
-Powerups (bara förslag) (fallande)
-    en extra boll
-	hastighet på boll (multiplicera både vx och vy med något heltal för en viss tid)
-	storlek på rack
-Fixa timer till Powerup
-
-Olika sorters block?
+Powerups:
+	Storlek på rack
+    Olika sorters block?

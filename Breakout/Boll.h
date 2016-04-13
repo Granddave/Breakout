@@ -12,13 +12,13 @@ public:
 	Boll();
 
 	void update(QRect qr, QTimer& multiscore);
-	void paint(QPainter & painter);
+	void paint(QPainter & painter) const;
 
 	float xvel()				{ return _vx; }
 	float yvel()				{ return _vy; }
 	float baseVel()				{ return _baseVel; }
 	QRect position() const		{ return *rect; }
-	bool getIsOnPlayArea();
+	bool getIsOnPlayArea() const{ return (rect->top() < W_HEIGHT); }
 
 	void changexvel(float x)	{ _vx *= x; }
 	void changeyvel(float y)	{ _vy *= y; }
@@ -31,6 +31,8 @@ public:
 	void slowDown();
 	void startMoving();
 	void reset();
+	bool isInvisible() const;
+	void setInvisible(bool b);
 
 private:
 	float _vx, _vy;			//Riktningen på bollen
@@ -38,5 +40,6 @@ private:
 	float _baseVel;			//Bashastigheten
 	QRect* rect;  
 	QPixmap* boll;
+	bool _invisible;
 };
 
