@@ -13,6 +13,7 @@ Breakout::Breakout(QWidget *parent)
 	boll = new Boll();
 	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
 	background = new QPixmap("background.png");
+	pause = new QPixmap("pause.png");
 	score = new Score();
 
 	initBlocks();
@@ -67,6 +68,13 @@ void Breakout::paintEvent(QPaintEvent * e)
 	rack->paint(p);
 	boll->paint(p);
 	score->paint(p, *score, *boll);
+
+	// Pause
+	if (isPaused)
+	{
+		QRect storlek(200, 100, 200, 200);
+		p.drawPixmap(storlek, *pause);
+	}
 }
 
 void Breakout::mouseMoveEvent(QMouseEvent* e)
@@ -76,6 +84,20 @@ void Breakout::mouseMoveEvent(QMouseEvent* e)
 
 void Breakout::keyPressEvent(QKeyEvent* e)
 {
+	if (e->key() == Qt::Key_P && isPaused == 0)
+	{
+		isPaused = 1;
+		repaint();
+		pauseGame();
+	}
+	else if (e->key() == Qt::Key_P && isPaused == 1)
+	{
+		gameTimer->start(16);
+		multiscore->start(MULTI_COUNTDOWN);
+		isPaused = 0;
+		return;
+	}
+
 	if (!isPlaying && !isReset && e->key() == Qt::Key_Space)
 		resetGame();
 	else if (e->key() == Qt::Key_R)
@@ -233,6 +255,7 @@ void Breakout::resetGame()
 	rack->reset();
 	boll->reset();
 
+	isPaused = 0;
 	isReset = 1;
 	isPlaying = 0;
  	repaint();
@@ -241,10 +264,15 @@ void Breakout::resetGame()
 //Startar spelet
 void Breakout::startGame() 
 {
-	multiscore->start(2000); //Startar timern för multiscore
+	multiscore->start(MULTI_COUNTDOWN); //Startar timern för multiscore
 	isReset = 0;
 	isPlaying = 1;
 	boll->startMoving();
 	repaint();
 }
 
+void Breakout::pauseGame()
+{
+	gameTimer->stop();
+	multiscore->stop();
+}

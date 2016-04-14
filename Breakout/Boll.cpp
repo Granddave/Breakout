@@ -83,13 +83,15 @@ void Boll::setpos(float x, float y)
 
 void Boll::speedUp()
 {
-	if (_baseVel <= 8)
-		_baseVel += 1;
+	_baseVel = 8;
+	//if (_baseVel <= 8)
+	//	_baseVel += 1;
 }
 
 void Boll::slowDown()
 {
-	if (_baseVel > 4)
-		_baseVel -= 1;
+	_baseVel = 4;
+	//if (_baseVel > 4)
+	//	_baseVel -= 1;
 }
 

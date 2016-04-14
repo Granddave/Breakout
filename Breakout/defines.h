@@ -13,6 +13,7 @@
 
 #define BOLL_BASESPEED		4
 #define POWERUP_TIME_MS		10000
+#define MULTI_COUNTDOWN     2000
 
 #define powerupDB	0
 #define AUTOPLAY	0 //Racket följer boll

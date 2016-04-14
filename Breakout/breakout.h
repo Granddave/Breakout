@@ -30,6 +30,7 @@ public:
 	void paintEvent(QPaintEvent * e);
 	void mouseMoveEvent(QMouseEvent* e);
 	void keyPressEvent(QKeyEvent* e);
+	void pauseGame();
 
 	void initBlocks();
 
@@ -43,6 +44,7 @@ private:
 	Ui::BreakoutClass ui;
 	QRect* spelplan;
 	QPixmap* background;
+	QPixmap* pause;
 	QTimer* gameTimer;
 	QTimer* multiscore;
 	Score* score;
@@ -54,6 +56,7 @@ private:
 
 	bool isPlaying;
 	bool isReset;
+	bool isPaused;
 };
 
 #endif // BREAKOUT_H
