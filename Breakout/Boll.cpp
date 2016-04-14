@@ -4,6 +4,8 @@ Boll::Boll()
 {
 	boll = new QPixmap("ball.png");
 	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
+	speed = new QMediaPlayer();
+	speed->setMedia(QUrl("starman.wav"));
 	_vx = 0;
 	_vy = 0;
 	_baseVel = BOLL_BASESPEED;
@@ -18,7 +20,7 @@ void Boll::update(QRect spelplan, QTimer& multiscore)
 	{
 		_vx = -_vx;
 	}
-	if ((rect->x() <= spelplan.x()) && (_vx < 0))
+	if ((rect->left() <= spelplan.x()) && (_vx < 0))
 	{
 		_vx = -_vx;
 	}
@@ -29,6 +31,7 @@ void Boll::update(QRect spelplan, QTimer& multiscore)
 	if (rect->y() > W_HEIGHT)
 	{
 		multiscore.stop();
+		speed->stop();
 		_vx = 0;
 		_vy = 0;
 	}
@@ -84,12 +87,14 @@ void Boll::setpos(float x, float y)
 void Boll::speedUp()
 {
 	_baseVel = 8;
+	speed->play();
 	//if (_baseVel <= 8)
 	//	_baseVel += 1;
 }
 
 void Boll::slowDown()
 {
+	speed->stop();
 	_baseVel = 4;
 	//if (_baseVel > 4)
 	//	_baseVel -= 1;

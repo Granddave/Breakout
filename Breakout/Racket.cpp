@@ -3,6 +3,8 @@
 Racket::Racket()
 {
 	int _width = 100;
+	sound = new QMediaPlayer();
+	sound->setMedia(QUrl("rackethit.wav"));
 	rect = new QRect((W_WIDTH / 2) - _width / 2, W_HEIGHT - 40, 100, 15);
 }
 
@@ -23,6 +25,7 @@ void Racket::hitCheck(Boll& boll) const
 		float bounceAngle = normalizedRelativeIntersectionY * MAX_BOUNCE_ANGLE;
 		boll.setxvel(cos(bounceAngle));
 		boll.setyvel(-sin(bounceAngle));
+		sound->play();
 	}
 }
 

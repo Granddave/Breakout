@@ -14,7 +14,11 @@ Breakout::Breakout(QWidget *parent)
 	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
 	background = new QPixmap("background.png");
 	pause = new QPixmap("pause.png");
+	pauseback = new QPixmap("pauseback.png");
 	score = new Score();
+
+	victory = new QMediaPlayer();
+	victory->setMedia(QUrl("victory.mp3"));
 
 	initBlocks();
 	resetGame();
@@ -71,7 +75,15 @@ void Breakout::paintEvent(QPaintEvent * e)
 
 	// Pause
 	if (isPaused)
+	{
+		p.drawPixmap(0, 0, *pauseback);
+		p.drawPixmap(255, 0, *pauseback);
+		p.drawPixmap(510, 0, *pauseback);
+		p.drawPixmap(0, 285, *pauseback);
+		p.drawPixmap(255, 285, *pauseback);
+		p.drawPixmap(510, 285, *pauseback);
 		p.drawPixmap(QRect(200, 100, 200, 200), *pause);
+	}
 }
 
 void Breakout::mouseMoveEvent(QMouseEvent* e)
@@ -99,6 +111,7 @@ void Breakout::keyPressEvent(QKeyEvent* e)
 		resetGame();
 	else if (e->key() == Qt::Key_R)
 	{
+		victory->stop();
 		resetGame();
 		multiscore->stop();
 	}
@@ -148,6 +161,7 @@ void Breakout::update()
 	// Stanna boll och multiscore om alla block är sönder
 	if (score->getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS)
 	{
+		victory->play();
 		multiscore->stop();
 		boll->setxvel(0);
 		boll->setyvel(0);

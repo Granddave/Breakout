@@ -4,6 +4,7 @@
 #include "Boll.h"
 #include <QPainter>
 #include <QRect>
+#include <qmediaplayer.h>
 
 
 class Racket 
@@ -32,6 +33,7 @@ public:
 	void reset() const;
 
 private:
+	QMediaPlayer* sound;
 	QRect* rect;
 };
 

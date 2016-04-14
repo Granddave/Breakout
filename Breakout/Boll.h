@@ -5,6 +5,7 @@
 #include <ctime>
 #include <QPainter>
 #include <qtimer.h>
+#include <qmediaplayer.h>
 
 class Boll
 {
@@ -41,5 +42,6 @@ private:
 	QRect* rect;  
 	QPixmap* boll;
 	bool _invisible;
+	QMediaPlayer* speed;
 };
 

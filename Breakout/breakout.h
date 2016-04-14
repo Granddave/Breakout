@@ -45,9 +45,11 @@ private:
 	QRect* spelplan;
 	QPixmap* background;
 	QPixmap* pause;
+	QPixmap* pauseback;
 	QTimer* gameTimer;
 	QTimer* multiscore;
 	Score* score;
+	QMediaPlayer* victory;
 
 	Racket* rack;
 	Boll* boll;
