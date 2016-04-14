@@ -21,8 +21,8 @@ void Racket::hitCheck(Boll& boll) const
 		float relativeIntersectX = rect->center().x() - bollCenter.x();
 		float normalizedRelativeIntersectionY = (relativeIntersectX / (rect->width() / 2)) + 1.5;
 		float bounceAngle = normalizedRelativeIntersectionY * MAX_BOUNCE_ANGLE;
-		boll.setxvel(boll.baseVel() * cos(bounceAngle));
-		boll.setyvel(boll.baseVel() * -sin(bounceAngle));
+		boll.setxvel(cos(bounceAngle));
+		boll.setyvel(-sin(bounceAngle));
 	}
 }
 

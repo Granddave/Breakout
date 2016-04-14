@@ -5,5 +5,3 @@ Bild till racket
 Powerups:
     Olika sorters block?
 
-	bug:
-	powerupSpeed - bollens fart ändras inte i luften utan när bollen träffar racket.

@@ -71,10 +71,7 @@ void Breakout::paintEvent(QPaintEvent * e)
 
 	// Pause
 	if (isPaused)
-	{
-		QRect storlek(200, 100, 200, 200);
-		p.drawPixmap(storlek, *pause);
-	}
+		p.drawPixmap(QRect(200, 100, 200, 200), *pause);
 }
 
 void Breakout::mouseMoveEvent(QMouseEvent* e)

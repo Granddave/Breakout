@@ -10,19 +10,19 @@ Boll::Boll()
 	_invisible = 0;
 }
 
-void Boll::update(QRect qr, QTimer& multiscore)
+void Boll::update(QRect spelplan, QTimer& multiscore)
 {
-	rect->moveLeft(rect->x() + _vx);
-	rect->moveTop(rect->y() + _vy);
-	if ((rect->right() >= qr.x() + qr.width()) && (_vx > 0))
+	rect->moveLeft(rect->x() + _vx * _baseVel);
+	rect->moveTop(rect->y() + _vy * _baseVel);
+	if ((rect->right() >= spelplan.x() + spelplan.width()) && (_vx > 0))
 	{
 		_vx = -_vx;
 	}
-	if ((rect->x() <= qr.x()) && (_vx < 0))
+	if ((rect->x() <= spelplan.x()) && (_vx < 0))
 	{
 		_vx = -_vx;
 	}
-	if ((rect->y() <= qr.y()) && (_vy < 0))
+	if ((rect->y() <= spelplan.y()) && (_vy < 0))
 	{
 		_vy = -_vy;
 	}
@@ -50,7 +50,7 @@ void Boll::paint(QPainter & painter) const
 void Boll::startMoving()
 {
 	_vx = 0;
-	_vy = -_baseVel;
+	_vy = -1;
 }
 
 void Boll::reset()
