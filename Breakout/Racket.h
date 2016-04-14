@@ -33,5 +33,6 @@ public:
 
 private:
 	QRect* rect;
+	QPixmap* pixL, *pixM, *pixR;
 };
 
