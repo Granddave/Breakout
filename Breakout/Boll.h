@@ -10,7 +10,7 @@
 class Boll
 {
 public:
-	Boll();
+	Boll(QMediaPlayer* speed, QMediaPlayer* gameover);
 
 	void update(QRect qr, QTimer& multiscore);
 	void paint(QPainter & painter) const;
@@ -34,6 +34,7 @@ public:
 	void reset();
 	bool isInvisible() const;
 	void setInvisible(bool b);
+	void stopSound();
 
 private:
 	float _vx, _vy;			//Riktningen på bollen
@@ -42,6 +43,7 @@ private:
 	QRect* rect;  
 	QPixmap* boll;
 	bool _invisible;
-	QMediaPlayer* speed;
+	QMediaPlayer* _speed;
+	QMediaPlayer* _gameover;
 };
 

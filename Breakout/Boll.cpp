@@ -1,11 +1,13 @@
 #include "Boll.h"
 
-Boll::Boll()
+int times = 0;
+
+Boll::Boll(QMediaPlayer* speed, QMediaPlayer* gameover)
 {
 	boll = new QPixmap("ball.png");
 	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
-	speed = new QMediaPlayer();
-	speed->setMedia(QUrl("starman.wav"));
+	_speed = speed;
+	_gameover = gameover;
 	_vx = 0;
 	_vy = 0;
 	_baseVel = BOLL_BASESPEED;
@@ -30,10 +32,14 @@ void Boll::update(QRect spelplan, QTimer& multiscore)
 	}
 	if (rect->y() > W_HEIGHT)
 	{
+		if (times == 0)
+			stopSound();
+
 		multiscore.stop();
-		speed->stop();
+		_speed->stop();
 		_vx = 0;
 		_vy = 0;
+		times++;
 	}
 }
 
@@ -64,6 +70,7 @@ void Boll::reset()
 	setInvisible(0);
 	_vx = 0;
 	_vy = 0;
+	times = 0;
 }
 
 bool Boll::isInvisible() const
@@ -87,16 +94,20 @@ void Boll::setpos(float x, float y)
 void Boll::speedUp()
 {
 	_baseVel = 8;
-	speed->play();
+	_speed->play();
 	//if (_baseVel <= 8)
 	//	_baseVel += 1;
 }
 
 void Boll::slowDown()
 {
-	speed->stop();
+	_speed->stop();
 	_baseVel = 4;
 	//if (_baseVel > 4)
 	//	_baseVel -= 1;
 }
 
+void Boll::stopSound()
+{
+	_gameover->play();
+}

@@ -9,16 +9,20 @@ Breakout::Breakout(QWidget *parent)
 	setFixedWidth(W_WIDTH);
 	setFixedHeight(W_HEIGHT);
 
+	victory = new QMediaPlayer();
+	victory->setMedia(QUrl("victory.mp3"));
+	speed = new QMediaPlayer();
+	speed->setMedia(QUrl("starman.wav"));
+	gameover = new QMediaPlayer();
+	gameover->setMedia(QUrl("gameover.wav"));
+
 	rack = new Racket();
-	boll = new Boll();
+	boll = new Boll(speed, gameover);
 	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
 	background = new QPixmap("background.png");
 	pause = new QPixmap("pause.png");
 	pauseback = new QPixmap("pauseback.png");
 	score = new Score();
-
-	victory = new QMediaPlayer();
-	victory->setMedia(QUrl("victory.mp3"));
 
 	initBlocks();
 	resetGame();
@@ -95,12 +99,14 @@ void Breakout::keyPressEvent(QKeyEvent* e)
 {
 	if (e->key() == Qt::Key_P && isPaused == 0)
 	{
+		victory->stop();
 		isPaused = 1;
 		repaint();
 		pauseGame();
 	}
 	else if (e->key() == Qt::Key_P && isPaused == 1)
 	{
+		victory->stop();
 		gameTimer->start(16);
 		multiscore->start(MULTI_COUNTDOWN);
 		isPaused = 0;
@@ -161,6 +167,7 @@ void Breakout::update()
 	// Stanna boll och multiscore om alla block är sönder
 	if (score->getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS)
 	{
+		speed->stop();
 		victory->play();
 		multiscore->stop();
 		boll->setxvel(0);
@@ -265,6 +272,9 @@ void Breakout::resetGame()
 	score->resetMulti();
 	rack->reset();
 	boll->reset();
+	speed->stop();
+	victory->stop();
+	gameover->stop();
 
 	isPaused = 0;
 	isReset = 1;

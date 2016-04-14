@@ -50,6 +50,8 @@ private:
 	QTimer* multiscore;
 	Score* score;
 	QMediaPlayer* victory;
+	QMediaPlayer* speed;
+	QMediaPlayer* gameover;
 
 	Racket* rack;
 	Boll* boll;
