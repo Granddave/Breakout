@@ -6,6 +6,9 @@ Racket::Racket()
 	sound = new QMediaPlayer();
 	sound->setMedia(QUrl("rackethit.wav"));
 	rect = new QRect((W_WIDTH / 2) - _width / 2, W_HEIGHT - 40, 100, 15);
+	pixL = new QPixmap("Bilder/RacketL.png");
+	pixM = new QPixmap("Bilder/RacketM.png");
+	pixR = new QPixmap("Bilder/RacketR.png");
 }
 
 Racket::~Racket()
@@ -47,8 +50,14 @@ void Racket::reset() const
 
 void Racket::paint(QPainter& painter) const
 {
-	painter.setBrush(Qt::blue);
-	painter.drawRect(rect->x(), rect->y(), rect->width(), rect->height());
+	//Storlekarna på pixmapparna
+	QRect left(rect->left(), rect->top(), 13, rect->height());
+	QRect right(rect->right() - 13, rect->top(), 13, rect->height());
+	QRect mid(rect->left() + 13, rect->top(), rect->width() - 13 * 2, rect->height());
+
+	painter.drawPixmap(left.left(), left.top(), left.width(), left.height(), *pixL);
+	painter.drawPixmap(right.left(), right.top(), right.width(), right.height(), *pixR);
+	painter.drawPixmap(mid.left(), mid.top(), mid.width(), mid.height(), *pixM);
 }
 
 void Racket::sizeUp()

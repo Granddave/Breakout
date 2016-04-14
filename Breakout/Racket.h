@@ -35,5 +35,6 @@ public:
 private:
 	QMediaPlayer* sound;
 	QRect* rect;
+	QPixmap* pixL, *pixM, *pixR;
 };
 
