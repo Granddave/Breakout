@@ -24,8 +24,6 @@ Breakout::Breakout(QWidget *parent)
 	pauseback = new QPixmap("pauseback.png");
 	score = new Score();
 
-	initBlocks();
-	resetGame();
 
 	//Uppdateringstimer
 	gameTimer = new QTimer(this);
@@ -39,6 +37,9 @@ Breakout::Breakout(QWidget *parent)
 	//Menyknapper
 	connect(ui.actionExit, SIGNAL(triggered()), this, SLOT(close()));
 	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(resetGame()));
+
+	initBlocks();
+	resetGame();
 }
 
 Breakout::~Breakout() //städar upp
