@@ -303,3 +303,4 @@ paket-files/
 .idea/
 *.sln.iml
 Breakout/Breakout.vcxproj.filters
+Breakout/Breakout.vcxproj.user
