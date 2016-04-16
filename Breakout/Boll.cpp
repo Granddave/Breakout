@@ -102,7 +102,7 @@ void Boll::speedUp()
 void Boll::slowDown()
 {
 	_speed->stop();
-	_baseVel = 4;
+	_baseVel = BOLL_BASESPEED;
 	//if (_baseVel > 4)
 	//	_baseVel -= 1;
 }

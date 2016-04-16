@@ -1,7 +1,12 @@
 TODO:
 
-Bild till racket
-
 Powerups:
     Olika sorters block?
 
+
+kortkommandon 
+	visas under paus?
+	space vid start
+	R för restart
+
+Styrning med piltangenter?
