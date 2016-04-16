@@ -19,6 +19,7 @@ public:
 	int getScore()   const	{ return _score; }
 	int getMulti()   const	{ return _multiplier; }
 	int finalScore() const	{ return _multiplier * _score; }
+	void reset() { scoreReset(); resetMulti(); }
 
 private:
 	int _score;

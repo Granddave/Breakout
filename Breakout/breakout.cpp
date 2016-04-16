@@ -117,9 +117,7 @@ void Breakout::keyPressEvent(QKeyEvent* e)
 		resetGame();
 	else if (e->key() == Qt::Key_R)
 	{
-		victory->stop();
 		resetGame();
-		multiscore->stop();
 	}
 	else if (!isPlaying && isReset && e->key() == Qt::Key_Space)
 		startGame();
@@ -268,13 +266,13 @@ void Breakout::resetGame()
 			_powerups.erase(_powerups.begin() + i);
 		}
 
-	score->scoreReset();
-	score->resetMulti();
+	score->reset();
 	rack->reset();
 	boll->reset();
 	speed->stop();
 	victory->stop();
 	gameover->stop();
+	multiscore->stop();
 
 	isPaused = 0;
 	isReset = 1;
