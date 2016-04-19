@@ -3,7 +3,7 @@
 
 PowerupRacket::PowerupRacket(int x, int y, Boll* boll, Racket* racket)
 {
-	_pixmap = QPixmap("Plus.png");
+	_pixmap = QPixmap("Bilder/Plus.png");
 	_rect = QRect(x, y, 10, 10);
 	_boll = boll;
 	_racket = racket;

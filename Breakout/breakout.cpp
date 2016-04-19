@@ -10,18 +10,18 @@ Breakout::Breakout(QWidget *parent)
 	setFixedHeight(W_HEIGHT);
 
 	victory = new QMediaPlayer();
-	victory->setMedia(QUrl("victory.mp3"));
+	victory->setMedia(QUrl("Ljud/victory.mp3"));
 	speed = new QMediaPlayer();
-	speed->setMedia(QUrl("starman.wav"));
+	speed->setMedia(QUrl("Ljud/starman.wav"));
 	gameover = new QMediaPlayer();
-	gameover->setMedia(QUrl("gameover.wav"));
+	gameover->setMedia(QUrl("Ljud/gameover.wav"));
 
 	rack = new Racket();
 	boll = new Boll(speed, gameover);
 	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
-	background = new QPixmap("background.png");
-	pause = new QPixmap("pause.png");
-	pauseback = new QPixmap("pauseback.png");
+	background = new QPixmap("Bilder/background.png");
+	pause = new QPixmap("Bilder/pause.png");
+	pauseback = new QPixmap("Bilder/pauseback.png");
 	score = new Score();
 
 
@@ -82,11 +82,6 @@ void Breakout::paintEvent(QPaintEvent * e)
 	if (isPaused)
 	{
 		p.drawPixmap(0, 0, *pauseback);
-		p.drawPixmap(255, 0, *pauseback);
-		p.drawPixmap(510, 0, *pauseback);
-		p.drawPixmap(0, 285, *pauseback);
-		p.drawPixmap(255, 285, *pauseback);
-		p.drawPixmap(510, 285, *pauseback);
 		p.drawPixmap(QRect(200, 100, 200, 200), *pause);
 	}
 }

@@ -43,6 +43,7 @@ private:
 	QRect* rect;  
 	QPixmap* boll;
 	bool _invisible;
+	QMediaPlayer* _sound;
 	QMediaPlayer* _speed;
 	QMediaPlayer* _gameover;
 };

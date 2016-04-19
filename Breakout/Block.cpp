@@ -2,12 +2,12 @@
 
 Block::Block(int x, int y)
 {
-	block = new QPixmap("block.png");
+	block = new QPixmap("Bilder/block.png");
 	_x = x;
 	_y = y;
 
 	sound = new QMediaPlayer();
-	sound->setMedia(QUrl("Bricksound.wav"));
+	sound->setMedia(QUrl("Ljud/Bricksound.wav"));
 
 	//Skapar de fyra hitboxpolygonerna
 	HBleft	 = new QPolygon();

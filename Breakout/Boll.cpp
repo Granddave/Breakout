@@ -4,8 +4,11 @@ int times = 0;
 
 Boll::Boll(QMediaPlayer* speed, QMediaPlayer* gameover)
 {
-	boll = new QPixmap("ball.png");
+	boll = new QPixmap("Bilder/ball.png");
 	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
+	_sound = new QMediaPlayer();
+	_sound->setMedia(QUrl("Ljud/paddle.wav"));
+
 	_speed = speed;
 	_gameover = gameover;
 	_vx = 0;
@@ -21,14 +24,18 @@ void Boll::update(QRect spelplan, QTimer& multiscore)
 	if ((rect->right() >= spelplan.x() + spelplan.width()) && (_vx > 0))
 	{
 		_vx = -_vx;
+		_sound->play();
+
 	}
 	if ((rect->left() <= spelplan.x()) && (_vx < 0))
 	{
 		_vx = -_vx;
+		_sound->play();
 	}
 	if ((rect->y() <= spelplan.y()) && (_vy < 0))
 	{
 		_vy = -_vy;
+		_sound->play();
 	}
 	if (rect->y() > W_HEIGHT)
 	{

@@ -4,7 +4,7 @@ Racket::Racket()
 {
 	int _width = 100;
 	sound = new QMediaPlayer();
-	sound->setMedia(QUrl("rackethit.wav"));
+	sound->setMedia(QUrl("Ljud/paddle.wav"));
 	rect = new QRect((W_WIDTH / 2) - _width / 2, W_HEIGHT - 40, 100, 15);
 	pixL = new QPixmap("Bilder/RacketL.png");
 	pixM = new QPixmap("Bilder/RacketM.png");
