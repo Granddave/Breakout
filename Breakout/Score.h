@@ -21,4 +21,5 @@ public:
 private:
 	int _score;
 	int _multiplier;
+	QPixmap* _finalScoreboard;
 };

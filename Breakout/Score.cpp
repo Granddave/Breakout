@@ -3,6 +3,7 @@
 Score::Score()
 {
 	reset();
+	_finalScoreboard = new QPixmap("Bilder/instructions.jpg");
 }
 
 
@@ -18,14 +19,16 @@ void Score::paint(QPainter& painter, Score& score, Boll& boll) const
 
 	if (boll.position().top() > W_HEIGHT || score.getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS)
 	{
+		painter.drawPixmap(QRect(155, 100, 300, 200), *_finalScoreboard);
+		painter.drawText(170, 225, QString("Press R to restart"));
 		font.setPixelSize(60);
-		painter.drawText(200, 190, QString("Final Score: "));
+		painter.drawText(170, 175, QString("Final Score: "));
 		if (!(score.getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS))
 		{
-			painter.drawText(370, 190, QString::number(score.getScore()));
+			painter.drawText(330, 175, QString::number(score.getScore()));
 			return;
 		}
-		painter.drawText(370, 190, QString::number(score.finalScore()));
+		painter.drawText(330, 175, QString::number(score.finalScore()));
 	}
 }
 

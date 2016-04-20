@@ -45,6 +45,7 @@ private:
 	QPixmap* _background;
 	QPixmap* _pause;
 	QPixmap* _pauseback;
+	QPixmap* _instructions;
 	QTimer* _gameTimer;
 	QTimer* _multiscore;
 	Score* _score;
