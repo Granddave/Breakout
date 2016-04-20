@@ -29,6 +29,7 @@ protected:
 	float _vel; //Hastighet nedåt
 	QPixmap _pixmap;
 	Boll* _boll;
+	Racket* _racket;
 	QTimer* _timer;
 	bool _givingEffect;
 	bool _visible;

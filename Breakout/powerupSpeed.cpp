@@ -6,6 +6,7 @@ PowerupSpeed::PowerupSpeed(int x, int y, Boll* boll, Racket* racket)
 	_pixmap = QPixmap("Bilder/PowerupSpeed.png");
 	_rect = QRect(x, y, 10, 10);
 	_boll = boll;
+	_racket = racket;
 	_givingEffect = 0;
 }
 
