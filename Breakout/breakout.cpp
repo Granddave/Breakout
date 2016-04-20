@@ -25,7 +25,7 @@ Breakout::Breakout(QWidget *parent)
 	_background = new QPixmap("Bilder/background.png");
 	_pause = new QPixmap("Bilder/pause.png");
 	_pauseback = new QPixmap("Bilder/pauseback.png");
-	_instructions = new QPixmap("Bilder/instructions.jpg");
+	_instructions = new QPixmap("Bilder/instructions.png");
 	_score = new Score();
 
 
@@ -95,6 +95,8 @@ void Breakout::paintEvent(QPaintEvent * e)
 		QFont font;
 		font.setPixelSize(30);
 		p.setFont(font);
+		QPen penHText(QColor("#ffffff"));
+		p.setPen(penHText);		
 		p.drawText(170, 160, QString("Press SPACE to start"));
 		p.drawText(190, 200, QString("Press P to pause"));
 		p.drawText(185, 240, QString("Press R to restart"));
