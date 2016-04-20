@@ -10,7 +10,6 @@ Powerup::Powerup()
 
 Powerup::~Powerup()
 {
-	delete _boll;
 	delete _timer;
 }
 
