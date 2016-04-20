@@ -26,19 +26,16 @@ public:
 	bool hasPowerup() const			{ return _hasPowerup; }
 	int getX() const				{ return _x; }
 	int getY() const				{ return _y; }
-	QPolygon getHBleft() const		{ return *HBleft; };
-	QPolygon getHBright() const		{ return *HBright; };
-	QPolygon getHBtop() const		{ return *HBtop; };
-	QPolygon getHBbottom() const	{ return *HBbottom; };
+	QPolygon getHBleft() const		{ return *_HBleft; };
+	QPolygon getHBright() const		{ return *_HBright; };
+	QPolygon getHBtop() const		{ return *_HBtop; };
+	QPolygon getHBbottom() const	{ return *_HBbottom; };
 
 private:
 	int _x, _y;
-	QPolygon* HBleft;
-	QPolygon* HBright;
-	QPolygon* HBtop;
-	QPolygon* HBbottom;
-	QPixmap* block;
-	QMediaPlayer* sound;
+	QPolygon* _HBleft, *_HBright, *_HBtop, *_HBbottom;
+	QPixmap* _block;
+	QMediaPlayer* _sound;
 
 	bool _isActive;
 	bool _hasPowerup;

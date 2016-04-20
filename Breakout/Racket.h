@@ -15,10 +15,10 @@ public:
 
 	void paint(QPainter& painter) const;
 
-	int getLeft()    const { return rect->left();  }
-	int getRight()   const { return rect->right(); }
-	int getCenter()  const { return rect->center().x(); }
-	QRect* getRect() const { return rect; }
+	int getLeft()    const { return _rect->left();  }
+	int getRight()   const { return _rect->right(); }
+	int getCenter()  const { return _rect->center().x(); }
+	QRect* getRect() const { return _rect; }
 
 	void sizeUp();
 	void sizeDown();
@@ -33,8 +33,8 @@ public:
 	void reset() const;
 
 private:
-	QMediaPlayer* sound;
-	QRect* rect;
-	QPixmap* pixL, *pixM, *pixR;
+	QMediaPlayer* _sound;
+	QRect* _rect;
+	QPixmap* _pixL, *_pixM, *_pixR;
 };
 

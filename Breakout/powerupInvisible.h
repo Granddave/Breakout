@@ -13,7 +13,4 @@ public:
 	void paint(QPainter & painter) override;
 	void giveEffect() override; //tar massa parametrar pga arv och polymorfism
 	void powerupEnded() override;
-
-
-private:
 };

@@ -1,5 +1,4 @@
-#ifndef BREAKOUT_H
-#define BREAKOUT_H
+#pragma once
 
 #include <QtWidgets/QMainWindow>
 #include <qtimer.h>
@@ -38,30 +37,28 @@ private slots:
 	void update();
 	void resetGame();
 	void startGame();
-	void lowMulti() const { score->lowerMulti(); }
+	void lowMulti() const { _score->lowerMulti(); }
 
 private:
 	Ui::BreakoutClass ui;
-	QRect* spelplan;
-	QPixmap* background;
-	QPixmap* pause;
-	QPixmap* pauseback;
-	QTimer* gameTimer;
-	QTimer* multiscore;
-	Score* score;
-	QMediaPlayer* victory;
-	QMediaPlayer* speed;
-	QMediaPlayer* gameover;
+	QRect* _spelplan;
+	QPixmap* _background;
+	QPixmap* _pause;
+	QPixmap* _pauseback;
+	QTimer* _gameTimer;
+	QTimer* _multiscore;
+	Score* _score;
+	QMediaPlayer* _victory;
+	QMediaPlayer* _speed;
+	QMediaPlayer* _gameover;
 
-	Racket* rack;
-	Boll* boll;
+	Racket* _rack;
+	Boll* _boll;
 	std::vector <Block*> _blocks;
 	std::vector <Powerup*> _powerups;
 
-	bool isPlaying;
-	bool isReset;
-	bool isPaused;
-	bool startInst;
+	bool _isPlaying;
+	bool _isReset;
+	bool _isPaused;
+	bool _startInst;
 };
-
-#endif // BREAKOUT_H

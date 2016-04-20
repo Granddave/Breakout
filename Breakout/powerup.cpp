@@ -2,12 +2,17 @@
 
 Powerup::Powerup()
 {
-	timer = new QTimer();
-	timer->setSingleShot(1);
+	_timer = new QTimer();
+	_timer->setSingleShot(1);
 	_vel = 3; //Hastighet nedåt
-	visible = 1;
+	_visible = 1;
 }
 
+Powerup::~Powerup()
+{
+	delete _boll;
+	delete _timer;
+}
 
 void Powerup::update()
 {

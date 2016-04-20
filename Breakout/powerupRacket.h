@@ -15,7 +15,6 @@ public:
 	void giveEffect() override; //tar massa parametrar pga arv och polymorfism
 	void powerupEnded() override;
 
-
 private:
 	Racket* _racket;
 };

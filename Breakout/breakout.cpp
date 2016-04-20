@@ -6,36 +6,36 @@ Breakout::Breakout(QWidget *parent)
 	ui.setupUi(this);
 
 	// Start instruktioner
-	startInst = 1;
+	_startInst = 1;
 
 	//Sätter fast fönsterstorlek
 	setFixedWidth(W_WIDTH);
 	setFixedHeight(W_HEIGHT);
 
-	victory = new QMediaPlayer();
-	victory->setMedia(QUrl("Ljud/victory.mp3"));
-	speed = new QMediaPlayer();
-	speed->setMedia(QUrl("Ljud/starman.wav"));
-	gameover = new QMediaPlayer();
-	gameover->setMedia(QUrl("Ljud/gameover.wav"));
+	_victory = new QMediaPlayer();
+	_victory->setMedia(QUrl("Ljud/victory.mp3"));
+	_speed = new QMediaPlayer();
+	_speed->setMedia(QUrl("Ljud/starman.wav"));
+	_gameover = new QMediaPlayer();
+	_gameover->setMedia(QUrl("Ljud/gameover.wav"));
 
-	rack = new Racket();
-	boll = new Boll(speed, gameover);
-	spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
-	background = new QPixmap("Bilder/background.png");
-	pause = new QPixmap("Bilder/pause.png");
-	pauseback = new QPixmap("Bilder/pauseback.png");
-	score = new Score();
+	_rack = new Racket();
+	_boll = new Boll(_speed, _gameover);
+	_spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
+	_background = new QPixmap("Bilder/background.png");
+	_pause = new QPixmap("Bilder/pause.png");
+	_pauseback = new QPixmap("Bilder/pauseback.png");
+	_score = new Score();
 
 
 	//Uppdateringstimer
-	gameTimer = new QTimer(this);
-	connect(gameTimer, SIGNAL(timeout()), this, SLOT(update()));
-	gameTimer->start(16);
+	_gameTimer = new QTimer(this);
+	connect(_gameTimer, SIGNAL(timeout()), this, SLOT(update()));
+	_gameTimer->start(16);
 
 	//Timer för multiscore
-	multiscore = new QTimer(this);
-	connect(multiscore, SIGNAL(timeout()), this, SLOT(lowMulti()));
+	_multiscore = new QTimer(this);
+	connect(_multiscore, SIGNAL(timeout()), this, SLOT(lowMulti()));
 
 	//Menyknapper
 	connect(ui.actionExit, SIGNAL(triggered()), this, SLOT(close()));
@@ -47,13 +47,13 @@ Breakout::Breakout(QWidget *parent)
 
 Breakout::~Breakout() //städar upp
 {
-	delete spelplan;
-	delete background;
-	delete gameTimer;
-	delete multiscore;
-	delete score;
-	delete rack;
-	delete boll;
+	delete _spelplan;
+	delete _background;
+	delete _gameTimer;
+	delete _multiscore;
+	delete _score;
+	delete _rack;
+	delete _boll;
 	for (int i = 0; i < _blocks.size(); i++)
 		delete _blocks[i];
 	for (int i = 0; i < _powerups.size(); i++)
@@ -65,7 +65,7 @@ void Breakout::paintEvent(QPaintEvent * e)
 	QPainter p(this);
 
 	//bakgrund
-	p.drawPixmap(0, 0, *background); 
+	p.drawPixmap(0, 0, *_background); 
 
 	//Målar block 
 	for (int i = 0; i < _blocks.size(); i++)
@@ -77,18 +77,18 @@ void Breakout::paintEvent(QPaintEvent * e)
 			_powerups[i]->paint(p);
 
 
-	rack->paint(p);
-	boll->paint(p);
-	score->paint(p, *score, *boll);
+	_rack->paint(p);
+	_boll->paint(p);
+	_score->paint(p, *_score, *_boll);
 
 	// Pause
-	if (isPaused)
+	if (_isPaused)
 	{
-		p.drawPixmap(0, 0, *pauseback);
-		p.drawPixmap(QRect(200, 100, 200, 200), *pause);
+		p.drawPixmap(0, 0, *_pauseback);
+		p.drawPixmap(QRect(200, 100, 200, 200), *_pause);
 	}
 
-	if (startInst)
+	if (_startInst)
 	{
 		QFont font;
 		font.setPixelSize(30);
@@ -101,37 +101,37 @@ void Breakout::paintEvent(QPaintEvent * e)
 
 void Breakout::mouseMoveEvent(QMouseEvent* e)
 {
-	rack->setPosition(e->x());
+	_rack->setPosition(e->x());
 }
 
 void Breakout::keyPressEvent(QKeyEvent* e)
 {
-	if (e->key() == Qt::Key_P && isPaused == 0)
+	if (e->key() == Qt::Key_P && _isPaused == 0)
 	{
-		victory->stop();
-		isPaused = 1;
+		_victory->stop();
+		_isPaused = 1;
 		repaint();
 		pauseGame();
 	}
-	else if (e->key() == Qt::Key_P && isPaused == 1)
+	else if (e->key() == Qt::Key_P && _isPaused == 1)
 	{
-		victory->stop();
-		gameTimer->start(16);
-		multiscore->start(MULTI_COUNTDOWN);
-		isPaused = 0;
+		_victory->stop();
+		_gameTimer->start(16);
+		_multiscore->start(MULTI_COUNTDOWN);
+		_isPaused = 0;
 		return;
 	}
 
-	if (!isPlaying && !isReset && e->key() == Qt::Key_Space)
+	if (!_isPlaying && !_isReset && e->key() == Qt::Key_Space)
 		resetGame();
 	else if (e->key() == Qt::Key_R)
 	{
 		resetGame();
 	}
-	else if (!isPlaying && isReset && e->key() == Qt::Key_Space)
+	else if (!_isPlaying && _isReset && e->key() == Qt::Key_Space)
 	{
 		startGame();
-		startInst = 0;
+		_startInst = 0;
 	}
 }
 
@@ -165,35 +165,35 @@ void Breakout::update()
 	srand(time(NULL));
 
 	// Kollar om spelet är igång
-	if (!isReset && boll->getIsOnPlayArea())
- 		isPlaying = 1;
-	else if (!isReset && !boll->getIsOnPlayArea())
-		isPlaying = 0;
+	if (!_isReset && _boll->getIsOnPlayArea())
+ 		_isPlaying = 1;
+	else if (!_isReset && !_boll->getIsOnPlayArea())
+		_isPlaying = 0;
 
 	// Inväntar start, låter spelaren välja startposition
-	if (!isPlaying && isReset)
-		boll->setpos(rack->getCenter(), boll->position().y()); // Gör att bollen följer racket 
+	if (!_isPlaying && _isReset)
+		_boll->setPos(_rack->getCenter(), _boll->position().y()); // Gör att bollen följer racket 
 
 	// Stanna boll och multiscore om alla block är sönder
-	if (score->getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS)
+	if (_score->getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS)
 	{
-		speed->stop();
-		victory->play();
-		multiscore->stop();
-		boll->setxvel(0);
-		boll->setyvel(0);
+		_speed->stop();
+		_victory->play();
+		_multiscore->stop();
+		_boll->setVelX(0);
+		_boll->setVelY(0);
 	}
 
 
 	// Kollar kollisioner
-	boll->update(*spelplan, *multiscore);	//Vägg 
-	rack->hitCheck(*boll);					//Racket
+	_boll->update(*_spelplan, *_multiscore);	//Vägg 
+	_rack->hitCheck(*_boll);					//Racket
 	
 	//Blockhitcheck samt skapar ev powerups
 	for (int i = 0; i < _blocks.size(); i++)
 	{
 		//Kollar block- och bollkollision samt adderar till score om träff
-		_blocks[i]->hitCheck(*boll, *score);
+		_blocks[i]->hitCheck(*_boll, *_score);
 
 		//Om blocket har powerup, inte är aktivt och har kvar sin powerup
 		if (_blocks[i]->hasPowerup() && !_blocks[i]->isBlockActive() && !_blocks[i]->isPowerupTaken()) 
@@ -206,17 +206,17 @@ void Breakout::update()
 
 			if (r == 0 || r == 1)
 			{
-				Powerup* p = new PowerupSpeed(_blocks[i]->getX(), _blocks[i]->getY(), boll, rack);
+				Powerup* p = new PowerupSpeed(_blocks[i]->getX(), _blocks[i]->getY(), _boll, _rack);
 				_powerups.push_back(p);
 			}
 			else if (r == 2)
 			{
-				Powerup* p = new PowerupInvisible(_blocks[i]->getX(), _blocks[i]->getY(), boll, rack);
+				Powerup* p = new PowerupInvisible(_blocks[i]->getX(), _blocks[i]->getY(), _boll, _rack);
 				_powerups.push_back(p);
 			}
 			else if (r == 3)
 			{
-				Powerup* p = new PowerupRacket(_blocks[i]->getX(), _blocks[i]->getY(), boll, rack);
+				Powerup* p = new PowerupRacket(_blocks[i]->getX(), _blocks[i]->getY(), _boll, _rack);
 				_powerups.push_back(p);
 			}
 		}
@@ -232,7 +232,7 @@ void Breakout::update()
 			
 
 			//Kollar ev. kollision med racket 
-			if (_powerups[i]->checkCollision(rack->getRect()) && _powerups[i]->isVisible())
+			if (_powerups[i]->checkCollision(_rack->getRect()) && _powerups[i]->isVisible())
 			{
 				_powerups[i]->setVisible(0);
 				_powerups[i]->giveEffect();
@@ -258,7 +258,7 @@ void Breakout::update()
 
 	//gör att racket följer bollen för debug
 #if AUTOPLAY //Ändra i defines.h för att aktivera
-	rack->setPosition(boll->getLeft()); 
+	_rack->setPosition(_boll->getLeft()); 
 #endif
 	repaint();
 }
@@ -278,32 +278,32 @@ void Breakout::resetGame()
 			_powerups.erase(_powerups.begin() + i);
 		}
 
-	score->reset();
-	rack->reset();
-	boll->reset();
-	speed->stop();
-	victory->stop();
-	gameover->stop();
-	multiscore->stop();
+	_score->reset();
+	_rack->reset();
+	_boll->reset();
+	_speed->stop();
+	_victory->stop();
+	_gameover->stop();
+	_multiscore->stop();
 
-	isPaused = 0;
-	isReset = 1;
-	isPlaying = 0;
+	_isPaused = 0;
+	_isReset = 1;
+	_isPlaying = 0;
  	repaint();
 }
 
 //Startar spelet
 void Breakout::startGame() 
 {
-	multiscore->start(MULTI_COUNTDOWN); //Startar timern för multiscore
-	isReset = 0;
-	isPlaying = 1;
-	boll->startMoving();
+	_multiscore->start(MULTI_COUNTDOWN); //Startar timern för multiscore
+	_isReset = 0;
+	_isPlaying = 1;
+	_boll->startMoving();
 	repaint();
 }
 
 void Breakout::pauseGame()
 {
-	gameTimer->stop();
-	multiscore->stop();
+	_gameTimer->stop();
+	_multiscore->stop();
 }

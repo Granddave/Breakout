@@ -2,8 +2,7 @@
 
 Score::Score()
 {
-	_score = 0;
-	_multiplier = 100;
+	reset();
 }
 
 
@@ -34,4 +33,10 @@ void Score::lowerMulti()
 {
 	if (_multiplier > 1)
 		_multiplier--;
+}
+
+void Score::reset()
+{	
+	_multiplier = 100;
+	_score = 0;
 }

@@ -2,8 +2,8 @@
 
 Boll::Boll(QMediaPlayer* speed, QMediaPlayer* gameover)
 {
-	boll = new QPixmap("Bilder/ball.png");
-	rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
+	_boll = new QPixmap("Bilder/ball.png");
+	_rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
 	_sound = new QMediaPlayer();
 	_sound->setMedia(QUrl("Ljud/paddle.wav"));
 
@@ -18,28 +18,28 @@ Boll::Boll(QMediaPlayer* speed, QMediaPlayer* gameover)
 
 void Boll::update(QRect spelplan, QTimer& multiscore)
 {
-	rect->moveLeft(rect->x() + _vx * _baseVel);
-	rect->moveTop(rect->y() + _vy * _baseVel);
-	if ((rect->right() >= spelplan.x() + spelplan.width()) && (_vx > 0))
+	_rect->moveLeft(_rect->x() + _vx * _baseVel);
+	_rect->moveTop(_rect->y() + _vy * _baseVel);
+	if ((_rect->right() >= spelplan.x() + spelplan.width()) && (_vx > 0))
 	{
 		_vx = -_vx;
 		_sound->play();
 
 	}
-	if ((rect->left() <= spelplan.x()) && (_vx < 0))
+	if ((_rect->left() <= spelplan.x()) && (_vx < 0))
 	{
 		_vx = -_vx;
 		_sound->play();
 	}
-	if ((rect->y() <= spelplan.y()) && (_vy < 0))
+	if ((_rect->y() <= spelplan.y()) && (_vy < 0))
 	{
 		_vy = -_vy;
 		_sound->play();
 	}
-	if (rect->y() > W_HEIGHT)
+	if (_rect->y() > W_HEIGHT)
 	{
 		if (_times)
-			stopSound();
+			playGameover();
 
 		multiscore.stop();
 		_speed->stop();
@@ -51,7 +51,7 @@ void Boll::update(QRect spelplan, QTimer& multiscore)
 
 void Boll::paint(QPainter & painter) const
 {
-	painter.drawPixmap(rect->left(), rect->top(), *boll);
+	painter.drawPixmap(_rect->left(), _rect->top(), *_boll);
 
 #if powerupDB
 	QFont font;
@@ -70,8 +70,8 @@ void Boll::startMoving()
 
 void Boll::reset()
 {
-	rect->moveLeft(W_WIDTH / 2);
-	rect->moveTop(W_HEIGHT - 50);
+	_rect->moveLeft(W_WIDTH / 2);
+	_rect->moveTop(W_HEIGHT - 50);
 	_baseVel = BOLL_BASESPEED;
 	setInvisible(0);
 	_vx = 0;
@@ -79,22 +79,12 @@ void Boll::reset()
 	_times = 1;
 }
 
-bool Boll::isInvisible() const
-{
-	return _invisible;
-}
-
-void Boll::setInvisible(bool b)
-{
-	_invisible = b;
-}
-
-void Boll::setpos(float x, float y)
+void Boll::setPos(float x, float y)
 {
 	// Använd moveLeft eller moveTop istället för setX och setY.
 	// setX/Y ändrar storleken!
-	rect->moveLeft(x);
-	rect->moveTop(y);
+	_rect->moveLeft(x);
+	_rect->moveTop(y);
 }
 
 void Boll::speedUp()
@@ -111,9 +101,4 @@ void Boll::slowDown()
 	_baseVel = BOLL_BASESPEED;
 	//if (_baseVel > 4)
 	//	_baseVel -= 1;
-}
-
-void Boll::stopSound()
-{
-	_gameover->play();
 }

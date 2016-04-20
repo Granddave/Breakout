@@ -12,3 +12,7 @@ kortkommandon
 Styrning med piltangenter?
 
 Pixmap till instruktioner
+
+Fixa alla destruktorer!
+
+Byta namn på _Times i boll till något bättre?
