@@ -61,6 +61,7 @@ private:
 	bool isPlaying;
 	bool isReset;
 	bool isPaused;
+	bool startInst;
 };
 
 #endif // BREAKOUT_H

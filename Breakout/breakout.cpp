@@ -5,6 +5,9 @@ Breakout::Breakout(QWidget *parent)
 {
 	ui.setupUi(this);
 
+	// Start instruktioner
+	startInst = 1;
+
 	//Sätter fast fönsterstorlek
 	setFixedWidth(W_WIDTH);
 	setFixedHeight(W_HEIGHT);
@@ -84,6 +87,16 @@ void Breakout::paintEvent(QPaintEvent * e)
 		p.drawPixmap(0, 0, *pauseback);
 		p.drawPixmap(QRect(200, 100, 200, 200), *pause);
 	}
+
+	if (startInst)
+	{
+		QFont font;
+		font.setPixelSize(30);
+		p.setFont(font);
+		p.drawText(170, 200, QString("Press SPACE to start"));
+		p.drawText(190, 240, QString("Press P to pause"));
+		p.drawText(185, 280, QString("Press R to restart"));
+	}
 }
 
 void Breakout::mouseMoveEvent(QMouseEvent* e)
@@ -116,7 +129,10 @@ void Breakout::keyPressEvent(QKeyEvent* e)
 		resetGame();
 	}
 	else if (!isPlaying && isReset && e->key() == Qt::Key_Space)
+	{
 		startGame();
+		startInst = 0;
+	}
 }
 
 

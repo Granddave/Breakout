@@ -1,7 +1,5 @@
 #include "Boll.h"
 
-int times = 0;
-
 Boll::Boll(QMediaPlayer* speed, QMediaPlayer* gameover)
 {
 	boll = new QPixmap("Bilder/ball.png");
@@ -15,6 +13,7 @@ Boll::Boll(QMediaPlayer* speed, QMediaPlayer* gameover)
 	_vy = 0;
 	_baseVel = BOLL_BASESPEED;
 	_invisible = 0;
+	_times = 1;
 }
 
 void Boll::update(QRect spelplan, QTimer& multiscore)
@@ -39,14 +38,14 @@ void Boll::update(QRect spelplan, QTimer& multiscore)
 	}
 	if (rect->y() > W_HEIGHT)
 	{
-		if (times == 0)
+		if (_times)
 			stopSound();
 
 		multiscore.stop();
 		_speed->stop();
 		_vx = 0;
 		_vy = 0;
-		times++;
+		_times = 0;
 	}
 }
 
@@ -77,7 +76,7 @@ void Boll::reset()
 	setInvisible(0);
 	_vx = 0;
 	_vy = 0;
-	times = 0;
+	_times = 1;
 }
 
 bool Boll::isInvisible() const

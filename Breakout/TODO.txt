@@ -10,3 +10,5 @@ kortkommandon
 	R för restart
 
 Styrning med piltangenter?
+
+Pixmap till instruktioner
