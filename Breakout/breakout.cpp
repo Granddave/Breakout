@@ -48,13 +48,19 @@ Breakout::Breakout(QWidget *parent)
 
 Breakout::~Breakout() //städar upp
 {
-	delete _spelplan;
-	delete _background;
-	delete _gameTimer;
-	delete _multiscore;
-	delete _score;
 	delete _rack;
 	delete _boll;
+	delete _spelplan;
+	delete _background;
+	delete _pause;
+	delete _pauseback;
+	delete _instructions;
+	delete _score;
+	delete _gameTimer;
+	delete _multiscore;
+	delete _victory;
+	delete _speed;
+	delete _gameover;
 	for (int i = 0; i < _blocks.size(); i++)
 		delete _blocks[i];
 	for (int i = 0; i < _powerups.size(); i++)

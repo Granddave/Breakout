@@ -89,7 +89,7 @@ void Boll::setPos(float x, float y)
 
 void Boll::speedUp()
 {
-	_baseVel = 8;
+	_baseVel = BOLL_POWERUPSPEED;
 	_speed->play();
 	//if (_baseVel <= 8)
 	//	_baseVel += 1;

@@ -25,15 +25,17 @@ void Score::paint(QPainter& painter, Score& score, Boll& boll) const
 		painter.setFont(font);
 		QPen penHText(QColor("#ffffff"));
 		painter.setPen(penHText);
-		painter.drawText(170, 225, QString("Press R to restart"));
+		painter.drawText(170, 255, QString("Press R to restart"));
 		font.setPixelSize(60);
-		painter.drawText(170, 175, QString("Final Score: "));
+		painter.drawText(170, 225, QString("Final Score: "));
+		painter.drawText(220, 155, QString("GAME OVER!"));
+
 		if (!(score.getScore() == NUM_OF_BLOCKS * POINTS_PER_BLOCKS))
 		{
-			painter.drawText(330, 175, QString::number(score.getScore()));
+			painter.drawText(330, 225, QString::number(score.getScore()));
 			return;
 		}
-		painter.drawText(330, 175, QString::number(score.finalScore()));
+		painter.drawText(330, 225, QString::number(score.finalScore()));
 	}
 }
 

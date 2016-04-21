@@ -1,3 +1,2 @@
 TODO:
 
-Fixa alla destruktorer!
