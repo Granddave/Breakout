@@ -11,11 +11,6 @@ Racket::Racket()
 	_pixR = new QPixmap("Bilder/RacketR.png");
 }
 
-Racket::~Racket()
-{
-	delete _rect;
-}
-
 void Racket::hitCheck(Boll& boll) const
 {
 	QPoint bollCenter = boll.position().center();
@@ -68,4 +63,13 @@ void Racket::sizeUp()
 void Racket::sizeDown()
 {
 	_rect->setWidth(100);
+}
+
+Racket::~Racket()
+{
+	delete _sound;
+	delete _rect;
+	delete _pixL;
+	delete _pixM;
+	delete _pixR;
 }

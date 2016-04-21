@@ -11,6 +11,7 @@ class Boll
 {
 public:
 	Boll(QMediaPlayer* speed, QMediaPlayer* gameover);
+	~Boll();
 
 	void update(QRect qr, QTimer& multiscore);
 	void paint(QPainter & painter) const;
@@ -42,7 +43,7 @@ private:
 	QRect* _rect;			//Position samt storlek
 	QPixmap* _boll;
 	bool _invisible;		//Om true åker den igenom blocken utan att studsa
-	bool _times;
+	bool _gameoverOnce;
 	QMediaPlayer* _sound, *_speed, *_gameover;
 };
 

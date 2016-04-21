@@ -7,7 +7,7 @@ class Score
 {
 public:
 	Score();
-	~Score(){}
+	~Score();
 	
 	void paint(QPainter& painter, Score& score, Boll& boll) const;
 

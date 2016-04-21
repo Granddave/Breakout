@@ -48,3 +48,8 @@ void Score::reset()
 	_multiplier = 100;
 	_score = 0;
 }
+
+Score::~Score()
+{
+	delete _finalScoreboard;
+}

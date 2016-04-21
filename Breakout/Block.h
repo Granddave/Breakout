@@ -13,6 +13,7 @@ class Block
 {
 public:
 	Block(int x, int y);
+	~Block();
 	
 	void paint(QPainter& painter) const;
 	void hitCheck(Boll& boll, Score& score);
@@ -29,6 +30,8 @@ public:
 	QPolygon getHBright() const		{ return *_HBright; };
 	QPolygon getHBtop() const		{ return *_HBtop; };
 	QPolygon getHBbottom() const	{ return *_HBbottom; };
+
+
 
 private:
 	int _x, _y;

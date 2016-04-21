@@ -1,18 +1,3 @@
 TODO:
 
-Powerups:
-    Olika sorters block?
-
-
-kortkommandon 
-	visas under paus?
-	space vid start
-	R för restart
-
-Styrning med piltangenter?
-
-Pixmap till instruktioner
-
 Fixa alla destruktorer!
-
-Byta namn på _Times i boll till något bättre?

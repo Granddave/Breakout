@@ -223,3 +223,13 @@ void Block::breakBlock(Score& score)
 	score.addScore();
 	_sound->play();
 }
+
+Block::~Block()
+{
+	delete _block;
+	delete _sound;
+	delete _HBleft;
+	delete _HBright;
+	delete _HBtop;
+	delete _HBbottom;
+}

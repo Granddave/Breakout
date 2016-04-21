@@ -13,7 +13,7 @@ Boll::Boll(QMediaPlayer* speed, QMediaPlayer* gameover)
 	_vy = 0;
 	_baseVel = BOLL_BASESPEED;
 	_invisible = 0;
-	_times = 1;
+	_gameoverOnce = 1;
 }
 
 void Boll::update(QRect spelplan, QTimer& multiscore)
@@ -38,14 +38,14 @@ void Boll::update(QRect spelplan, QTimer& multiscore)
 	}
 	if (_rect->y() > W_HEIGHT)
 	{
-		if (_times)
+		if (_gameoverOnce)
 			playGameover();
 
 		multiscore.stop();
 		_speed->stop();
 		_vx = 0;
 		_vy = 0;
-		_times = 0;
+		_gameoverOnce = 0;
 	}
 }
 
@@ -76,7 +76,7 @@ void Boll::reset()
 	setInvisible(0);
 	_vx = 0;
 	_vy = 0;
-	_times = 1;
+	_gameoverOnce = 1;
 }
 
 void Boll::setPos(float x, float y)
@@ -101,4 +101,11 @@ void Boll::slowDown()
 	_baseVel = BOLL_BASESPEED;
 	//if (_baseVel > 4)
 	//	_baseVel -= 1;
+}
+
+Boll::~Boll()
+{
+	delete _boll;
+	delete _rect;
+	delete _sound;
 }
