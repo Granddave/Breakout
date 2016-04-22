@@ -38,10 +38,13 @@ public:
 private:
 	float _vx, _vy;			//Riktningen på bollen
 	float _baseVel;			//Bashastigheten
+
 	QRect* _rect;			//Position samt storlek
 	QPixmap* _boll;
+	QMediaPlayer* _sound, *_speed, *_gameover;
+
 	bool _invisible;		//Om true åker den igenom blocken utan att studsa
 	bool _gameoverOnce;
-	QMediaPlayer* _sound, *_speed, *_gameover;
 };
+
 

@@ -41,6 +41,7 @@ private slots:
 
 private:
 	Ui::BreakoutClass ui;
+
 	QRect* _spelplan;
 	QPixmap* _background;
 	QPixmap* _pause;
@@ -48,13 +49,14 @@ private:
 	QPixmap* _instructions;
 	QTimer* _gameTimer;
 	QTimer* _multiscore;
-	Score* _score;
 	QMediaPlayer* _victory;
 	QMediaPlayer* _speed;
 	QMediaPlayer* _gameover;
 
+	Score* _score;
 	Racket* _rack;
 	Boll* _boll;
+
 	std::vector <Block*> _blocks;
 	std::vector <Powerup*> _powerups;
 
