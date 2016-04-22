@@ -55,6 +55,7 @@ void Block::hitCheck(Boll& boll, Score& score)
 			}
 			
 			// Följande 12 if-statements kollar om bollen är exakt i någon av kanterna i blocket och kollar även vilken riktning bollen har
+			// För illustration, se Breakout/Breakout/Bilder/Hitboxexplain.jpg
 			if (((point.x() == _x) && (point.y() == _y)) && ((boll.velX() > 0) && (boll.velY() > 0))) // 1
 			{
 				boll.changeyvel(-1);
@@ -117,7 +118,7 @@ void Block::hitCheck(Boll& boll, Score& score)
 			}
 			
 			///////////////////////////////////////////////////
- 			if (getHBbottom().containsPoint(point, Qt::OddEvenFill)) // osäker vad man ska skriva i andra fältet där OddEvenFill står...
+ 			if (getHBbottom().containsPoint(point, Qt::OddEvenFill))
 			{
 				if ((boll.velX() > 0) && (boll.velY() > 0)) // 11
 				{

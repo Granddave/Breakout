@@ -81,8 +81,6 @@ void Boll::reset()
 
 void Boll::setPos(float x, float y)
 {
-	// Använd moveLeft eller moveTop istället för setX och setY.
-	// setX/Y ändrar storleken!
 	_rect->moveLeft(x);
 	_rect->moveTop(y);
 }
@@ -91,16 +89,12 @@ void Boll::speedUp()
 {
 	_baseVel = BOLL_POWERUPSPEED;
 	_speed->play();
-	//if (_baseVel <= 8)
-	//	_baseVel += 1;
 }
 
 void Boll::slowDown()
 {
 	_speed->stop();
 	_baseVel = BOLL_BASESPEED;
-	//if (_baseVel > 4)
-	//	_baseVel -= 1;
 }
 
 Boll::~Boll()

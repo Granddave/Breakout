@@ -15,8 +15,6 @@ public:
 
 	void paint(QPainter& painter) const;
 
-	int getLeft()    const { return _rect->left();  }
-	int getRight()   const { return _rect->right(); }
 	int getCenter()  const { return _rect->center().x(); }
 	QRect* getRect() const { return _rect; }
 

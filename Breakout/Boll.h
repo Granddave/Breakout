@@ -18,7 +18,6 @@ public:
 
 	float velX()				{ return _vx; }
 	float velY()				{ return _vy; }
-	float baseVel()				{ return _baseVel; }
 	QRect position() const		{ return *_rect; }
 	bool getIsOnPlayArea() const{ return (_rect->top() < W_HEIGHT); }
 
@@ -27,7 +26,6 @@ public:
 
 	void setVelX(float x)		{ _vx = x; }
 	void setVelY(float y)		{ _vy = y; }
-	void setBaseVel(float vel)	{ _baseVel = vel; }
 	void setPos(float x, float y);
 	void speedUp();
 	void slowDown();

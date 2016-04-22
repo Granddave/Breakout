@@ -12,6 +12,7 @@ Breakout::Breakout(QWidget *parent)
 	setFixedWidth(W_WIDTH);
 	setFixedHeight(W_HEIGHT);
 
+	//Ljud
 	_victory = new QMediaPlayer();
 	_victory->setMedia(QUrl("Ljud/victory.mp3"));
 	_speed = new QMediaPlayer();
@@ -19,14 +20,17 @@ Breakout::Breakout(QWidget *parent)
 	_gameover = new QMediaPlayer();
 	_gameover->setMedia(QUrl("Ljud/gameover.wav"));
 
+	//Objekt
 	_rack = new Racket();
 	_boll = new Boll(_speed, _gameover);
 	_spelplan = new QRect(0, 21, W_WIDTH, W_HEIGHT- 21);
+	_score = new Score();
+	
+	//Bilder
 	_background = new QPixmap("Bilder/background.png");
 	_pause = new QPixmap("Bilder/pause.png");
 	_pauseback = new QPixmap("Bilder/pauseback.png");
 	_instructions = new QPixmap("Bilder/instructions.png");
-	_score = new Score();
 
 
 	//Uppdateringstimer
@@ -71,14 +75,14 @@ void Breakout::paintEvent(QPaintEvent * e)
 {
 	QPainter p(this);
 
-	//bakgrund
+	//Bakgrund
 	p.drawPixmap(0, 0, *_background); 
 
-	//Målar block 
+	//Block 
 	for (int i = 0; i < _blocks.size(); i++)
 		_blocks[i]->paint(p);
 
-	//Målar powerups
+	//Powerups
 	if (_powerups.size() > 0)
 		for (int i = 0; i < _powerups.size(); i++)
 			_powerups[i]->paint(p);
@@ -88,13 +92,14 @@ void Breakout::paintEvent(QPaintEvent * e)
 	_boll->paint(p);
 	_score->paint(p, *_score, *_boll);
 
-	// Pause
+	//Pause
 	if (_isPaused)
 	{
 		p.drawPixmap(0, 0, *_pauseback);
 		p.drawPixmap(QRect(200, 100, 200, 200), *_pause);
 	}
 
+	//Instruktioner
 	if (_startInst)
 	{
 		p.drawPixmap(QRect(155,100,300,200), *_instructions);
@@ -103,12 +108,16 @@ void Breakout::paintEvent(QPaintEvent * e)
 		p.setFont(font);
 		QPen penHText(QColor("#ffffff"));
 		p.setPen(penHText);		
-		p.drawText(170, 160, QString("Press SPACE to start"));
-		p.drawText(190, 200, QString("Press P to pause"));
-		p.drawText(185, 240, QString("Press R to restart"));
+		p.drawText(170, 130, QString("Press SPACE to start"));
+		p.drawText(190, 170, QString("Press P to pause"));
+		p.drawText(185, 210, QString("Press R to restart"));
+		p.drawText(170, 250, QString("Hold left mouseBTN"));
+		p.drawText(200, 290, QString("to move paddle"));
+
 	}
 }
 
+//Sätter racket
 void Breakout::mouseMoveEvent(QMouseEvent* e)
 {
 	_rack->setPosition(e->x());
