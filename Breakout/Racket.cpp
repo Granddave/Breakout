@@ -29,7 +29,7 @@ void Racket::hitCheck(Boll& boll) const
 
 void Racket::setPosition(int x)
 {
-	// Om innanför fönstret
+	// Om racket kommer innanför fönstret
 	if ((x >= _rect->width() / 2) && (x < W_WIDTH - _rect->width() / 2)) 
 		_rect->moveLeft(x - (_rect->width() / 2));
 }
