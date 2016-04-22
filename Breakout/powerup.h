@@ -25,12 +25,15 @@ public:
 	virtual void powerupEnded() = 0;
 
 protected:
-	QRect _rect;
 	float _vel; //Hastighet nedåt
+	
+	QRect _rect;
 	QPixmap _pixmap;
+	QTimer* _timer;
+
 	Boll* _boll;
 	Racket* _racket;
-	QTimer* _timer;
+
 	bool _givingEffect;
 	bool _visible;
 };
