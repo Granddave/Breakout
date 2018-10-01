@@ -3,7 +3,7 @@
 Score::Score()
 {
 	reset();
-	_finalScoreboard = new QPixmap("Bilder/instructions.png");
+    _finalScoreboard = new QPixmap(":/Bilder/instructions.png");
 }
 
 

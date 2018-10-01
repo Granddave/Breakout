@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Bilder/background.png</file>
+        <file>Bilder/ball.png</file>
+        <file>Bilder/block.png</file>
+        <file>Bilder/instructions.png</file>
+        <file>Bilder/invisible.png</file>
+        <file>Bilder/pause.png</file>
+        <file>Bilder/pauseback.png</file>
+        <file>Bilder/Plus.png</file>
+        <file>Bilder/PowerupSpeed.png</file>
+        <file>Bilder/RacketL.png</file>
+        <file>Bilder/RacketM.png</file>
+        <file>Bilder/RacketR.png</file>
+        <file>Ljud/Bricksound.wav</file>
+        <file>Ljud/gameover.wav</file>
+        <file>Ljud/paddle.wav</file>
+        <file>Ljud/rackethit.wav</file>
+        <file>Ljud/starman.wav</file>
+        <file>Ljud/victory.mp3</file>
+    </qresource>
+</RCC>

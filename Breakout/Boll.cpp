@@ -2,10 +2,10 @@
 
 Boll::Boll(QMediaPlayer* speed, QMediaPlayer* gameover)
 {
-	_boll = new QPixmap("Bilder/ball.png");
+    _boll = new QPixmap(":/Bilder/ball.png");
 	_rect = new QRect(W_WIDTH / 2, W_HEIGHT - 50, 6, 6);
 	_sound = new QMediaPlayer();
-	_sound->setMedia(QUrl("Ljud/paddle.wav"));
+    _sound->setMedia(QUrl("qrc:/Ljud/paddle.wav"));
 
 	_speed = speed;
 	_gameover = gameover;

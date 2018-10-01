@@ -3,7 +3,7 @@
 
 PowerupInvisible::PowerupInvisible(int x, int y, Boll* boll, Racket* racket)
 {
-	_pixmap = QPixmap("Bilder/invisible.png");
+    _pixmap = QPixmap(":/Bilder/invisible.png");
 	_rect = QRect(x, y, 10, 10);
 	_boll = boll;
 	_racket = racket;

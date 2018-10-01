@@ -4,11 +4,11 @@ Racket::Racket()
 {
 	int _width = 100;
 	_sound = new QMediaPlayer();
-	_sound->setMedia(QUrl("Ljud/paddle.wav"));
+    _sound->setMedia(QUrl("qrc:/Ljud/paddle.wav"));
 	_rect = new QRect((W_WIDTH / 2) - _width / 2, W_HEIGHT - 40, 100, 15);
-	_pixL = new QPixmap("Bilder/RacketL.png");
-	_pixM = new QPixmap("Bilder/RacketM.png");
-	_pixR = new QPixmap("Bilder/RacketR.png");
+    _pixL = new QPixmap(":/Bilder/RacketL.png");
+    _pixM = new QPixmap(":/Bilder/RacketM.png");
+    _pixR = new QPixmap(":/Bilder/RacketR.png");
 }
 
 void Racket::hitCheck(Boll& boll) const

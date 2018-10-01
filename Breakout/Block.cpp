@@ -2,7 +2,7 @@
 
 Block::Block(int x, int y)
 {
-	_block = new QPixmap("Bilder/block.png");
+    _block = new QPixmap(":/Bilder/block.png");
 	_x = x;
 	_y = y;
 
@@ -10,12 +10,12 @@ Block::Block(int x, int y)
  	_isActive = 1;
 
 	_sound = new QMediaPlayer();
-	_sound->setMedia(QUrl("Ljud/Bricksound.wav"));
+    _sound->setMedia(QUrl("qrc:/Ljud/Bricksound.wav"));
 
 	//Skapar de fyra hitboxpolygonerna
 	_HBleft	 = new QPolygon();
 	_HBright	 = new QPolygon();
-	_HBtop	 = new QPolygon();
+    _HBtop	 = new QPolygon();
 	_HBbottom = new QPolygon();
 
 	int left[] = { x, y, x, y + BLOCK_HEIGHT, x + (BLOCK_WIDTH/2), y + (BLOCK_HEIGHT/2) }; 

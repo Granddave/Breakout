@@ -14,11 +14,11 @@ Breakout::Breakout(QWidget *parent)
 
 	//Ljud
 	_victory = new QMediaPlayer();
-	_victory->setMedia(QUrl("Ljud/victory.mp3"));
+    _victory->setMedia(QUrl("qrc:/Ljud/victory.mp3"));
 	_speed = new QMediaPlayer();
-	_speed->setMedia(QUrl("Ljud/starman.wav"));
+    _speed->setMedia(QUrl("qrc:/Ljud/starman.wav"));
 	_gameover = new QMediaPlayer();
-	_gameover->setMedia(QUrl("Ljud/gameover.wav"));
+    _gameover->setMedia(QUrl("qrc:/Ljud/gameover.wav"));
 
 	//Objekt
 	_rack = new Racket();
@@ -27,10 +27,10 @@ Breakout::Breakout(QWidget *parent)
 	_score = new Score();
 	
 	//Bilder
-	_background = new QPixmap("Bilder/background.png");
-	_pause = new QPixmap("Bilder/pause.png");
-	_pauseback = new QPixmap("Bilder/pauseback.png");
-	_instructions = new QPixmap("Bilder/instructions.png");
+    _background = new QPixmap(":/Bilder/background.png");
+    _pause = new QPixmap(":/Bilder/pause.png");
+    _pauseback = new QPixmap(":/Bilder/pauseback.png");
+    _instructions = new QPixmap(":/Bilder/instructions.png");
 
 
 	//Uppdateringstimer
@@ -171,8 +171,7 @@ void Breakout::initBlocks()
 			{
 				//Skapar och sätter ut blocken, sedan lägger till i blockarrayen
 				Block* n = new Block((x * W_WIDTH / BLOCKS_NUM_X) + ((W_WIDTH / BLOCKS_NUM_X) - BLOCK_WIDTH) / 2, (y * spaceingY) + heightAdj);
-				_blocks.push_back(n);
-				qDebug() << x << y;
+                _blocks.push_back(n);
 			}
 		}
 	}
